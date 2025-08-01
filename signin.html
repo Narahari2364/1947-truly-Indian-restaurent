@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - 1947 Indian Restaurant</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">
+            <span class="logo-badge">
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+                <span class="logo-stack">
+                    <span class="wordmark-1947">1947</span>
+                    <span class="wordmark-subtext">Indian Restaurant</span>
+                </span>
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+            </span>
+        </a></h1>
+        <nav>
+            <ul>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Catering</a></li>
+                <li><a href="reservations.html">Events</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact Us</a>
+                        <a href="contact.html">Gift Cards</a>
+                        <a href="contact.html">Franchise</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="signin.html" class="signin-btn">Sign In</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <h1 class="page-title">Welcome Back!</h1>
+            
+            <div class="auth-form-wrapper">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchTab('signin')">Sign In</button>
+                    <button class="tab-btn" onclick="switchTab('signup')">Create Account</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <div id="signin-form" class="auth-form active">
+                    <h2>Sign In to Your Account</h2>
+                    <p>Enter your phone number to access your account</p>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="signin-phone">Phone Number:</label>
+                            <input type="tel" id="signin-phone" name="phone" placeholder="+1 (555) 123-4567" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signin-password">Password:</label>
+                            <input type="password" id="signin-password" name="password" placeholder="Enter your password" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </form>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div id="signup-form" class="auth-form">
+                    <h2>Create Your Account</h2>
+                    <p>Join us and start enjoying exclusive benefits!</p>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="signup-name">Full Name:</label>
+                            <input type="text" id="signup-name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-phone">Phone Number:</label>
+                            <input type="tel" id="signup-phone" name="phone" placeholder="+1 (555) 123-4567" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-email">Email Address:</label>
+                            <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-password">Password:</label>
+                            <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password:</label>
+                            <input type="password" id="signup-confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="auth-benefits">
+                <h3>Why Sign Up?</h3>
+                <ul>
+                    <li>✓ Exclusive member discounts and offers</li>
+                    <li>✓ Priority reservation booking</li>
+                    <li>✓ Order history and favorites</li>
+                    <li>✓ Special event notifications</li>
+                    <li>✓ Loyalty points and rewards</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Indian Restaurant. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@1947indianrestaurant.com">info@1947indianrestaurant.com</a></p>
+        <p>Phone: (555) 123-4567 | Address: 123 Spice Street, Flavor City, FC 12345</p>
+    </footer>
+
+    <script>
+        function switchTab(tab) {
+            // Remove active class from all tabs and forms
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+            
+            // Add active class to selected tab and form
+            event.target.classList.add('active');
+            document.getElementById(tab + '-form').classList.add('active');
+        }
+
+        // Phone number formatting
+        document.querySelectorAll('input[type="tel"]').forEach(input => {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 6) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+                } else if (value.length >= 3) {
+                    value = value.replace(/(\d{3})(\d{0,3})/, '($1) $2');
+                }
+                e.target.value = value;
+            });
+        });
+
+        // Form validation
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (form.id === 'signup-form') {
+                    const password = document.getElementById('signup-password').value;
+                    const confirmPassword = document.getElementById('signup-confirm-password').value;
+                    
+                    if (password !== confirmPassword) {
+                        alert('Passwords do not match!');
+                        return;
+                    }
+                }
+                
+                // Here you would typically send the data to your server
+                alert('Form submitted successfully! (This is a demo)');
+            });
+        });
+    </script>
+</body>
+</html>
