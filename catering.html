@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Services - 1947 Indian Restaurant</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">
+            <span class="logo-badge">
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+                <span class="logo-stack">
+                    <span class="wordmark-1947">1947</span>
+                    <span class="wordmark-subtext">Indian Restaurant</span>
+                </span>
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+            </span>
+        </a></h1>
+        <nav>
+            <ul>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li><a href="reservations.html">Events</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact Us</a>
+                        <a href="contact.html">Gift Cards</a>
+                        <a href="contact.html">Franchise</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="signin.html" class="signin-btn">Sign In</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Catering Services</h1>
+        
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+             alt="Beautiful Indian catering spread with various dishes" 
+             style="width: 100%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 10px; margin: 0 auto 2rem; display: block;">
+
+        <div class="catering-intro">
+            <h2>Make Your Event Memorable with Authentic Indian Cuisine</h2>
+            <p>From intimate gatherings to grand celebrations, we provide exceptional catering services that bring the authentic flavors of India to your special occasions. Our experienced team ensures every detail is perfect for your event.</p>
+        </div>
+
+        <div class="catering-form-container">
+            <h2>Request Catering Services</h2>
+            <p>Please fill out the form below with your catering requirements. We'll get back to you within 24 hours with a detailed quote and availability.</p>
+            
+            <form class="catering-form" id="catering-form">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h3>Contact Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="full-name">Full Name *</label>
+                            <input type="text" id="full-name" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company/Organization (Optional)</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Details Section -->
+                <div class="form-section">
+                    <h3>Event Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-date">Event Date *</label>
+                            <input type="date" id="event-date" name="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-time">Event Time *</label>
+                            <select id="event-time" name="eventTime" required>
+                                <option value="">Select Time</option>
+                                <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+                                <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
+                                <option value="evening">Evening (4:00 PM - 8:00 PM)</option>
+                                <option value="night">Night (8:00 PM - 12:00 AM)</option>
+                                <option value="custom">Custom Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guest-count">Number of People *</label>
+                            <select id="guest-count" name="guestCount" required>
+                                <option value="">Select Number of Guests</option>
+                                <option value="10-25">10-25 people</option>
+                                <option value="26-50">26-50 people</option>
+                                <option value="51-100">51-100 people</option>
+                                <option value="101-200">101-200 people</option>
+                                <option value="201-500">201-500 people</option>
+                                <option value="500+">500+ people</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-type">Type of Event *</label>
+                            <select id="event-type" name="eventType" required>
+                                <option value="">Select Event Type</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="birthday">Birthday Party</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="graduation">Graduation</option>
+                                <option value="religious">Religious Ceremony</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Type Section -->
+                <div class="form-section">
+                    <h3>Service Type</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="serviceType" value="delivery" required>
+                            <span class="radio-custom"></span>
+                            <div class="radio-content">
+                                <strong>Delivery</strong>
+                                <p>We'll deliver your order to your specified address</p>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-label">
+                            <input type="radio" name="serviceType" value="pickup" required>
+                            <span class="radio-custom"></span>
+                            <div class="radio-content">
+                                <strong>Pickup</strong>
+                                <p>You'll pick up your order from our restaurant</p>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <!-- Delivery Address (shown when delivery is selected) -->
+                    <div class="form-group delivery-address" id="delivery-address" style="display: none;">
+                        <label for="delivery-address-field">Delivery Address *</label>
+                        <textarea id="delivery-address-field" name="deliveryAddress" rows="3" placeholder="Please provide complete delivery address including street, city, state, and zip code"></textarea>
+                    </div>
+                </div>
+
+                <!-- Menu Selection Section -->
+                <div class="form-section">
+                    <h3>Menu Selection</h3>
+                    <p>Please select the dishes you'd like for your catering event. You can choose from our popular catering packages or create a custom menu.</p>
+                    
+                    <div class="menu-categories">
+                        <div class="menu-category">
+                            <h4>Appetizers & Starters</h4>
+                            <div class="menu-items">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="samosas">
+                                    <span class="checkmark"></span>
+                                    Samosas (Vegetable & Chicken) - $4.99/dozen
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="pakoras">
+                                    <span class="checkmark"></span>
+                                    Mixed Vegetable Pakoras - $5.99/dozen
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="chicken-tikka">
+                                    <span class="checkmark"></span>
+                                    Chicken Tikka - $7.99/dozen
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="paneer-tikka">
+                                    <span class="checkmark"></span>
+                                    Paneer Tikka - $6.99/dozen
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-category">
+                            <h4>Main Courses</h4>
+                            <div class="menu-items">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="butter-chicken">
+                                    <span class="checkmark"></span>
+                                    Butter Chicken - $14.99/large tray
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="chicken-biryani">
+                                    <span class="checkmark"></span>
+                                    Chicken Biryani - $16.99/large tray
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="lamb-rogan-josh">
+                                    <span class="checkmark"></span>
+                                    Lamb Rogan Josh - $17.99/large tray
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="palak-paneer">
+                                    <span class="checkmark"></span>
+                                    Palak Paneer - $12.99/large tray
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="chana-masala">
+                                    <span class="checkmark"></span>
+                                    Chana Masala - $11.99/large tray
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="dal-makhani">
+                                    <span class="checkmark"></span>
+                                    Dal Makhani - $10.99/large tray
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-category">
+                            <h4>Rice & Bread</h4>
+                            <div class="menu-items">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="basmati-rice">
+                                    <span class="checkmark"></span>
+                                    Basmati Rice - $8.99/large tray
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="naan-bread">
+                                    <span class="checkmark"></span>
+                                    Naan Bread (6 pieces) - $9.99
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="roti">
+                                    <span class="checkmark"></span>
+                                    Roti (12 pieces) - $7.99
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-category">
+                            <h4>Desserts</h4>
+                            <div class="menu-items">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="gulab-jamun">
+                                    <span class="checkmark"></span>
+                                    Gulab Jamun (12 pieces) - $4.99
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="ras-malai">
+                                    <span class="checkmark"></span>
+                                    Ras Malai (12 pieces) - $5.99
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="menuItems" value="kheer">
+                                    <span class="checkmark"></span>
+                                    Kheer (Rice Pudding) - $4.49/large tray
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Special Instructions Section -->
+                <div class="form-section">
+                    <h3>Special Instructions</h3>
+                    <div class="form-group">
+                        <label for="dietary-restrictions">Dietary Restrictions & Allergies</label>
+                        <textarea id="dietary-restrictions" name="dietaryRestrictions" rows="3" placeholder="Please list any dietary restrictions, allergies, or special dietary requirements for your guests"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="special-instructions">Additional Special Instructions</label>
+                        <textarea id="special-instructions" name="specialInstructions" rows="4" placeholder="Any specific requirements, setup instructions, or special requests for your catering event"></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-large">Send Catering Request</button>
+                    <p class="form-note">* Required fields. We'll contact you within 24 hours to confirm your request and provide a detailed quote.</p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Catering Packages Section -->
+        <div class="catering-packages">
+            <h2>Popular Catering Packages</h2>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <h3>Basic Package</h3>
+                    <p class="package-price">$15 per person</p>
+                    <ul>
+                        <li>2 Appetizers</li>
+                        <li>2 Main Courses</li>
+                        <li>Rice & Naan</li>
+                        <li>1 Dessert</li>
+                        <li>Basic Setup</li>
+                    </ul>
+                </div>
+                
+                <div class="package-card featured">
+                    <h3>Premium Package</h3>
+                    <p class="package-price">$25 per person</p>
+                    <ul>
+                        <li>3 Appetizers</li>
+                        <li>3 Main Courses</li>
+                        <li>Rice, Naan & Roti</li>
+                        <li>2 Desserts</li>
+                        <li>Full Setup & Service</li>
+                        <li>Chafing Dishes</li>
+                    </ul>
+                </div>
+                
+                <div class="package-card">
+                    <h3>Luxury Package</h3>
+                    <p class="package-price">$35 per person</p>
+                    <ul>
+                        <li>4 Appetizers</li>
+                        <li>4 Main Courses</li>
+                        <li>Premium Rice & Breads</li>
+                        <li>3 Desserts</li>
+                        <li>Full Service Staff</li>
+                        <li>Premium Setup</li>
+                        <li>Custom Menu Options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Indian Restaurant. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@1947indianrestaurant.com">info@1947indianrestaurant.com</a></p>
+        <p>Phone: (555) 123-4567 | Address: 123 Spice Street, Flavor City, FC 12345</p>
+    </footer>
+
+    <script>
+        // Show/hide delivery address based on service type selection
+        document.querySelectorAll('input[name="serviceType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const deliveryAddress = document.getElementById('delivery-address');
+                const deliveryAddressField = document.getElementById('delivery-address-field');
+                
+                if (this.value === 'delivery') {
+                    deliveryAddress.style.display = 'block';
+                    deliveryAddressField.required = true;
+                } else {
+                    deliveryAddress.style.display = 'none';
+                    deliveryAddressField.required = false;
+                }
+            });
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{3})(\d{0,3})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        // Form submission
+        document.getElementById('catering-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff6b35';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e0e0e0';
+                }
+            });
+            
+            // Check if at least one menu item is selected
+            const menuItems = this.querySelectorAll('input[name="menuItems"]:checked');
+            if (menuItems.length === 0) {
+                alert('Please select at least one menu item for your catering order.');
+                return;
+            }
+            
+            if (isValid) {
+                // Here you would typically send the data to your server
+                alert('Thank you for your catering request! We will contact you within 24 hours with a detailed quote and availability confirmation.');
+                this.reset();
+                document.getElementById('delivery-address').style.display = 'none';
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Custom radio button styling
+        document.querySelectorAll('.radio-label input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Remove active class from all radio labels
+                document.querySelectorAll('.radio-label').forEach(label => {
+                    label.classList.remove('active');
+                });
+                // Add active class to selected radio label
+                this.closest('.radio-label').classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
