@@ -1,0 +1,329 @@
+/* 1947 Indian Restaurant - Main Stylesheet */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Header Styles */
+header {
+    background-color: #ff6b35;
+    color: white;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    flex: 1;
+}
+
+/* Navigation Styles */
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    color: #ff6b35;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #ff6b35;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #e55a2b;
+}
+
+.btn-secondary {
+    background-color: #4a90e2;
+}
+
+.btn-secondary:hover {
+    background-color: #357abd;
+}
+
+/* Menu List Styles */
+.menu-list {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.menu-list h2 {
+    color: #ff6b35;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.menu-list ul {
+    list-style: none;
+    columns: 2;
+    column-gap: 2rem;
+}
+
+.menu-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+    break-inside: avoid;
+}
+
+.menu-list li:last-child {
+    border-bottom: none;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+}
+
+footer a {
+    color: #ff6b35;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav {
+        text-align: center;
+        margin-top: 1rem;
+    }
+    
+    nav ul {
+        justify-content: center;
+    }
+    
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .menu-list ul {
+        columns: 1;
+    }
+    
+    /* Responsive grid for forms and content */
+    main > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .contact-info ul[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Large Screen Media Query */
+@media (min-width: 768px) {
+    header {
+        min-height: 100px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        justify-content: flex-end;
+    }
+    
+    .hero h2 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+    
+    main {
+        padding: 3rem 2rem;
+    }
+    
+    .menu-list ul {
+        columns: 3;
+    }
+    
+    /* Grid layout for featured sections */
+    .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    
+    .featured-card {
+        background-color: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .featured-card h3 {
+        color: #ff6b35;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Extra Large Screen Media Query */
+@media (min-width: 1024px) {
+    .hero h2 {
+        font-size: 4rem;
+    }
+    
+    .menu-list ul {
+        columns: 4;
+    }
+    
+    .featured-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Page-specific styles */
+.page-title {
+    text-align: center;
+    color: #ff6b35;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.contact-info {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.contact-info h3 {
+    color: #ff6b35;
+    margin-bottom: 1rem;
+}
+
+/* Form Styles */
+form {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: #ff6b35;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #e55a2b;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - 1947 Indian Restaurant</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <header>
+        <h1>1947 Indian Restaurant</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="reservations.html">Reservations</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Make a Reservation</h1>
+        
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+             alt="Elegant restaurant dining room with warm lighting" 
+             style="width: 100%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 10px;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+            <div>
+                <h2>Reservation Form</h2>
+                <form>
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="date">Preferred Date:</label>
+                    <input type="date" id="date" name="date" required>
+                    
+                    <label for="time">Preferred Time:</label>
+                    <select id="time" name="time" required>
+                        <option value="">Select Time</option>
+                        <option value="11:30">11:30 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="12:30">12:30 PM</option>
+                        <option value="13:00">1:00 PM</option>
+                        <option value="13:30">1:30 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="17:30">5:30 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="18:30">6:30 PM</option>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="19:30">7:30 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                        <option value="20:30">8:30 PM</option>
+                        <option value="21:00">9:00 PM</option>
+                    </select>
+                    
+                    <label for="party">Party Size:</label>
+                    <select id="party" name="party" required>
+                        <option value="">Select Party Size</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                        <option value="7">7 People</option>
+                        <option value="8">8 People</option>
+                        <option value="9+">9+ People</option>
+                    </select>
+                    
+                    <label for="requests">Special Requests:</label>
+                    <textarea id="requests" name="requests" rows="4" placeholder="Any dietary restrictions, special occasions, or preferences..."></textarea>
+                    
+                    <button type="submit">Make Reservation</button>
+                </form>
+            </div>
+            
+            <div>
+                <h2>Location Map</h2>
+                <div style="background-color: #f0f0f0; height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <p style="text-align: center; color: #666;">
+                        <strong>1947 Indian Restaurant</strong><br>
+                        123 Spice Street<br>
+                        Flavor City, FC 12345<br><br>
+                        <strong>Phone:</strong> (555) 123-4567<br>
+                        <strong>Email:</strong> reservations@1947indianrestaurant.com
+                    </p>
+                </div>
+                
+                <h3>Private Events</h3>
+                <p>We offer private dining rooms for special occasions, business meetings, and celebrations. Our private dining area can accommodate up to 30 guests.</p>
+                <ul>
+                    <li>Birthday Celebrations</li>
+                    <li>Anniversary Dinners</li>
+                    <li>Business Meetings</li>
+                    <li>Family Reunions</li>
+                    <li>Corporate Events</li>
+                </ul>
+                <a href="contact.html" class="btn">Contact Us for Private Events</a>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h3>Reservation Policies</h3>
+            <ul style="list-style: none;">
+                <li>• Reservations are recommended, especially for weekends and holidays</li>
+                <li>• Please arrive 15 minutes before your reservation time</li>
+                <li>• Large parties (8+) require 24-hour advance notice</li>
+                <li>• Cancellations should be made at least 2 hours in advance</li>
+                <li>• We hold reservations for 15 minutes past the scheduled time</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Indian Restaurant. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@1947indianrestaurant.com">info@1947indianrestaurant.com</a></p>
+        <p>Phone: (555) 123-4567 | Address: 123 Spice Street, Flavor City, FC 12345</p>
+    </footer>
+</body>
+</html>
