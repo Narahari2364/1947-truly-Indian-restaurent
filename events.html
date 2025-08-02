@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - 1947 Indian Restaurant</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">
+            <span class="logo-badge">
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+                <span class="logo-stack">
+                    <span class="wordmark-1947">1947</span>
+                    <span class="wordmark-subtext">Indian Restaurant</span>
+                </span>
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+            </span>
+        </a></h1>
+        <nav>
+            <ul>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact Us</a>
+                        <a href="contact.html">Gift Cards</a>
+                        <a href="contact.html">Franchise</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="signin.html" class="signin-btn">Sign In</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Upcoming Events</h1>
+        
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+             alt="Elegant restaurant dining room set up for special events" 
+             style="width: 100%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 10px; margin: 0 auto 2rem; display: block;">
+
+        <div class="events-intro">
+            <h2>Join Us for Special Events & Celebrations</h2>
+            <p>Experience the rich culture and flavors of India through our special events, live music, cultural celebrations, and exclusive dining experiences. From traditional festivals to modern culinary adventures, we bring the community together through food and culture.</p>
+        </div>
+
+        <!-- Event Filter Tabs -->
+        <div class="event-filters">
+            <button class="filter-btn active" onclick="filterEvents('all')">All Events</button>
+            <button class="filter-btn" onclick="filterEvents('upcoming')">Upcoming</button>
+            <button class="filter-btn" onclick="filterEvents('cultural')">Cultural</button>
+            <button class="filter-btn" onclick="filterEvents('music')">Live Music</button>
+            <button class="filter-btn" onclick="filterEvents('special')">Special Dining</button>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="events-container">
+            <!-- January 2024 Events -->
+            <div class="event-card upcoming" data-category="cultural">
+                <div class="event-date">
+                    <span class="month">JAN</span>
+                    <span class="day">15</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Makar Sankranti Celebration</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>6:00 PM - 10:00 PM</span>
+                    </div>
+                    <p class="event-description">Join us for the traditional harvest festival celebration with special til (sesame) sweets, kite flying, and a special thali menu featuring seasonal dishes from different regions of India.</p>
+                    <div class="event-details">
+                        <span class="event-type">Cultural Festival</span>
+                        <span class="event-price">$45 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Reserve Your Spot</button>
+                </div>
+            </div>
+
+            <div class="event-card upcoming" data-category="music">
+                <div class="event-date">
+                    <span class="month">JAN</span>
+                    <span class="day">20</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Bollywood Night with Live Music</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>7:30 PM - 11:00 PM</span>
+                    </div>
+                    <p class="event-description">Dance the night away to the best Bollywood hits performed live by our talented musicians. Enjoy our signature cocktails and dance to your favorite songs from classic to contemporary Bollywood.</p>
+                    <div class="event-details">
+                        <span class="event-type">Live Music</span>
+                        <span class="event-price">$35 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Get Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card upcoming" data-category="special">
+                <div class="event-date">
+                    <span class="month">JAN</span>
+                    <span class="day">25</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Chef's Table Experience</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>6:30 PM - 9:30 PM</span>
+                    </div>
+                    <p class="event-description">An exclusive 7-course tasting menu prepared by Chef Rajesh Kumar, featuring rare and traditional dishes from different regions of India. Limited to 12 guests for an intimate dining experience.</p>
+                    <div class="event-details">
+                        <span class="event-type">Fine Dining</span>
+                        <span class="event-price">$85 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Book Now</button>
+                </div>
+            </div>
+
+            <!-- February 2024 Events -->
+            <div class="event-card upcoming" data-category="cultural">
+                <div class="event-date">
+                    <span class="month">FEB</span>
+                    <span class="day">14</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Valentine's Day Special Dinner</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>5:00 PM - 10:00 PM</span>
+                    </div>
+                    <p class="event-description">Celebrate love with our romantic Valentine's Day special menu featuring aphrodisiac spices and dishes. Enjoy live classical Indian music and a special dessert platter for couples.</p>
+                    <div class="event-details">
+                        <span class="event-type">Romantic Dining</span>
+                        <span class="event-price">$65 per couple</span>
+                    </div>
+                    <button class="btn btn-secondary">Make Reservation</button>
+                </div>
+            </div>
+
+            <div class="event-card upcoming" data-category="cultural">
+                <div class="event-date">
+                    <span class="month">FEB</span>
+                    <span class="day">21</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Holi Festival Celebration</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>4:00 PM - 8:00 PM</span>
+                    </div>
+                    <p class="event-description">Join us for the vibrant festival of colors! Enjoy traditional Holi sweets, thandai drinks, and a special vegetarian menu. Safe, organic colors will be provided for the celebration.</p>
+                    <div class="event-details">
+                        <span class="event-type">Cultural Festival</span>
+                        <span class="event-price">$40 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Join Celebration</button>
+                </div>
+            </div>
+
+            <div class="event-card upcoming" data-category="music">
+                <div class="event-date">
+                    <span class="month">FEB</span>
+                    <span class="day">28</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Classical Indian Music Night</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>7:00 PM - 10:00 PM</span>
+                    </div>
+                    <p class="event-description">Experience the soulful melodies of classical Indian music performed by renowned musicians. Enjoy a traditional thali dinner while listening to the beautiful sounds of sitar, tabla, and vocals.</p>
+                    <div class="event-details">
+                        <span class="event-type">Classical Music</span>
+                        <span class="event-price">$50 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Reserve Seats</button>
+                </div>
+            </div>
+
+            <!-- March 2024 Events -->
+            <div class="event-card upcoming" data-category="cultural">
+                <div class="event-date">
+                    <span class="month">MAR</span>
+                    <span class="day">8</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>International Women's Day Special</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>6:00 PM - 9:00 PM</span>
+                    </div>
+                    <p class="event-description">Celebrate the strength and achievements of women with a special menu curated by our female chefs. Featuring dishes from different regions of India, each with a story of women's contribution to Indian cuisine.</p>
+                    <div class="event-details">
+                        <span class="event-type">Special Celebration</span>
+                        <span class="event-price">$45 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Book Table</button>
+                </div>
+            </div>
+
+            <div class="event-card upcoming" data-category="special">
+                <div class="event-date">
+                    <span class="month">MAR</span>
+                    <span class="day">15</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Spice Masterclass Workshop</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>2:00 PM - 5:00 PM</span>
+                    </div>
+                    <p class="event-description">Learn the art of Indian cooking with our master chefs. This hands-on workshop covers spice blending, traditional cooking techniques, and you'll take home your own spice mix. Includes lunch and recipe cards.</p>
+                    <div class="event-details">
+                        <span class="event-type">Cooking Workshop</span>
+                        <span class="event-price">$75 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Register Now</button>
+                </div>
+            </div>
+
+            <div class="event-card upcoming" data-category="cultural">
+                <div class="event-date">
+                    <span class="month">MAR</span>
+                    <span class="day">22</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Navratri Festival Celebration</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>6:30 PM - 10:30 PM</span>
+                    </div>
+                    <p class="event-description">Celebrate the nine nights of Navratri with traditional fasting foods, garba dance performances, and a special vegetarian menu. Join us for an evening of devotion, dance, and delicious food.</p>
+                    <div class="event-details">
+                        <span class="event-type">Religious Festival</span>
+                        <span class="event-price">$40 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Join Festival</button>
+                </div>
+            </div>
+
+            <!-- April 2024 Events -->
+            <div class="event-card upcoming" data-category="special">
+                <div class="event-date">
+                    <span class="month">APR</span>
+                    <span class="day">5</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Wine & Spice Pairing Evening</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>7:00 PM - 10:00 PM</span>
+                    </div>
+                    <p class="event-description">Discover the perfect harmony between Indian spices and fine wines. Our sommelier will guide you through carefully curated pairings while you enjoy a 5-course tasting menu.</p>
+                    <div class="event-details">
+                        <span class="event-type">Wine Tasting</span>
+                        <span class="event-price">$95 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Reserve Spot</button>
+                </div>
+            </div>
+
+            <div class="event-card upcoming" data-category="cultural">
+                <div class="event-date">
+                    <span class="month">APR</span>
+                    <span class="day">14</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="event-content">
+                    <h3>Baisakhi Harvest Festival</h3>
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>5:00 PM - 9:00 PM</span>
+                    </div>
+                    <p class="event-description">Celebrate the Punjabi New Year with traditional bhangra performances, langar-style community dining, and special dishes from Punjab. A vibrant celebration of harvest and new beginnings.</p>
+                    <div class="event-details">
+                        <span class="event-type">Harvest Festival</span>
+                        <span class="event-price">$45 per person</span>
+                    </div>
+                    <button class="btn btn-secondary">Join Celebration</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Private Events Section -->
+        <div class="private-events-section">
+            <h2>Host Your Private Event</h2>
+            <p>Looking to host your own special event? We offer private dining rooms and can customize events for your special occasions.</p>
+            
+            <div class="private-events-grid">
+                <div class="private-event-card">
+                    <h3>Birthday Celebrations</h3>
+                    <p>Make your birthday memorable with our special birthday packages including custom cakes and decorations.</p>
+                    <ul>
+                        <li>Private dining room</li>
+                        <li>Custom birthday cake</li>
+                        <li>Special decorations</li>
+                        <li>Birthday song performance</li>
+                    </ul>
+                    <button class="btn btn-secondary">Book Birthday Party</button>
+                </div>
+                
+                <div class="private-event-card">
+                    <h3>Anniversary Dinners</h3>
+                    <p>Celebrate your special moments with our romantic anniversary packages and intimate dining experiences.</p>
+                    <ul>
+                        <li>Romantic table setup</li>
+                        <li>Special anniversary menu</li>
+                        <li>Wine pairing</li>
+                        <li>Photography service</li>
+                    </ul>
+                    <button class="btn btn-secondary">Plan Anniversary</button>
+                </div>
+                
+                <div class="private-event-card">
+                    <h3>Corporate Events</h3>
+                    <p>Host your business meetings, team building events, or corporate celebrations in our professional setting.</p>
+                    <ul>
+                        <li>Conference room setup</li>
+                        <li>AV equipment available</li>
+                        <li>Custom catering menu</li>
+                        <li>Professional service</li>
+                    </ul>
+                    <button class="btn btn-secondary">Organize Corporate Event</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Booking Form -->
+        <div class="event-booking-section">
+            <h2>Can't Find What You're Looking For?</h2>
+            <p>Contact us to discuss custom events, private parties, or special celebrations. We're happy to create a unique experience for your special occasion.</p>
+            
+            <div class="booking-form-container">
+                <form class="event-booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-name">Event Name/Type</label>
+                            <input type="text" id="event-name" name="eventName" placeholder="e.g., Birthday Party, Corporate Meeting">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferred-date">Preferred Date</label>
+                            <input type="date" id="preferred-date" name="preferredDate">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guest-count">Number of Guests</label>
+                            <select id="guest-count" name="guestCount">
+                                <option value="">Select Guest Count</option>
+                                <option value="10-20">10-20 people</option>
+                                <option value="21-50">21-50 people</option>
+                                <option value="51-100">51-100 people</option>
+                                <option value="100+">100+ people</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Contact Phone</label>
+                            <input type="tel" id="contact-phone" name="contactPhone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-description">Event Description</label>
+                        <textarea id="event-description" name="eventDescription" rows="4" placeholder="Tell us about your event, special requirements, or any specific requests..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Event Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Indian Restaurant. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@1947indianrestaurant.com">info@1947indianrestaurant.com</a></p>
+        <p>Phone: (555) 123-4567 | Address: 123 Spice Street, Flavor City, FC 12345</p>
+    </footer>
+
+    <script>
+        // Event filtering functionality
+        function filterEvents(category) {
+            const eventCards = document.querySelectorAll('.event-card');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide events based on category
+            eventCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Phone number formatting
+        document.getElementById('contact-phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{3})(\d{0,3})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        // Event booking form submission
+        document.querySelector('.event-booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff6b35';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e0e0e0';
+                }
+            });
+            
+            if (isValid) {
+                alert('Thank you for your event inquiry! We will contact you within 24 hours to discuss your event requirements and availability.');
+                this.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
