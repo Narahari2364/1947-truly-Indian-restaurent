@@ -283,8 +283,9 @@ nav a {
     border-radius: 5px;
     transition: background-color 0.3s;
     display: block;
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     white-space: nowrap;
+    font-weight: 600;
 }
 
 nav a:hover {
@@ -471,6 +472,11 @@ footer a:hover {
         justify-content: center;
         flex-wrap: nowrap;
         gap: 0.1rem;
+    }
+    
+    nav a {
+        font-size: 1rem;
+        padding: 0.3rem 0.4rem;
     }
     
     .featured-grid {
