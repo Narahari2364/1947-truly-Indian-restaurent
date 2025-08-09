@@ -41,16 +41,51 @@
     </header>
 
     <main>
-        <div class="hero">
-            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                 alt="Traditional Indian restaurant with warm lighting and authentic decor" 
-                 style="width: 100%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 10px;">
+        <!-- Full Screen Slideshow -->
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="images/slideshow-1.jpg" alt="South Indian thali on banana leaf">
+                <div class="slide-content">
+                    <h2>Vintage South Indian Thali</h2>
+                    <p>Traditional banana leaf presentation with authentic flavors</p>
+                </div>
+            </div>
             
-            <h2>Experience Authentic Indian Flavors Since Independence</h2>
-            <p>Celebrating India's rich culinary heritage with traditional recipes and modern ambiance</p>
+            <div class="slide">
+                <img src="images/slideshow-2.jpg" alt="Dosa and idli with sambar">
+                <div class="slide-content">
+                    <h2>Classic Dosa & Idli</h2>
+                    <p>Freshly made with traditional sambar and coconut chutney</p>
+                </div>
+            </div>
             
-            <a href="menu.html" class="btn">View Menu</a>
-            <a href="reservations.html" class="btn btn-secondary">Make a Reservation</a>
+            <div class="slide">
+                <img src="images/slideshow-3.jpg" alt="Filter coffee in steel tumbler">
+                <div class="slide-content">
+                    <h2>Authentic Filter Coffee</h2>
+                    <p>Served in traditional steel tumbler with perfect froth</p>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <img src="images/slideshow-4.jpg" alt="Traditional brass vessels">
+                <div class="slide-content">
+                    <h2>Traditional Brass Vessels</h2>
+                    <p>Rustic wooden table with authentic serving vessels</p>
+                </div>
+            </div>
+            
+            <!-- Navigation arrows -->
+            <a class="prev" onclick="changeSlide(-1)">❮</a>
+            <a class="next" onclick="changeSlide(1)">❯</a>
+            
+            <!-- Dots indicator -->
+            <div class="dots-container">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
         </div>
 
         <div class="featured-grid">
@@ -95,5 +130,43 @@
         <p>Contact us: <a href="mailto:info@1947indianrestaurant.com">info@1947indianrestaurant.com</a></p>
         <p>Phone: (555) 123-4567 | Address: 123 Spice Street, Flavor City, FC 12345</p>
     </footer>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            slides[slideIndex-1].classList.add("active");
+            dots[slideIndex-1].classList.add("active");
+        }
+
+        // Auto-advance slides every 5 seconds
+        setInterval(function() {
+            changeSlide(1);
+        }, 5000);
+    </script>
 </body>
 </html>
