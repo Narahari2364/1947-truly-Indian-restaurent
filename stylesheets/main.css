@@ -1755,6 +1755,31 @@ form button:hover {
     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
+.gift-card-form h6 {
+    color: #ff6b35;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    border-left: 3px solid #ff6b35;
+    padding-left: 0.75rem;
+}
+
+.payment-method-info {
+    background-color: #e8f4fd;
+    border: 2px solid #17a2b8;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.payment-method-info p {
+    margin: 0.5rem 0;
+    color: #0c5460;
+}
+
+.payment-method-info p:first-child {
+    font-weight: bold;
+}
+
 .balance-check-form {
     background-color: #f9f9f9;
     border-radius: 15px;
