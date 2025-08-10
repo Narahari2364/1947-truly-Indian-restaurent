@@ -1,0 +1,39 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tableGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="coffeeLight" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#8B4513;stop-opacity:0.2" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#tableGradient)"/>
+  <rect width="1920" height="1080" fill="url(#coffeeLight)"/>
+  
+  <!-- Steel tumbler -->
+  <rect x="900" y="400" width="120" height="200" fill="#C0C0C0" rx="10"/>
+  <rect x="910" y="410" width="100" height="180" fill="#E6E6FA" rx="5"/>
+  
+  <!-- Coffee with froth -->
+  <ellipse cx="960" cy="420" rx="50" ry="20" fill="#8B4513"/>
+  <ellipse cx="960" cy="410" rx="45" ry="15" fill="#A0522D"/>
+  <ellipse cx="960" cy="400" rx="40" ry="10" fill="#DEB887"/>
+  
+  <!-- Saucer -->
+  <ellipse cx="960" cy="620" rx="80" ry="20" fill="#C0C0C0"/>
+  
+  <!-- Traditional brass vessel -->
+  <ellipse cx="1200" cy="500" rx="60" ry="40" fill="#CD7F32"/>
+  <ellipse cx="1200" cy="480" rx="50" ry="30" fill="#B87333"/>
+  
+  <!-- Warm lighting effect -->
+  <circle cx="960" cy="300" r="250" fill="#FFD700" opacity="0.3"/>
+  
+  <!-- Steam effect -->
+  <path d="M 950 380 Q 960 360 970 380 Q 960 340 950 360" stroke="#F5F5DC" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 955 375 Q 960 355 965 375 Q 960 335 955 355" stroke="#F5F5DC" stroke-width="1" fill="none" opacity="0.4"/>
+</svg>
