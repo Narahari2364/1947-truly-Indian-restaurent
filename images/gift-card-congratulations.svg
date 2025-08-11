@@ -33,7 +33,7 @@
   <circle cx="150" cy="75" r="6" fill="#ff6b35"/>
   
   <!-- Restaurant name -->
-  <text x="150" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ff9800">1947 Indian Restaurant</text>
+  <text x="150" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ff9800">1947 and Truly Indian</text>
   
   <!-- Gift card text -->
   <text x="150" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">Gift Card</text>

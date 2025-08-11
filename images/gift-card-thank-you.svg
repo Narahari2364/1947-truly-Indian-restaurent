@@ -27,7 +27,7 @@
   <path d="M150 50 Q150 40 160 40 Q170 40 170 50 Q170 60 160 70 Q150 60 150 50" fill="#673ab7"/>
   
   <!-- Restaurant name -->
-  <text x="150" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#673ab7">1947 Indian Restaurant</text>
+  <text x="150" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#673ab7">1947 and Truly Indian</text>
   
   <!-- Gift card text -->
   <text x="150" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">Gift Card</text>
