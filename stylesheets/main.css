@@ -29,6 +29,48 @@ header {
     align-items: center;
 }
 
+/* New Circular Logo Styles */
+.logo-link {
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.main-logo {
+    height: 60px;
+    width: 60px;
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.main-logo:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transform: rotate(5deg);
+}
+
+/* Logo animation for attention */
+@keyframes logoGlow {
+    0% {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+}
+
+.main-logo {
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
 /* Online Order Button Styles */
 .online-order-btn {
     background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #17a2b8 100%);
@@ -2124,6 +2166,12 @@ form button:hover {
     
     .features-grid {
         grid-template-columns: 1fr;
+    }
+    
+    /* Mobile adjustments for circular logo */
+    .main-logo {
+        height: 50px;
+        width: 50px;
     }
     
     .balance-item {

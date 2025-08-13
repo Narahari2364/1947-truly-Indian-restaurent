@@ -1,0 +1,37 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="outerRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D28C5E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A0522D;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="innerRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B4513;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="98" fill="url(#outerRing)" stroke="#D28C5E" stroke-width="2"/>
+  
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="90" fill="url(#innerRing)" stroke="#A0522D" stroke-width="3"/>
+  
+  <!-- Main background circle -->
+  <circle cx="100" cy="100" r="82" fill="#4A2C1D"/>
+  
+  <!-- 1947 text -->
+  <text x="100" y="50" text-anchor="middle" font-family="serif" font-size="28" font-weight="bold" fill="#F5E7D0">1947</text>
+  
+  <!-- Horizontal line -->
+  <line x1="40" y1="65" x2="160" y2="65" stroke="#C87A3F" stroke-width="2"/>
+  
+  <!-- TRULY text -->
+  <text x="100" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#C87A3F" letter-spacing="2px">TRULY</text>
+  
+  <!-- INDIAN text -->
+  <text x="100" y="105" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#338833" letter-spacing="2px">INDIAN</text>
+  
+  <!-- RESTAURANT curved text -->
+  <path id="restaurantPath" d="M 30 130 A 50 50 0 0 1 170 130" fill="none"/>
+  <text x="100" y="145" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#F5E7D0" letter-spacing="1px">RESTAURANT</text>
+</svg>
