@@ -18,12 +18,12 @@ body {
 header {
     background-color: #ff6b35;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 1rem;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    min-height: 90px;
+    min-height: 110px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,6 +36,7 @@ header {
     transition: transform 0.3s ease;
     align-self: center;
     margin: 0;
+    flex-shrink: 0;
 }
 
 .logo-link:hover {
@@ -43,8 +44,8 @@ header {
 }
 
 .main-logo {
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
     display: block;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -2172,8 +2173,8 @@ form button:hover {
     
     /* Mobile adjustments for circular logo */
     .main-logo {
-        height: 65px;
-        width: 65px;
+        height: 80px;
+        width: 80px;
     }
     
     .balance-item {
