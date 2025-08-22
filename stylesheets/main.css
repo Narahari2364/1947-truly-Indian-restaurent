@@ -23,22 +23,29 @@ header {
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    min-height: 50px;
+    min-height: 80px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 2rem;
+}
+
+/* Navigation spacing with corner logo */
+header nav {
+    margin-left: auto;
 }
 
 /* New Circular Logo Styles */
 .logo-link {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-decoration: none;
     transition: transform 0.3s ease;
     height: 100%;
     margin: 0;
     flex-shrink: 0;
+    order: -1;
 }
 
 .logo-link:hover {
@@ -46,8 +53,8 @@ header {
 }
 
 .main-logo {
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
     display: block;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -2175,8 +2182,8 @@ form button:hover {
     
     /* Mobile adjustments for circular logo */
     .main-logo {
-        height: 45px;
-        width: 45px;
+        height: 60px;
+        width: 60px;
     }
     
     .balance-item {
