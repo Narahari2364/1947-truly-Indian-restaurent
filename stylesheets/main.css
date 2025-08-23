@@ -2259,6 +2259,30 @@ form button:hover {
     padding: 0;
 }
 
+/* Make homepage hero truly full-bleed */
+body.home main {
+    max-width: none;
+    padding: 0;
+}
+
+body.home .slideshow-container {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: calc(100vh - 90px); /* account for sticky header */
+}
+
+@media (min-width: 768px) {
+    body.home .slideshow-container {
+        height: calc(100vh - 100px);
+    }
+}
+
+@media (max-width: 768px) {
+    body.home .slideshow-container {
+        height: 70vh;
+    }
+}
+
 .slide {
     display: none;
     position: absolute;
