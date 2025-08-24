@@ -2269,6 +2269,7 @@ body.home .slideshow-container {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     height: calc(100vh - 90px); /* account for sticky header */
+    margin-top: 0;
 }
 
 @media (min-width: 768px) {
@@ -2303,6 +2304,12 @@ body.home .slideshow-container {
     object-position: center;
     filter: brightness(1.1) contrast(1.1) saturate(1.2);
     transition: all 0.3s ease;
+}
+
+/* Remove default img margins inside slideshow */
+body.home .slideshow-container img {
+    margin: 0;
+    display: block;
 }
 
 .slide-content {
