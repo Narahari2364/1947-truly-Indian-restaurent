@@ -600,6 +600,60 @@ footer a:hover {
     margin-bottom: 1rem;
 }
 
+/* Visit Us section */
+.visit-section {
+    background-color: #fff5f2;
+    border: 2px solid #ffe1d6;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    text-align: center;
+}
+
+.visit-section h2 {
+    color: #ff6b35;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.visit-subtitle {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.visit-address {
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.25rem;
+}
+
+.hours h3 {
+    color: #ff6b35;
+    margin-bottom: 1rem;
+}
+
+.hours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hours-item {
+    background: #ffffff;
+    border: 1px solid #ffd3c1;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+}
+
+.hours-item strong {
+    display: block;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
 /* Form Styles */
 form {
     background-color: #f9f9f9;
