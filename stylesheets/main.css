@@ -610,6 +610,66 @@ footer a:hover {
     text-align: center;
 }
 
+/* Dine-in section */
+.dinein-section {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #f1f1f1;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+}
+
+.dinein-text h2 {
+    color: #ff6b35;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.dinein-text p {
+    color: #555;
+    margin-bottom: 0.75rem;
+}
+
+.dinein-text ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dinein-text li {
+    padding: 0.35rem 0;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.dinein-text li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    color: #ff6b35;
+    font-weight: 700;
+}
+
+.dinein-media img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    margin: 0; /* override global img margin */
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 768px) {
+    .dinein-section {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+}
+
 .visit-section h2 {
     color: #ff6b35;
     font-size: 2rem;
