@@ -42,62 +42,146 @@
 
     <main>
         <h1 class="page-title">Our Menu</h1>
-        
-        <img src="https://images.unsplash.com/photo-1563379091339-03246963d96a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-             alt="Beautiful Indian cuisine spread with various dishes" 
-             style="width: 100%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 10px;">
 
-        <div class="menu-list">
-            <h2>Food and Drink</h2>
-            <ul>
-                <li><strong>Nibbles</strong>
-                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                        <li>Samosas (Vegetable & Chicken) - $4.99</li>
-                        <li>Pakoras (Mixed Vegetable) - $5.99</li>
-                        <li>Chicken Tikka - $7.99</li>
-                        <li>Paneer Tikka - $6.99</li>
-                        <li>Aloo Tikki - $4.49</li>
-                        <li>Papadum with Chutneys - $2.99</li>
-                    </ul>
-                </li>
-                
-                <li><strong>Fancy Feasts</strong>
-                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+        <div class="menu-layout">
+            <!-- Left: Full Menu -->
+            <div class="menu-content">
+                <section id="popular" class="menu-section">
+                    <h2>Popular</h2>
+                    <ul>
                         <li>Butter Chicken - $14.99</li>
                         <li>Chicken Biryani - $16.99</li>
+                        <li>Paneer Tikka - $6.99</li>
+                        <li>Masala Dosa - $10.99</li>
+                        <li>Chana Masala - $11.99</li>
+                    </ul>
+                </section>
+
+                <section id="veg-appetizers" class="menu-section">
+                    <h2>Veg Appetizers</h2>
+                    <ul>
+                        <li>Vegetable Samosa - $4.99</li>
+                        <li>Mixed Veg Pakora - $5.99</li>
+                        <li>Aloo Tikki - $4.49</li>
+                        <li>Paneer Tikka - $6.99</li>
+                        <li>Papadum with Chutneys - $2.99</li>
+                    </ul>
+                </section>
+
+                <section id="nonveg-appetizers" class="menu-section">
+                    <h2>Non‑Veg Appetizers</h2>
+                    <ul>
+                        <li>Chicken Tikka - $7.99</li>
+                        <li>Chicken 65 - $8.99</li>
+                        <li>Fish Pakora - $8.99</li>
+                    </ul>
+                </section>
+
+                <section id="tiffins" class="menu-section">
+                    <h2>Indian Tiffins</h2>
+                    <ul>
+                        <li>Idli Sambar - $7.99</li>
+                        <li>Medu Vada Sambar - $7.99</li>
+                        <li>Poori Bhaji - $8.99</li>
+                    </ul>
+                </section>
+
+                <section id="dosa" class="menu-section">
+                    <h2>Dosa Varieties</h2>
+                    <ul>
+                        <li>Masala Dosa - $10.99</li>
+                        <li>Plain Dosa - $9.49</li>
+                        <li>Mysore Masala Dosa - $11.49</li>
+                    </ul>
+                </section>
+
+                <section id="nonveg-entrees" class="menu-section">
+                    <h2>Non‑Veg Entrees</h2>
+                    <ul>
+                        <li>Butter Chicken - $14.99</li>
                         <li>Lamb Rogan Josh - $17.99</li>
+                        <li>Fish Curry - $16.99</li>
+                        <li>Tandoori Chicken - $15.99</li>
+                    </ul>
+                </section>
+
+                <section id="veg-entrees" class="menu-section">
+                    <h2>Veg Entrees</h2>
+                    <ul>
                         <li>Palak Paneer - $12.99</li>
                         <li>Chana Masala - $11.99</li>
                         <li>Dal Makhani - $10.99</li>
-                        <li>Tandoori Chicken - $15.99</li>
-                        <li>Fish Curry - $16.99</li>
+                        <li>Paneer Butter Masala - $13.49</li>
                     </ul>
-                </li>
-                
-                <li><strong>Treats</strong>
-                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                </section>
+
+                <section id="street-food" class="menu-section">
+                    <h2>Street Food</h2>
+                    <ul>
+                        <li>Pav Bhaji - $9.99</li>
+                        <li>Pani Puri - $7.99</li>
+                        <li>Bhel Puri - $7.99</li>
+                    </ul>
+                </section>
+
+                <section id="south-indian" class="menu-section">
+                    <h2>South Indian Classics</h2>
+                    <ul>
+                        <li>Idli Sambar - $7.99</li>
+                        <li>Uttapam (Onion/Tomato) - $9.99</li>
+                        <li>Curd Rice - $7.99</li>
+                    </ul>
+                </section>
+
+                <section id="north-indian" class="menu-section">
+                    <h2>North Indian Specialties</h2>
+                    <ul>
+                        <li>Paneer Tikka Masala - $13.99</li>
+                        <li>Dal Tadka - $10.99</li>
+                        <li>Chicken Kadai - $15.49</li>
+                    </ul>
+                </section>
+
+                <section id="chefs-reco" class="menu-section">
+                    <h2>Chef's Recommendations</h2>
+                    <ul>
+                        <li>Chef’s Special Thali - $19.99</li>
+                        <li>Gongura Chicken - $16.99</li>
+                        <li>Hyderabadi Veg Dum Biryani - $13.99</li>
+                    </ul>
+                </section>
+
+                <section id="desserts" class="menu-section">
+                    <h2>Desserts & Drinks</h2>
+                    <ul>
                         <li>Gulab Jamun - $4.99</li>
                         <li>Ras Malai - $5.99</li>
-                        <li>Kheer (Rice Pudding) - $4.49</li>
-                        <li>Kulfi (Traditional Ice Cream) - $3.99</li>
-                        <li>Jalebi - $4.99</li>
-                        <li>Mango Lassi - $4.49</li>
-                    </ul>
-                </li>
-                
-                <li><strong>Drinks</strong>
-                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                        <li>Mango Lassi - $4.49</li>
-                        <li>Sweet Lassi - $3.99</li>
+                        <li>Kheer - $4.49</li>
+                        <li>Kulfi - $3.99</li>
                         <li>Masala Chai - $2.99</li>
+                        <li>Mango Lassi - $4.49</li>
                         <li>Fresh Lime Soda - $3.49</li>
-                        <li>Mango Juice - $3.99</li>
-                        <li>Indian Beer (Kingfisher) - $5.99</li>
-                        <li>Wine Selection - $6.99-$12.99</li>
-                        <li>Soft Drinks - $2.49</li>
                     </ul>
-                </li>
-            </ul>
+                </section>
+            </div>
+
+            <!-- Right: Search + Categories -->
+            <aside class="menu-sidebar">
+                <input type="search" id="menuSearch" class="menu-search" placeholder="Search menu..." aria-label="Search menu">
+                <nav class="menu-cats">
+                    <a href="#popular">Popular</a>
+                    <a href="#veg-appetizers">Veg Appetizers</a>
+                    <a href="#nonveg-appetizers">Non‑Veg Appetizers</a>
+                    <a href="#tiffins">Indian Tiffins</a>
+                    <a href="#dosa">Dosa Varieties</a>
+                    <a href="#nonveg-entrees">Non‑Veg Entrees</a>
+                    <a href="#veg-entrees">Veg Entrees</a>
+                    <a href="#street-food">Street Food</a>
+                    <a href="#south-indian">South Indian Classics</a>
+                    <a href="#north-indian">North Indian Specialties</a>
+                    <a href="#chefs-reco">Chef's Recommendations</a>
+                </nav>
+            </aside>
         </div>
 
         <div class="contact-info">
@@ -110,6 +194,29 @@
             </ul>
         </div>
     </main>
+
+    <script>
+    // Smooth scrolling behavior is handled by CSS (scroll-behavior). Add simple search filter:
+    (function() {
+        const input = document.getElementById('menuSearch');
+        if (!input) return;
+        const sections = Array.from(document.querySelectorAll('.menu-section'));
+        input.addEventListener('input', function() {
+            const q = this.value.trim().toLowerCase();
+            sections.forEach(section => {
+                const items = Array.from(section.querySelectorAll('li'));
+                let anyVisible = false;
+                items.forEach(li => {
+                    const show = li.textContent.toLowerCase().includes(q);
+                    li.style.display = show ? '' : 'none';
+                    if (show) anyVisible = true;
+                });
+                // Hide entire section if none match and a query exists
+                section.style.display = q && !anyVisible ? 'none' : '';
+            });
+        });
+    })();
+    </script>
 
     <footer>
         <p>&copy; 2024 1947 Truly Indian. All rights reserved.</p>
