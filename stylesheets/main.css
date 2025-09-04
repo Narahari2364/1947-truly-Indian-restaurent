@@ -686,6 +686,25 @@ footer a:hover {
     font-weight: 700;
 }
 
+/* Force clear side-by-side layout by screen size */
+@media (min-width: 1024px) {
+    .dish-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .dish-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .dish-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .menu-sidebar {
     position: sticky;
     top: 110px; /* below header */
