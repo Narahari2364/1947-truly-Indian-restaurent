@@ -41,7 +41,7 @@ header nav {
 /* New Circular Logo Styles */
 header h1 {
     position: absolute;
-    right: 1rem;
+    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
