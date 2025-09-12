@@ -18,16 +18,16 @@ body {
 header {
     background-color: #ff6b35;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 1rem;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    min-height: 80px;
+    min-height: 65px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 /* Navigation spacing with corner logo */
@@ -53,8 +53,8 @@ header nav {
 }
 
 .main-logo {
-    height: 70px;
-    width: 70px;
+    height: 50px;
+    width: 50px;
     display: block;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -289,11 +289,11 @@ nav li {
 nav a {
     color: white;
     text-decoration: none;
-    padding: 0.4rem 0.6rem;
+    padding: 0.3rem 0.5rem;
     border-radius: 5px;
     transition: background-color 0.3s;
     display: block;
-    font-size: 1.1rem;
+    font-size: 1rem;
     white-space: nowrap;
     font-weight: 600;
 }
@@ -510,7 +510,7 @@ footer a:hover {
 /* Large Screen Media Query */
 @media (min-width: 768px) {
     header {
-        min-height: 100px;
+        min-height: 70px;
     }
     
     header h1 {
@@ -609,7 +609,7 @@ footer a:hover {
 
 .menu-section {
     margin-bottom: 2rem;
-    scroll-margin-top: 110px; /* sticky header offset */
+    scroll-margin-top: 80px; /* sticky header offset */
 }
 
 .menu-section h2 {
@@ -707,7 +707,7 @@ footer a:hover {
 
 .menu-sidebar {
     position: sticky;
-    top: 110px; /* below header */
+    top: 80px; /* below header */
     background: #fff;
     border: 1px solid #eee;
     border-radius: 12px;
@@ -2550,13 +2550,13 @@ body.home main {
 body.home .slideshow-container {
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    height: calc(100vh - 90px); /* account for sticky header */
+    height: calc(100vh - 65px); /* account for sticky header */
     margin-top: 0;
 }
 
 @media (min-width: 768px) {
     body.home .slideshow-container {
-        height: calc(100vh - 100px);
+        height: calc(100vh - 70px);
     }
 }
 
