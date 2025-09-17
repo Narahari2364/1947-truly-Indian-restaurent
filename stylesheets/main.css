@@ -700,6 +700,39 @@ footer a:hover {
     font-weight: 700;
 }
 
+/* Add to cart button */
+.dish-add-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 36px;
+    height: 36px;
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 2;
+    line-height: 1;
+}
+
+.dish-add-btn:hover {
+    background-color: #e55a2b;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.dish-add-btn:active {
+    transform: scale(0.95);
+}
+
 /* Force clear side-by-side layout by screen size */
 @media (min-width: 1024px) {
     .dish-grid {
