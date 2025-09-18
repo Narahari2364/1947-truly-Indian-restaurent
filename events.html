@@ -36,6 +36,10 @@
                 <span class="order-text">Online Order</span>
                 <span class="order-badge">NEW</span>
             </a>
+            <a href="cart.html" class="cart-btn">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cartCountNav">0</span>
+            </a>
             <a href="signin.html" class="signin-btn">Sign in</a>
         </nav>
     </header>
@@ -460,6 +464,17 @@
                 });
             });
         });
+        
+        // Update cart count on page load
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountNav = document.getElementById('cartCountNav');
+            if (cartCountNav) {
+                cartCountNav.textContent = cart.length;
+                cartCountNav.style.display = cart.length > 0 ? 'flex' : 'none';
+            }
+        }
+        updateCartCount();
     </script>
 </body>
 </html>

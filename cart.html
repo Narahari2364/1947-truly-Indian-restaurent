@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - 1947 Truly Indian</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="logo-link">
+            <img src="images/logo-circular.svg" alt="1947 Truly Indian Restaurant" class="main-logo">
+        </a></h1>
+        <nav>
+            <ul>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li class="dropdown">
+                    <a href="#">Events</a>
+                    <div class="dropdown-content">
+                        <a href="reservations.html">Make a Reservation</a>
+                        <a href="events.html">Upcoming Events</a>
+                    </div>
+                </li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact Us</a>
+                        <a href="giftcards.html">Gift Cards</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="menu.html" class="online-order-btn">
+                <span class="order-icon">🍽️</span>
+                <span class="order-text">Online Order</span>
+                <span class="order-badge">NEW</span>
+            </a>
+            <a href="cart.html" class="cart-btn">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cartCountNav">0</span>
+            </a>
+            <a href="signin.html" class="signin-btn">Sign in</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <h1 class="page-title">Shopping Cart</h1>
+            
+            <div id="cartContent">
+                <!-- Cart items will be loaded here -->
+            </div>
+            
+            <div class="cart-actions">
+                <a href="menu.html" class="btn btn-secondary">Continue Shopping</a>
+                <button id="checkoutBtn" class="btn btn-primary btn-large" style="display: none;">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Truly Indian. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:boston@1947indianrestaurant.com">boston@1947indianrestaurant.com</a></p>
+        <p>Phone: (857) 351-4567 | Address: 997 S Huntington Ave., JP, MA 02130</p>
+    </footer>
+
+    <script>
+        // Load and display cart items
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContent = document.getElementById('cartContent');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="cart-empty">
+                        <h2>Your cart is empty</h2>
+                        <p>Add items from the menu to get started!</p>
+                        <a href="menu.html" class="btn btn-primary">Browse Menu</a>
+                    </div>
+                `;
+                checkoutBtn.style.display = 'none';
+                return;
+            }
+            
+            // Group items by name and count quantities
+            const cartItems = {};
+            cart.forEach(item => {
+                if (cartItems[item.name]) {
+                    cartItems[item.name].quantity++;
+                } else {
+                    cartItems[item.name] = {
+                        name: item.name,
+                        price: item.price,
+                        quantity: 1
+                    };
+                }
+            });
+            
+            // Calculate totals
+            let subtotal = 0;
+            const itemsArray = Object.values(cartItems);
+            
+            let cartHTML = `
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <div class="cart-col-item">Item</div>
+                        <div class="cart-col-price">Price</div>
+                        <div class="cart-col-quantity">Quantity</div>
+                        <div class="cart-col-total">Total</div>
+                        <div class="cart-col-action">Action</div>
+                    </div>
+            `;
+            
+            itemsArray.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                cartHTML += `
+                    <div class="cart-item" data-item-name="${item.name}">
+                        <div class="cart-col-item">
+                            <strong>${item.name}</strong>
+                        </div>
+                        <div class="cart-col-price">$${item.price.toFixed(2)}</div>
+                        <div class="cart-col-quantity">
+                            <button class="qty-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                            <span class="qty-value">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                        </div>
+                        <div class="cart-col-total">$${itemTotal.toFixed(2)}</div>
+                        <div class="cart-col-action">
+                            <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartHTML += `</div>`;
+            
+            // Calculate tax and total
+            const tax = subtotal * 0.0625; // 6.25% tax (adjust as needed)
+            const total = subtotal + tax;
+            
+            cartHTML += `
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span>$${tax.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span>$${total.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+            
+            cartContent.innerHTML = cartHTML;
+            checkoutBtn.style.display = 'block';
+            updateCartCount();
+        }
+        
+        // Update quantity
+        function updateQuantity(itemName, change) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (change > 0) {
+                // Add item
+                const item = cart.find(i => i.name === itemName);
+                if (item) {
+                    cart.push({ name: itemName, price: item.price });
+                }
+            } else {
+                // Remove one instance
+                const index = cart.findIndex(i => i.name === itemName);
+                if (index > -1) {
+                    cart.splice(index, 1);
+                }
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+        
+        // Remove item completely
+        function removeItem(itemName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== itemName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+        
+        // Update cart count in navigation
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountNav = document.getElementById('cartCountNav');
+            if (cartCountNav) {
+                cartCountNav.textContent = cart.length;
+                cartCountNav.style.display = cart.length > 0 ? 'flex' : 'none';
+            }
+        }
+        
+        // Checkout
+        document.getElementById('checkoutBtn').addEventListener('click', function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Calculate total
+            const cartItems = {};
+            cart.forEach(item => {
+                if (cartItems[item.name]) {
+                    cartItems[item.name].quantity++;
+                } else {
+                    cartItems[item.name] = {
+                        name: item.name,
+                        price: item.price,
+                        quantity: 1
+                    };
+                }
+            });
+            
+            let subtotal = 0;
+            Object.values(cartItems).forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+            const tax = subtotal * 0.0625;
+            const total = subtotal + tax;
+            
+            // For now, just show an alert. In a real app, this would redirect to checkout
+            alert(`Order Summary:\n\nItems: ${cart.length}\nSubtotal: $${subtotal.toFixed(2)}\nTax: $${tax.toFixed(2)}\nTotal: $${total.toFixed(2)}\n\nThank you for your order! We'll prepare it right away.`);
+            
+            // Clear cart after checkout
+            localStorage.removeItem('cart');
+            loadCart();
+            updateCartCount();
+        });
+        
+        // Load cart on page load
+        loadCart();
+    </script>
+</body>
+</html>
+
