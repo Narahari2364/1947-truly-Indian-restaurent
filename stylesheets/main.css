@@ -725,6 +725,19 @@ footer a:hover {
 
 .dish-media--empty {
     border-bottom: 1px dashed #e5e5e5;
+    position: relative;
+}
+
+.empty-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #999;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    z-index: 1;
 }
 
 .dish-info {
