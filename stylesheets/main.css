@@ -1323,6 +1323,7 @@ form button:hover {
     border-radius: 10px;
     transition: all 0.3s ease;
     flex: 1;
+    position: relative;
 }
 
 .radio-label:hover {
@@ -1336,10 +1337,11 @@ form button:hover {
 }
 
 .radio-label input[type="radio"] {
-    width: auto;
-    margin-right: 1rem;
-    margin-bottom: 0;
-    margin-top: 0.25rem;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
 }
 
 .radio-custom {
@@ -1419,6 +1421,7 @@ form button:hover {
     border-radius: 8px;
     transition: all 0.3s ease;
     border: 1px solid #e0e0e0;
+    position: relative;
 }
 
 .checkbox-item:hover {
@@ -1428,9 +1431,11 @@ form button:hover {
 }
 
 .checkbox-item input[type="checkbox"] {
-    width: auto;
-    margin-right: 0.75rem;
-    margin-bottom: 0;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
 }
 
 .checkmark {
