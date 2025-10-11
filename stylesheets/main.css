@@ -2790,16 +2790,20 @@ body.about main {
     position: absolute;
     top: 2rem;
     left: 2rem;
-    color: white;
+    color: #ff6b35;
     z-index: 2;
 }
 
 .about-hero-content h1 {
     font-size: 4rem;
     margin: 0;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.5);
     font-weight: bold;
     letter-spacing: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 @media (max-width: 768px) {
