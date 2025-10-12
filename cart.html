@@ -60,6 +60,53 @@
     </footer>
 
     <script>
+        // Mapping dish names to image paths (for backward compatibility)
+        function getDishImage(dishName) {
+            const dishImageMap = {
+                'Butter Chicken': 'images/butterchicken.webp',
+                'Chicken Biryani': 'images/chickenbiryani.webp',
+                'Paneer Tikka': 'images/paneertikka.webp',
+                'Masala Dosa': 'images/dosa.webp',
+                'Chana Masala': 'images/chanamasala.webp',
+                'Vegetable Samosa': 'images/VegetableSamosa.webp',
+                'Mixed Veg Pakora': 'images/Mixed Veg Pakora.webp',
+                'Aloo Tikki': 'images/Aloo Tikki.webp',
+                'Chicken 65': 'images/Chicken 65.webp',
+                'Chicken Tikka': 'images/Chicken Tikka.webp',
+                'Fish Pakora': 'images/Fish Pakora.webp',
+                'Idli Sambar': 'images/Idli Sambar.webp',
+                'Medu Vada Sambar': 'images/Medu Vada Sambar.webp',
+                'Uttapam': 'images/Uttapam.webp',
+                'Plain Dosa': 'images/plain Dosa.webp',
+                'Mysore Masala Dosa': 'images/Mysore Masala Dosa.webp',
+                'Poori Bhaji': 'images/Poori Bhaji.webp',
+                'Curd Rice': 'images/Curd Rice.webp',
+                'Chicken Kadai': 'images/Chicken Kadai.webp',
+                'Tandoori Chicken': 'images/Tandoori Chicken.webp',
+                'Gongura Chicken': 'images/Gongura Chicken.webp',
+                'Lamb Rogan Josh': 'images/Lamb rogan josh.webp',
+                'Fish Curry': 'images/fish curry.webp',
+                'Palak Paneer': 'images/Palak Paneer.webp',
+                'Dal Makhani': 'images/Dal Makhani.webp',
+                'Paneer Butter Masala': 'images/Paneer Butter Masala.webp',
+                'Pav Bhaji': 'images/Pav Bhaji.webp',
+                'Pani Puri': 'images/Pani Puri.webp',
+                'Bhel Puri': 'images/Bhel Puri.webp',
+                'Papadum with Chutneys': 'images/Papadum with Chutneys.webp',
+                'Gulab Jamun': 'images/Gulab Jamun.webp',
+                'Ras Malai': 'images/Ras Malai.webp',
+                'Kheer': 'images/Kheer.webp',
+                'Kulfi': 'images/Kulfi.webp',
+                'Masala Chai': 'images/Masala Chai.webp',
+                'Mango Lassi': 'images/Mango Lassi.webp',
+                'Fresh Lime Soda': 'images/Fresh Lime Soda.webp',
+                'Basmati Rice': 'images/Basmati Rice.webp',
+                'Naan Bread': 'images/Naan Bread.webp',
+                'Roti': 'images/Roti.webp'
+            };
+            return dishImageMap[dishName] || 'images/logo-circular.svg';
+        }
+
         // Load and display cart items
         function loadCart() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -87,6 +134,7 @@
                     cartItems[item.name] = {
                         name: item.name,
                         price: item.price,
+                        image: item.image || getDishImage(item.name), // Use stored image or lookup
                         quantity: 1
                     };
                 }
@@ -114,6 +162,7 @@
                 cartHTML += `
                     <div class="cart-item" data-item-name="${item.name}">
                         <div class="cart-col-item">
+                            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                             <strong>${item.name}</strong>
                         </div>
                         <div class="cart-col-price">$${item.price.toFixed(2)}</div>
@@ -166,7 +215,7 @@
                 // Add item
                 const item = cart.find(i => i.name === itemName);
                 if (item) {
-                    cart.push({ name: itemName, price: item.price });
+                    cart.push({ name: itemName, price: item.price, image: item.image || getDishImage(itemName) });
                 }
             } else {
                 // Remove one instance

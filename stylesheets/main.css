@@ -3201,6 +3201,17 @@ body.home .slideshow-container img {
 
 .cart-col-item {
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
 }
 
 .cart-col-price,

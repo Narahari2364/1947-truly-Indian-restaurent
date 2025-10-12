@@ -227,14 +227,65 @@
     })();
 
     // Add to cart functionality
+    // Mapping dish names to image paths
+    function getDishImage(dishName) {
+        const dishImageMap = {
+            'Butter Chicken': 'images/butterchicken.webp',
+            'Chicken Biryani': 'images/chickenbiryani.webp',
+            'Paneer Tikka': 'images/paneertikka.webp',
+            'Masala Dosa': 'images/dosa.webp',
+            'Chana Masala': 'images/chanamasala.webp',
+            'Vegetable Samosa': 'images/VegetableSamosa.webp',
+            'Mixed Veg Pakora': 'images/Mixed Veg Pakora.webp',
+            'Aloo Tikki': 'images/Aloo Tikki.webp',
+            'Chicken 65': 'images/Chicken 65.webp',
+            'Chicken Tikka': 'images/Chicken Tikka.webp',
+            'Fish Pakora': 'images/Fish Pakora.webp',
+            'Idli Sambar': 'images/Idli Sambar.webp',
+            'Medu Vada Sambar': 'images/Medu Vada Sambar.webp',
+            'Uttapam': 'images/Uttapam.webp',
+            'Plain Dosa': 'images/plain Dosa.webp',
+            'Mysore Masala Dosa': 'images/Mysore Masala Dosa.webp',
+            'Poori Bhaji': 'images/Poori Bhaji.webp',
+            'Curd Rice': 'images/Curd Rice.webp',
+            'Chicken Kadai': 'images/Chicken Kadai.webp',
+            'Tandoori Chicken': 'images/Tandoori Chicken.webp',
+            'Gongura Chicken': 'images/Gongura Chicken.webp',
+            'Lamb Rogan Josh': 'images/Lamb rogan josh.webp',
+            'Fish Curry': 'images/fish curry.webp',
+            'Palak Paneer': 'images/Palak Paneer.webp',
+            'Dal Makhani': 'images/Dal Makhani.webp',
+            'Paneer Butter Masala': 'images/Paneer Butter Masala.webp',
+            'Pav Bhaji': 'images/Pav Bhaji.webp',
+            'Pani Puri': 'images/Pani Puri.webp',
+            'Bhel Puri': 'images/Bhel Puri.webp',
+            'Papadum with Chutneys': 'images/Papadum with Chutneys.webp',
+            'Gulab Jamun': 'images/Gulab Jamun.webp',
+            'Ras Malai': 'images/Ras Malai.webp',
+            'Kheer': 'images/Kheer.webp',
+            'Kulfi': 'images/Kulfi.webp',
+            'Masala Chai': 'images/Masala Chai.webp',
+            'Mango Lassi': 'images/Mango Lassi.webp',
+            'Fresh Lime Soda': 'images/Fresh Lime Soda.webp',
+            'Basmati Rice': 'images/Basmati Rice.webp',
+            'Naan Bread': 'images/Naan Bread.webp',
+            'Roti': 'images/Roti.webp'
+        };
+        return dishImageMap[dishName] || 'images/logo-circular.svg'; // fallback to logo if not found
+    }
+
     function addToCart(dishName, price) {
         // Get existing cart from localStorage or initialize empty array
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
+        // Get image path for the dish
+        const imagePath = getDishImage(dishName);
+        
         // Add item to cart
         cart.push({
             name: dishName,
-            price: price
+            price: price,
+            image: imagePath
         });
         
         // Save cart back to localStorage
