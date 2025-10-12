@@ -2825,14 +2825,11 @@ body.about main {
 
 .about-hero-description p {
     font-size: 1.5rem;
-    margin: 0 0 1rem 0;
+    margin: 0;
     text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.5);
-    line-height: 1.6;
+    line-height: 1.8;
     font-weight: 500;
-}
-
-.about-hero-description p:last-child {
-    margin-bottom: 0;
+    text-align: justify;
 }
 
 @media (max-width: 768px) {
