@@ -607,15 +607,35 @@ footer a:hover {
     
     .featured-card {
         background-color: #f9f9f9;
-        padding: 1.5rem;
+        padding: 0;
         border-radius: 10px;
         text-align: center;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .featured-card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .featured-card h3,
+    .featured-card p {
+        padding: 0 1.5rem;
     }
     
     .featured-card h3 {
         color: #ff6b35;
+        margin-top: 1.5rem;
         margin-bottom: 1rem;
+    }
+    
+    .featured-card p {
+        margin-bottom: 1.5rem;
     }
 }
 
