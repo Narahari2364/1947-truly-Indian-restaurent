@@ -2902,14 +2902,8 @@ body.about main .featured-grid {
     padding: 3rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 2rem;
-}
-
-@media (max-width: 768px) {
-    body.about main .featured-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 body.about main .contact-info {
