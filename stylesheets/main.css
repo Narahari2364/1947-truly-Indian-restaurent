@@ -616,6 +616,10 @@ footer a:hover {
         align-items: stretch;
     }
     
+    .featured-card-reverse {
+        flex-direction: row-reverse;
+    }
+    
     .featured-card-image {
         width: 50%;
         min-width: 300px;
@@ -645,7 +649,8 @@ footer a:hover {
     }
     
     @media (max-width: 768px) {
-        .featured-card {
+        .featured-card,
+        .featured-card-reverse {
             flex-direction: column;
         }
         
