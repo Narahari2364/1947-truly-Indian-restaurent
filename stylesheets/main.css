@@ -920,6 +920,38 @@ footer a:hover {
     margin: 2rem 0;
 }
 
+.social-media-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ff6b35;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s, color 0.2s;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    color: #e55a2b;
+    background-color: rgba(255, 107, 53, 0.1);
+}
+
+.social-link svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
 .contact-info h3 {
     color: #ff6b35;
     margin-bottom: 1rem;
