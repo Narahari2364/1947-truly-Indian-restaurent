@@ -41,78 +41,34 @@
     <main>
         <h1 class="page-title">Contact Us</h1>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
-            <div>
-                <h2>Contact Form</h2>
-                <form>
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" name="name" required>
-                    
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone">
-                    
-                    <label for="subject">Subject:</label>
-                    <select id="subject" name="subject" required>
-                        <option value="">Select Subject</option>
-                        <option value="reservation">Reservation Inquiry</option>
-                        <option value="catering">Catering Services</option>
-                        <option value="private-event">Private Event</option>
-                        <option value="feedback">Feedback</option>
-                        <option value="complaint">Complaint</option>
-                        <option value="other">Other</option>
-                    </select>
-                    
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="6" required placeholder="Please provide details about your inquiry..."></textarea>
-                    
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-            
-            <div>
-                <h2>Location & Hours</h2>
-                <div class="contact-info">
-                    <h3>Address</h3>
-                    <p>
-                        123 Spice Street<br>
-                        Flavor City, FC 12345<br>
-                        United States
-                    </p>
-                    
-                    <h3>Phone Numbers</h3>
-                    <p>
-                        Main: <a href="tel:+15551234567">(555) 123-4567</a><br>
-                        Reservations: <a href="tel:+15551234568">(555) 123-4568</a><br>
-                        Catering: <a href="tel:+15551234569">(555) 123-4569</a>
-                    </p>
-                    
-                    <h3>Email</h3>
-                    <p>
-                        General: <a href="mailto:info@1947indianrestaurant.com">info@1947indianrestaurant.com</a><br>
-                        Reservations: <a href="mailto:reservations@1947indianrestaurant.com">reservations@1947indianrestaurant.com</a><br>
-                        Catering: <a href="mailto:catering@1947indianrestaurant.com">catering@1947indianrestaurant.com</a>
-                    </p>
-                </div>
+        <div class="contact-form-container">
+            <h2>Contact Form</h2>
+            <form>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
                 
-                <div class="contact-info">
-                    <h3>Operating Hours</h3>
-                    <ul style="list-style: none;">
-                        <li><strong>Monday - Thursday:</strong> 11:30 AM - 10:00 PM</li>
-                        <li><strong>Friday - Saturday:</strong> 11:30 AM - 11:00 PM</li>
-                        <li><strong>Sunday:</strong> 12:00 PM - 9:00 PM</li>
-                    </ul>
-                    
-                    <h3>Kitchen Hours</h3>
-                    <ul style="list-style: none;">
-                        <li><strong>Lunch:</strong> 11:30 AM - 2:30 PM</li>
-                        <li><strong>Dinner:</strong> 5:00 PM - 9:30 PM (Sun-Thu)</li>
-                        <li><strong>Dinner:</strong> 5:00 PM - 10:30 PM (Fri-Sat)</li>
-                    </ul>
-                </div>
-            </div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone">
+                
+                <label for="subject">Subject:</label>
+                <select id="subject" name="subject" required>
+                    <option value="">Select Subject</option>
+                    <option value="reservation">Reservation Inquiry</option>
+                    <option value="catering">Catering Services</option>
+                    <option value="private-event">Private Event</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="complaint">Complaint</option>
+                    <option value="other">Other</option>
+                </select>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Please provide details about your inquiry..."></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
         </div>
 
         <div class="contact-info">
@@ -144,15 +100,6 @@
                     <span>Yelp</span>
                 </a>
             </div>
-        </div>
-
-        <div class="contact-info">
-            <h3>Newsletter Signup</h3>
-            <p>Get exclusive offers, new menu items, and special event notifications!</p>
-            <form style="display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap;">
-                <input type="email" placeholder="Enter your email address" style="flex: 1; min-width: 250px; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
-                <button type="submit" style="padding: 0.75rem 1.5rem; background-color: #ff6b35; color: white; border: none; border-radius: 5px; cursor: pointer;">Subscribe</button>
-            </form>
         </div>
     </main>
 
