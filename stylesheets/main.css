@@ -921,8 +921,8 @@ footer a:hover {
 }
 
 .contact-form-container {
-    max-width: 800px;
-    margin: 2rem auto;
+    max-width: 600px;
+    margin: 2rem 0 2rem auto;
     padding: 2rem;
     background-color: #f9f9f9;
     border-radius: 10px;
