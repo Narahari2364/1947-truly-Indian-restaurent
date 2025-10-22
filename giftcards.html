@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Cards - 1947 Indian Restaurant</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">
+            <span class="logo-badge">
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+                <span class="logo-stack">
+                    <span class="wordmark-1947">1947</span>
+                    <span class="wordmark-subtext">Indian Restaurant</span>
+                </span>
+                <span class="flag-icon"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" aria-label="India flag" role="img"><rect width="3" height="0.6667" y="0" fill="#FF9933"/><rect width="3" height="0.6667" y="0.6667" fill="#ffffff"/><rect width="3" height="0.6667" y="1.3333" fill="#138808"/><circle cx="1.5" cy="1" r="0.18" fill="#06038D"/></svg></span>
+            </span>
+        </a></h1>
+        <nav>
+            <ul>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li class="dropdown">
+                    <a href="#">Events</a>
+                    <div class="dropdown-content">
+                        <a href="reservations.html">Make a Reservation</a>
+                        <a href="events.html">Upcoming Events</a>
+                    </div>
+                </li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact Us</a>
+                        <a href="giftcards.html">Gift Cards</a>
+                        <a href="contact.html">Franchise</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="menu.html" class="online-order-btn">
+                <span class="order-icon">🍽️</span>
+                <span class="order-text">Online Order</span>
+                <span class="order-badge">NEW</span>
+            </a>
+            <a href="signin.html" class="signin-btn">Sign</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Gift Cards</h1>
+        
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+             alt="Beautiful gift cards and gift wrapping" 
+             style="width: 100%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 10px; margin: 0 auto 2rem; display: block;">
+
+        <div class="gift-cards-intro">
+            <h2>Give the Gift of Authentic Indian Cuisine</h2>
+            <p>Share the joy of our delicious Indian cuisine with your loved ones. Our gift cards are perfect for birthdays, anniversaries, holidays, or any special occasion. Available in various amounts and beautifully designed.</p>
+        </div>
+
+        <!-- Gift Card Actions -->
+        <div class="gift-card-actions">
+            <div class="action-tabs">
+                <button class="tab-btn active" onclick="switchTab('buy')">Buy Gift Card</button>
+                <button class="tab-btn" onclick="switchTab('check')">Check Balance</button>
+            </div>
+
+            <!-- Buy Gift Card Section -->
+            <div id="buy-gift-card" class="action-content active">
+                <h3>Purchase a Gift Card</h3>
+                <p>Choose from our selection of gift cards and customize your purchase.</p>
+                
+                <!-- Gift Card Categories -->
+                <div class="gift-card-categories">
+                    <h4>Gift Card Categories</h4>
+                    <div class="categories-grid">
+                        <div class="category-card" data-category="birthday">
+                            <div class="category-icon">🎂</div>
+                            <h5>Birthday</h5>
+                            <p>Perfect for celebrating another year of life</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="anniversary">
+                            <div class="category-icon">💕</div>
+                            <h5>Anniversary</h5>
+                            <p>Celebrate your special moments together</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="holiday">
+                            <div class="category-icon">🎄</div>
+                            <h5>Holiday</h5>
+                            <p>Festive cards for holiday celebrations</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="thank-you">
+                            <div class="category-icon">🙏</div>
+                            <h5>Thank You</h5>
+                            <p>Show appreciation with a thoughtful gift</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="congratulations">
+                            <div class="category-icon">🎉</div>
+                            <h5>Congratulations</h5>
+                            <p>Celebrate achievements and milestones</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="general">
+                            <div class="category-icon">🎁</div>
+                            <h5>General</h5>
+                            <p>Classic gift cards for any occasion</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gift Card Purchase Form -->
+                <div class="gift-card-form-container">
+                    <h4>Gift Card Details</h4>
+                    <form class="gift-card-form" id="gift-card-form">
+                        <div class="form-section">
+                            <h5>Gift Card Information</h5>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-amount">Gift Card Amount *</label>
+                                    <select id="card-amount" name="cardAmount" required>
+                                        <option value="">Select Amount</option>
+                                        <option value="25">$25</option>
+                                        <option value="50">$50</option>
+                                        <option value="75">$75</option>
+                                        <option value="100">$100</option>
+                                        <option value="150">$150</option>
+                                        <option value="200">$200</option>
+                                        <option value="custom">Custom Amount</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group" id="custom-amount-group" style="display: none;">
+                                    <label for="custom-amount">Custom Amount ($)</label>
+                                    <input type="number" id="custom-amount" name="customAmount" min="10" max="500" placeholder="Enter amount">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card-category">Card Category *</label>
+                                    <select id="card-category" name="cardCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="birthday">Birthday</option>
+                                        <option value="anniversary">Anniversary</option>
+                                        <option value="holiday">Holiday</option>
+                                        <option value="thank-you">Thank You</option>
+                                        <option value="congratulations">Congratulations</option>
+                                        <option value="general">General</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5>Recipient Information</h5>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="recipient-name">Recipient Name *</label>
+                                    <input type="text" id="recipient-name" name="recipientName" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="recipient-email">Recipient Email *</label>
+                                    <input type="email" id="recipient-email" name="recipientEmail" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="personal-message">Personal Message (Optional)</label>
+                                <textarea id="personal-message" name="personalMessage" rows="3" placeholder="Add a personal message to your gift card..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5>Delivery Information</h5>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="delivery-method">Delivery Method *</label>
+                                    <select id="delivery-method" name="deliveryMethod" required>
+                                        <option value="">Select Method</option>
+                                        <option value="email">Email Delivery (Instant)</option>
+                                        <option value="pickup">Pickup at Restaurant</option>
+                                        <option value="mail">Physical Mail Delivery</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="delivery-date">Preferred Delivery Date</label>
+                                    <input type="date" id="delivery-date" name="deliveryDate">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="mailing-address" style="display: none;">
+                                <label for="mailing-address-field">Mailing Address</label>
+                                <textarea id="mailing-address-field" name="mailingAddress" rows="3" placeholder="Enter complete mailing address..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5>Payment Information</h5>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="payment-method">Payment Method *</label>
+                                    <select id="payment-method" name="paymentMethod" required>
+                                        <option value="">Select Payment Method</option>
+                                        <option value="credit-card">Credit Card</option>
+                                        <option value="debit-card">Debit Card</option>
+                                        <option value="paypal">PayPal</option>
+                                        <option value="apple-pay">Apple Pay</option>
+                                        <option value="google-pay">Google Pay</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="billing-name">Billing Name *</label>
+                                    <input type="text" id="billing-name" name="billingName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="billing-email">Billing Email *</label>
+                                <input type="email" id="billing-email" name="billingEmail" required>
+                            </div>
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary btn-large">Purchase Gift Card</button>
+                            <p class="form-note">* Required fields. Your gift card will be delivered according to your selected method.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Check Balance Section -->
+            <div id="check-balance" class="action-content">
+                <h3>Check Gift Card Balance</h3>
+                <p>Enter your gift card number to check the current balance and transaction history.</p>
+                
+                <div class="balance-check-form">
+                    <form class="balance-form" id="balance-form">
+                        <div class="form-group">
+                            <label for="gift-card-number">Gift Card Number *</label>
+                            <input type="text" id="gift-card-number" name="giftCardNumber" placeholder="Enter 16-digit gift card number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pin-code">PIN Code (if applicable)</label>
+                            <input type="text" id="pin-code" name="pinCode" placeholder="Enter 4-digit PIN" maxlength="4">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-secondary">Check Balance</button>
+                    </form>
+                </div>
+                
+                <div class="balance-result" id="balance-result" style="display: none;">
+                    <h4>Gift Card Information</h4>
+                    <div class="balance-info">
+                        <div class="balance-item">
+                            <span class="label">Card Number:</span>
+                            <span class="value" id="display-card-number">****-****-****-1234</span>
+                        </div>
+                        <div class="balance-item">
+                            <span class="label">Current Balance:</span>
+                            <span class="value balance-amount" id="current-balance">$75.00</span>
+                        </div>
+                        <div class="balance-item">
+                            <span class="label">Original Amount:</span>
+                            <span class="value" id="original-amount">$100.00</span>
+                        </div>
+                        <div class="balance-item">
+                            <span class="label">Expiry Date:</span>
+                            <span class="value" id="expiry-date">12/31/2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gift Card Features -->
+        <div class="gift-card-features">
+            <h2>Why Choose Our Gift Cards?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Instant Delivery</h4>
+                    <p>Email delivery available instantly for last-minute gifts</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Beautiful Design</h4>
+                    <p>Elegantly designed cards perfect for any occasion</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Secure & Safe</h4>
+                    <p>Protected with advanced security features</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Easy to use on any device, anywhere</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h4>No Expiration</h4>
+                    <p>Gift cards never expire, use anytime</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h4>Multiple Payment</h4>
+                    <p>Accept all major credit cards and digital wallets</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="gift-card-terms">
+            <h3>Gift Card Terms & Conditions</h3>
+            <ul>
+                <li>Gift cards are valid for 5 years from the date of purchase</li>
+                <li>Gift cards cannot be redeemed for cash</li>
+                <li>Lost or stolen gift cards cannot be replaced</li>
+                <li>Gift cards can be used for dine-in, takeout, and delivery orders</li>
+                <li>Any unused balance will remain on the gift card</li>
+                <li>Gift cards are non-refundable</li>
+                <li>We reserve the right to modify these terms at any time</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Indian Restaurant. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@1947indianrestaurant.com">info@1947indianrestaurant.com</a></p>
+        <p>Phone: (555) 123-4567 | Address: 123 Spice Street, Flavor City, FC 12345</p>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tab) {
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.action-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to selected tab and content
+            event.target.classList.add('active');
+            document.getElementById(tab + '-gift-card').classList.add('active');
+        }
+
+        // Show/hide custom amount field
+        document.getElementById('card-amount').addEventListener('change', function() {
+            const customAmountGroup = document.getElementById('custom-amount-group');
+            if (this.value === 'custom') {
+                customAmountGroup.style.display = 'block';
+                document.getElementById('custom-amount').required = true;
+            } else {
+                customAmountGroup.style.display = 'none';
+                document.getElementById('custom-amount').required = false;
+            }
+        });
+
+        // Show/hide mailing address based on delivery method
+        document.getElementById('delivery-method').addEventListener('change', function() {
+            const mailingAddress = document.getElementById('mailing-address');
+            if (this.value === 'mail') {
+                mailingAddress.style.display = 'block';
+                document.getElementById('mailing-address-field').required = true;
+            } else {
+                mailingAddress.style.display = 'none';
+                document.getElementById('mailing-address-field').required = false;
+            }
+        });
+
+        // Category card selection
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class from all cards
+                document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+                // Add active class to clicked card
+                this.classList.add('active');
+                // Update category select
+                const category = this.dataset.category;
+                document.getElementById('card-category').value = category;
+            });
+        });
+
+        // Gift card form submission
+        document.getElementById('gift-card-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff6b35';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e0e0e0';
+                }
+            });
+            
+            if (isValid) {
+                alert('Thank you for your gift card purchase! You will receive a confirmation email shortly.');
+                this.reset();
+                document.getElementById('custom-amount-group').style.display = 'none';
+                document.getElementById('mailing-address').style.display = 'none';
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Balance check form submission
+        document.getElementById('balance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const cardNumber = document.getElementById('gift-card-number').value;
+            
+            if (cardNumber.length < 16) {
+                alert('Please enter a valid 16-digit gift card number.');
+                return;
+            }
+            
+            // Simulate balance check
+            document.getElementById('balance-result').style.display = 'block';
+            document.getElementById('display-card-number').textContent = '****-****-****-' + cardNumber.slice(-4);
+        });
+
+        // Gift card number formatting
+        document.getElementById('gift-card-number').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 4) {
+                value = value.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1-$2-$3-$4');
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
