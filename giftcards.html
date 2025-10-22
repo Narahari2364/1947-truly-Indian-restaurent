@@ -262,16 +262,38 @@
                     <form class="balance-form" id="balance-form">
                         <div class="form-group">
                             <label for="gift-card-number">Gift Card Number *</label>
-                            <input type="text" id="gift-card-number" name="giftCardNumber" placeholder="Enter 16-digit gift card number" required>
+                            <input type="text" id="gift-card-number" name="giftCardNumber" placeholder="1234-5678-9012-3456" required>
+                            <small class="form-help">Enter the 16-digit number from your gift card</small>
                         </div>
                         
                         <div class="form-group">
                             <label for="pin-code">PIN Code (if applicable)</label>
-                            <input type="text" id="pin-code" name="pinCode" placeholder="Enter 4-digit PIN" maxlength="4">
+                            <input type="text" id="pin-code" name="pinCode" placeholder="1234" maxlength="4">
+                            <small class="form-help">Some gift cards may require a PIN</small>
                         </div>
                         
                         <button type="submit" class="btn btn-secondary">Check Balance</button>
                     </form>
+                </div>
+                
+                <!-- Sample Card Numbers for Testing -->
+                <div class="sample-cards">
+                    <h4>Sample Gift Cards for Testing</h4>
+                    <p>Click on any sample card number to test the balance check feature:</p>
+                    <div class="sample-card-list">
+                        <div class="sample-card-item" onclick="fillSampleCard('1234-5678-9012-3456')">
+                            <span class="sample-card-number">1234-5678-9012-3456</span>
+                            <span class="sample-card-balance">Balance: $75.00</span>
+                        </div>
+                        <div class="sample-card-item" onclick="fillSampleCard('9876-5432-1098-7654')">
+                            <span class="sample-card-number">9876-5432-1098-7654</span>
+                            <span class="sample-card-balance">Balance: $150.00</span>
+                        </div>
+                        <div class="sample-card-item" onclick="fillSampleCard('5555-4444-3333-2222')">
+                            <span class="sample-card-number">5555-4444-3333-2222</span>
+                            <span class="sample-card-balance">Balance: $25.00</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="balance-result" id="balance-result" style="display: none;">
@@ -292,6 +314,10 @@
                         <div class="balance-item">
                             <span class="label">Expiry Date:</span>
                             <span class="value" id="expiry-date">12/31/2025</span>
+                        </div>
+                        <div class="balance-item">
+                            <span class="label">Status:</span>
+                            <span class="value status-active">Active</span>
                         </div>
                     </div>
                 </div>
@@ -475,10 +501,15 @@
             }
         });
 
-        // Balance check form submission
-        document.getElementById('balance-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+        // Function to fill sample card number
+        function fillSampleCard(cardNumber) {
+            document.getElementById('gift-card-number').value = cardNumber;
+            // Trigger balance check automatically
+            checkBalance();
+        }
+
+        // Function to check balance
+        function checkBalance() {
             const cardNumber = document.getElementById('gift-card-number').value;
             
             if (cardNumber.length < 16) {
@@ -486,9 +517,35 @@
                 return;
             }
             
-            // Simulate balance check
+            // Simulate balance check with different results based on card number
             document.getElementById('balance-result').style.display = 'block';
             document.getElementById('display-card-number').textContent = '****-****-****-' + cardNumber.slice(-4);
+            
+            // Set different balances based on sample cards
+            if (cardNumber.includes('1234-5678-9012-3456')) {
+                document.getElementById('current-balance').textContent = '$75.00';
+                document.getElementById('original-amount').textContent = '$100.00';
+                document.getElementById('expiry-date').textContent = '12/31/2025';
+            } else if (cardNumber.includes('9876-5432-1098-7654')) {
+                document.getElementById('current-balance').textContent = '$150.00';
+                document.getElementById('original-amount').textContent = '$200.00';
+                document.getElementById('expiry-date').textContent = '06/30/2026';
+            } else if (cardNumber.includes('5555-4444-3333-2222')) {
+                document.getElementById('current-balance').textContent = '$25.00';
+                document.getElementById('original-amount').textContent = '$50.00';
+                document.getElementById('expiry-date').textContent = '03/15/2025';
+            } else {
+                // Default values for any other card number
+                document.getElementById('current-balance').textContent = '$50.00';
+                document.getElementById('original-amount').textContent = '$75.00';
+                document.getElementById('expiry-date').textContent = '12/31/2025';
+            }
+        }
+
+        // Balance check form submission
+        document.getElementById('balance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            checkBalance();
         });
 
         // Gift card number formatting
