@@ -619,23 +619,27 @@ footer a:hover {
     .featured-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
         margin: 3rem 0;
-        max-width: 1400px;
-        margin-left: auto;
-        margin-right: auto;
+        width: 100%;
         padding: 0 1rem;
+        box-sizing: border-box;
+    }
+    
+    body.home .featured-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
     }
     
     body.home .featured-grid .featured-card:nth-child(4) {
         grid-column: 2;
-        max-width: 400px;
-        justify-self: center;
+        grid-row: 2;
     }
     
     body.home .featured-card {
         padding: 2.5rem;
         min-height: 280px;
+        width: 100%;
     }
     
     body.home .featured-card h3 {
@@ -658,6 +662,8 @@ footer a:hover {
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         min-height: 280px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .featured-card:hover {
@@ -711,12 +717,12 @@ footer a:hover {
         .featured-grid {
             grid-template-columns: 1fr;
             gap: 1.5rem;
+            padding: 0 1rem;
         }
         
         body.home .featured-grid .featured-card:nth-child(4) {
             grid-column: 1;
-            max-width: 100%;
-            justify-self: stretch;
+            grid-row: auto;
         }
         
         .featured-card {
