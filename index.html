@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card hidden">
                     <div class="testimonial-content">
                         <p>"Amazing filter coffee served in traditional brass vessels! The entire experience took me back to the streets of Chennai. Will definitely come back!"</p>
                     </div>
@@ -137,7 +137,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card hidden">
                     <div class="testimonial-content">
                         <p>"Family-owned restaurant with authentic recipes passed down through generations. The quality and taste are unmatched. Our go-to place for Indian cuisine!"</p>
                     </div>
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card hidden">
                     <div class="testimonial-content">
                         <p>"The catering service for our wedding was outstanding! All our guests were raving about the food. Professional, delicious, and beautifully presented."</p>
                     </div>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card hidden">
                     <div class="testimonial-content">
                         <p>"Every dish tells a story of tradition and love. The spices are perfectly balanced, and the presentation is beautiful. A true culinary journey!"</p>
                     </div>
@@ -166,7 +166,48 @@
                         <span>⭐⭐⭐⭐⭐</span>
                     </div>
                 </div>
+                
+                <div class="testimonial-card hidden">
+                    <div class="testimonial-content">
+                        <p>"The biryani here is absolutely divine! Each grain of rice is perfectly cooked and the meat is so tender. This is what authentic Indian cuisine should taste like."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Ahmed Hassan</h4>
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card hidden">
+                    <div class="testimonial-content">
+                        <p>"I've been coming here for 5 years and the quality never disappoints. The staff remembers our preferences and the food is consistently excellent. Highly recommend!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Maria Garcia</h4>
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card hidden">
+                    <div class="testimonial-content">
+                        <p>"The vegetarian options are incredible! As someone who doesn't eat meat, I was amazed by the variety and flavor of the vegetarian dishes. Truly exceptional!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Priya Sharma</h4>
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card hidden">
+                    <div class="testimonial-content">
+                        <p>"The ambiance is perfect for a family dinner. The kids loved the mild curries and we adults enjoyed the spicier options. Great for all ages!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Robert & Susan Wilson</h4>
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
             </div>
+            <button class="load-more-btn" onclick="toggleTestimonials()">Load More Reviews</button>
         </div>
 
         <div class="contact-info">
@@ -222,6 +263,27 @@
         setInterval(function() {
             changeSlide(1);
         }, 5000);
+
+        // Testimonials toggle function
+        function toggleTestimonials() {
+            const hiddenCards = document.querySelectorAll('.testimonial-card.hidden');
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            
+            if (hiddenCards.length > 0) {
+                // Show 2 more testimonials
+                for (let i = 0; i < Math.min(2, hiddenCards.length); i++) {
+                    hiddenCards[i].classList.remove('hidden');
+                }
+                
+                // Update button text or hide if all are shown
+                const remainingHidden = document.querySelectorAll('.testimonial-card.hidden').length;
+                if (remainingHidden === 0) {
+                    loadMoreBtn.textContent = 'All Reviews Loaded';
+                    loadMoreBtn.style.opacity = '0.6';
+                    loadMoreBtn.disabled = true;
+                }
+            }
+        }
     </script>
 </body>
 </html>
