@@ -591,7 +591,7 @@ footer a:hover {
 /* Menu page layout */
 .menu-layout {
     display: grid;
-    grid-template-columns: 1.6fr 0.9fr;
+    grid-template-columns: 0.9fr 1.6fr; /* sidebar left, menu right */
     gap: 2rem;
     align-items: start;
 }
