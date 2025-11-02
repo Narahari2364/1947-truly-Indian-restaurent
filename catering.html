@@ -189,7 +189,7 @@
         <div class="catering-packages">
             <h2>Popular Catering Packages</h2>
             <div class="packages-grid">
-                <div class="package-card">
+                <div class="package-card" onclick="selectPackage('Basic Package', 15)">
                     <h3>Basic Package</h3>
                     <p class="package-price">$15 per person</p>
                     <ul>
@@ -199,9 +199,10 @@
                         <li>1 Dessert</li>
                         <li>Basic Setup</li>
                     </ul>
+                    <button class="package-select-btn" onclick="event.stopPropagation(); selectPackage('Basic Package', 15)">Select This Package</button>
                 </div>
                 
-                <div class="package-card featured">
+                <div class="package-card featured" onclick="selectPackage('Premium Package', 25)">
                     <h3>Premium Package</h3>
                     <p class="package-price">$25 per person</p>
                     <ul>
@@ -212,9 +213,10 @@
                         <li>Full Setup & Service</li>
                         <li>Chafing Dishes</li>
                     </ul>
+                    <button class="package-select-btn" onclick="event.stopPropagation(); selectPackage('Premium Package', 25)">Select This Package</button>
                 </div>
                 
-                <div class="package-card">
+                <div class="package-card" onclick="selectPackage('Luxury Package', 35)">
                     <h3>Luxury Package</h3>
                     <p class="package-price">$35 per person</p>
                     <ul>
@@ -226,6 +228,7 @@
                         <li>Premium Setup</li>
                         <li>Custom Menu Options</li>
                     </ul>
+                    <button class="package-select-btn" onclick="event.stopPropagation(); selectPackage('Luxury Package', 35)">Select This Package</button>
                 </div>
             </div>
         </div>
@@ -282,12 +285,7 @@
                 }
             });
             
-            // Check if at least one menu item is selected
-            const menuItems = this.querySelectorAll('input[name="menuItems"]:checked');
-            if (menuItems.length === 0) {
-                alert('Please select at least one menu item for your catering order.');
-                return;
-            }
+            // Note: Menu selection is now optional since users can view the full menu
             
             if (isValid) {
                 // Here you would typically send the data to your server
@@ -310,6 +308,20 @@
                 this.closest('.radio-label').classList.add('active');
             });
         });
+        
+        // Package selection function
+        function selectPackage(packageName, pricePerPerson) {
+            // Scroll to the form
+            document.querySelector('.catering-form-container').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Show confirmation message
+            setTimeout(() => {
+                alert(`You've selected the ${packageName} at $${pricePerPerson} per person. Please fill out the form above to complete your catering request.`);
+            }, 500);
+        }
         
         // Update cart count on page load
         function updateCartCount() {
