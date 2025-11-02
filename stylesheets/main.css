@@ -1478,9 +1478,29 @@ form button:hover {
 }
 
 .catering-form-container {
-    max-width: 900px;
+    max-width: 1400px;
     margin: 2rem auto;
     padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.catering-form-intro {
+    padding: 1rem 0;
+}
+
+.catering-form-intro h2 {
+    color: #ff6b35;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.catering-form-intro p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1rem;
 }
 
 .catering-form {
@@ -1488,6 +1508,13 @@ form button:hover {
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 968px) {
+    .catering-form-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }
 
 .form-section {
