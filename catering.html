@@ -285,9 +285,20 @@
                 }
             });
             
-            // Note: Menu selection is now optional since users can view the full menu
+            // Check if a package was selected (menu selection should be hidden)
+            const selectedPackage = localStorage.getItem('selectedCateringPackage');
+            const menuSection = Array.from(document.querySelectorAll('.form-section')).find(section => {
+                return section.querySelector('h3') && section.querySelector('h3').textContent === 'Menu Selection';
+            });
+            
+            // If package is selected, menu selection is not required
+            if (!selectedPackage && menuSection && menuSection.style.display !== 'none') {
+                // Menu selection is visible but no items selected - this is okay now since we have "View Full Menu" button
+            }
             
             if (isValid) {
+                // Clear selected package after submission
+                localStorage.removeItem('selectedCateringPackage');
                 // Here you would typically send the data to your server
                 alert('Thank you for your catering request! We will contact you within 24 hours with a detailed quote and availability confirmation.');
                 this.reset();
@@ -311,6 +322,25 @@
         
         // Package selection function
         function selectPackage(packageName, pricePerPerson) {
+            // Hide the Menu Selection section
+            const menuSelectionSection = document.querySelector('.form-section h3');
+            let menuSection = null;
+            document.querySelectorAll('.form-section').forEach(section => {
+                if (section.querySelector('h3') && section.querySelector('h3').textContent === 'Menu Selection') {
+                    menuSection = section;
+                }
+            });
+            
+            if (menuSection) {
+                menuSection.style.display = 'none';
+            }
+            
+            // Store selected package info
+            localStorage.setItem('selectedCateringPackage', JSON.stringify({
+                name: packageName,
+                price: pricePerPerson
+            }));
+            
             // Scroll to the form
             document.querySelector('.catering-form-container').scrollIntoView({ 
                 behavior: 'smooth',
@@ -319,8 +349,28 @@
             
             // Show confirmation message
             setTimeout(() => {
-                alert(`You've selected the ${packageName} at $${pricePerPerson} per person. Please fill out the form above to complete your catering request.`);
+                alert(`You've selected the ${packageName} at $${pricePerPerson} per person. The menu selection has been hidden. Please fill out the form above to complete your catering request.`);
             }, 500);
+        }
+        
+        // Check if a package was previously selected on page load
+        function checkSelectedPackage() {
+            const selectedPackage = localStorage.getItem('selectedCateringPackage');
+            if (selectedPackage) {
+                // Hide menu selection section
+                document.querySelectorAll('.form-section').forEach(section => {
+                    if (section.querySelector('h3') && section.querySelector('h3').textContent === 'Menu Selection') {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+        }
+        
+        // Run on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkSelectedPackage);
+        } else {
+            checkSelectedPackage();
         }
         
         // Update cart count on page load
