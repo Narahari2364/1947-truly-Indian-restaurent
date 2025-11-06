@@ -1488,6 +1488,16 @@ form button:hover {
     align-items: stretch;
 }
 
+/* When package is selected, make form take more space */
+.catering-form-container:has(.selected-package-display.active) {
+    grid-template-columns: minmax(300px, 1fr) minmax(800px, 3fr);
+}
+
+/* Alternative selector for browsers that don't support :has */
+.catering-form-container.package-selected {
+    grid-template-columns: minmax(300px, 1fr) minmax(800px, 3fr);
+}
+
 .catering-form {
     background-color: #f9f9f9;
     border-radius: 15px;
