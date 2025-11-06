@@ -2758,7 +2758,7 @@ body.about main {
     position: relative;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    height: 60vh; /* smaller than full viewport */
+    height: calc(100vh - 65px); /* account for sticky header */
     overflow: hidden;
     margin-top: 0;
     margin-bottom: 0;
@@ -2766,13 +2766,13 @@ body.about main {
 
 @media (min-width: 768px) {
     .about-hero {
-        height: 50vh;
+        height: calc(100vh - 70px);
     }
 }
 
 @media (max-width: 768px) {
     .about-hero {
-        height: 40vh;
+        height: 70vh;
     }
 }
 
