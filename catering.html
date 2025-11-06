@@ -337,18 +337,8 @@
                 price: pricePerPerson
             }));
 
-            updateSelectedPackageDisplay();
-
-            // Scroll to the form
-            document.querySelector('.catering-form-container').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            // Show confirmation message
-            setTimeout(() => {
-                alert(`You've selected the ${packageName} at $${pricePerPerson} per person. Please fill out the form above to complete your catering request.`);
-            }, 300);
+            // Redirect to catering request page
+            window.location.href = 'catering-request.html';
         }
 
         function updateSelectedPackageDisplay() {

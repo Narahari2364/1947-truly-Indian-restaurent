@@ -1902,6 +1902,86 @@ form button:hover {
     cursor: pointer;
 }
 
+/* Catering Request Page Styles */
+.catering-request-page {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.selected-package-summary {
+    display: none;
+    background: linear-gradient(135deg, #fff5f2 0%, #ffffff 100%);
+    border: 2px solid #ff6b35;
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
+}
+
+.package-summary-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.package-summary-content h2 {
+    color: #ff6b35;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.package-details {
+    background-color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    min-width: 300px;
+}
+
+.package-details h3 {
+    color: #ff6b35;
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.package-price-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.catering-form-container-full {
+    width: 100%;
+}
+
+.catering-form-container-full .catering-form {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .catering-request-page {
+        padding: 0 1rem;
+    }
+    
+    .selected-package-summary {
+        padding: 1.5rem;
+    }
+    
+    .package-summary-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .package-details {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
 /* Responsive Design for Catering Page */
 @media (max-width: 768px) {
     .form-row {
