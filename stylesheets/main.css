@@ -1478,13 +1478,37 @@ form button:hover {
 }
 
 .catering-form-container {
-    max-width: 1400px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    max-width: none;
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0 3vw;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(260px, 1fr) minmax(600px, 2fr);
     gap: 3rem;
-    align-items: start;
+    align-items: stretch;
+}
+
+.catering-form {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 968px) {
+    .catering-form-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .catering-form {
+        padding: 1.5rem;
+    }
 }
 
 .catering-form-intro {
@@ -1503,51 +1527,37 @@ form button:hover {
     font-size: 1rem;
 }
 
-.catering-form {
-    background-color: #f9f9f9;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-@media (max-width: 968px) {
-    .catering-form-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-}
-
-.form-section {
+.catering-form .form-section {
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
     border-bottom: 2px solid #e0e0e0;
 }
 
-.form-section:last-of-type {
+.catering-form .form-section:last-of-type {
     border-bottom: none;
     margin-bottom: 0;
 }
 
-.form-section h3 {
+.catering-form .form-section h5 {
     color: #ff6b35;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
     border-left: 4px solid #ff6b35;
     padding-left: 1rem;
 }
 
-.form-row {
+.catering-form .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
-.form-group {
+.catering-form .form-group {
     margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.catering-form label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
@@ -1555,9 +1565,9 @@ form button:hover {
     font-size: 1rem;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+.catering-form input,
+.catering-form select,
+.catering-form textarea {
     width: 100%;
     padding: 0.75rem;
     border: 2px solid #e0e0e0;
@@ -1567,9 +1577,9 @@ form button:hover {
     font-family: inherit;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.catering-form input:focus,
+.catering-form select:focus,
+.catering-form textarea:focus {
     outline: none;
     border-color: #ff6b35;
     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
