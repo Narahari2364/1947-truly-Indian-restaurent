@@ -2786,6 +2786,33 @@ body.about main {
     margin: 0;
 }
 
+.about-hero-content {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: white;
+    z-index: 2;
+}
+
+.about-hero-content h1 {
+    font-size: 4rem;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .about-hero-content {
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+    
+    .about-hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
 /* Add padding back to main content after hero */
 body.about main .featured-grid {
     padding: 3rem 1rem;
