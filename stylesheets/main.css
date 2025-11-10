@@ -696,6 +696,11 @@ footer a:hover {
 
 body:not(.home) main .page-title {
     text-align: left;
+    margin-bottom: 1rem;
+}
+
+body:not(.home) main {
+    padding-top: 1rem;
 }
 
 /* Menu page layout */
@@ -927,7 +932,7 @@ body:not(.home) main .page-title {
 .contact-form-container {
     max-width: 600px;
     margin: 0 0 2rem auto;
-    padding: 2rem;
+    padding: 1.5rem;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
