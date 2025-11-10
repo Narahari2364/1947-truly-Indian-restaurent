@@ -78,7 +78,7 @@
                         <span class="event-type">Cultural Festival</span>
                         <span class="event-price">$45 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Reserve Your Spot</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Makar Sankranti Celebration', 45)">+</button>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                         <span class="event-type">Live Music</span>
                         <span class="event-price">$35 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Get Tickets</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Bollywood Night with Live Music', 35)">+</button>
                 </div>
             </div>
 
@@ -120,7 +120,7 @@
                         <span class="event-type">Fine Dining</span>
                         <span class="event-price">$85 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Book Now</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Chef\'s Table Experience', 85)">+</button>
                 </div>
             </div>
 
@@ -142,7 +142,7 @@
                         <span class="event-type">Romantic Dining</span>
                         <span class="event-price">$65 per couple</span>
                     </div>
-                    <button class="btn btn-secondary">Make Reservation</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Valentine\'s Day Special Dinner', 65)">+</button>
                 </div>
             </div>
 
@@ -163,7 +163,7 @@
                         <span class="event-type">Cultural Festival</span>
                         <span class="event-price">$40 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Join Celebration</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Holi Festival Celebration', 40)">+</button>
                 </div>
             </div>
 
@@ -184,7 +184,7 @@
                         <span class="event-type">Classical Music</span>
                         <span class="event-price">$50 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Reserve Seats</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Classical Indian Music Night', 50)">+</button>
                 </div>
             </div>
 
@@ -206,7 +206,7 @@
                         <span class="event-type">Special Celebration</span>
                         <span class="event-price">$45 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Book Table</button>
+                    <button class="event-add-btn" onclick="addEventToCart('International Women\'s Day Special', 45)">+</button>
                 </div>
             </div>
 
@@ -227,7 +227,7 @@
                         <span class="event-type">Cooking Workshop</span>
                         <span class="event-price">$75 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Register Now</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Spice Masterclass Workshop', 75)">+</button>
                 </div>
             </div>
 
@@ -248,7 +248,7 @@
                         <span class="event-type">Religious Festival</span>
                         <span class="event-price">$40 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Join Festival</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Navratri Festival Celebration', 40)">+</button>
                 </div>
             </div>
 
@@ -270,7 +270,7 @@
                         <span class="event-type">Wine Tasting</span>
                         <span class="event-price">$95 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Reserve Spot</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Wine & Spice Pairing Evening', 95)">+</button>
                 </div>
             </div>
 
@@ -291,7 +291,7 @@
                         <span class="event-type">Harvest Festival</span>
                         <span class="event-price">$45 per person</span>
                     </div>
-                    <button class="btn btn-secondary">Join Celebration</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Baisakhi Harvest Festival', 45)">+</button>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
                         <li>Special decorations</li>
                         <li>Birthday song performance</li>
                     </ul>
-                    <button class="btn btn-secondary">Book Birthday Party</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Birthday Celebrations', 0)">+</button>
                 </div>
                 
                 <div class="private-event-card">
@@ -323,7 +323,7 @@
                         <li>Wine pairing</li>
                         <li>Photography service</li>
                     </ul>
-                    <button class="btn btn-secondary">Plan Anniversary</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Anniversary Dinners', 0)">+</button>
                 </div>
                 
                 <div class="private-event-card">
@@ -335,7 +335,7 @@
                         <li>Custom catering menu</li>
                         <li>Professional service</li>
                     </ul>
-                    <button class="btn btn-secondary">Organize Corporate Event</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Corporate Events', 0)">+</button>
                 </div>
             </div>
         </div>
@@ -458,6 +458,19 @@
             });
         });
         
+        // Add event to cart
+        function addEventToCart(eventName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({
+                name: eventName,
+                price: price,
+                image: 'images/party hall.webp' // Use party hall image for all events
+            });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${eventName} added to cart!`);
+        }
+
         // Update cart count on page load
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
