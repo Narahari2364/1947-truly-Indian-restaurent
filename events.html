@@ -78,7 +78,7 @@
                         <span class="event-type">Cultural Festival</span>
                         <span class="event-price">$45 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Makar Sankranti Celebration', 45)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Makar Sankranti Celebration', 45, this)">+</button>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                         <span class="event-type">Live Music</span>
                         <span class="event-price">$35 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Bollywood Night with Live Music', 35)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Bollywood Night with Live Music', 35, this)">+</button>
                 </div>
             </div>
 
@@ -120,7 +120,7 @@
                         <span class="event-type">Fine Dining</span>
                         <span class="event-price">$85 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Chef\'s Table Experience', 85)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Chef\'s Table Experience', 85, this)">+</button>
                 </div>
             </div>
 
@@ -142,7 +142,7 @@
                         <span class="event-type">Romantic Dining</span>
                         <span class="event-price">$65 per couple</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Valentine\'s Day Special Dinner', 65)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Valentine\'s Day Special Dinner', 65, this)">+</button>
                 </div>
             </div>
 
@@ -163,7 +163,7 @@
                         <span class="event-type">Cultural Festival</span>
                         <span class="event-price">$40 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Holi Festival Celebration', 40)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Holi Festival Celebration', 40, this)">+</button>
                 </div>
             </div>
 
@@ -184,7 +184,7 @@
                         <span class="event-type">Classical Music</span>
                         <span class="event-price">$50 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Classical Indian Music Night', 50)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Classical Indian Music Night', 50, this)">+</button>
                 </div>
             </div>
 
@@ -206,7 +206,7 @@
                         <span class="event-type">Special Celebration</span>
                         <span class="event-price">$45 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('International Women\'s Day Special', 45)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('International Women\'s Day Special', 45, this)">+</button>
                 </div>
             </div>
 
@@ -227,7 +227,7 @@
                         <span class="event-type">Cooking Workshop</span>
                         <span class="event-price">$75 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Spice Masterclass Workshop', 75)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Spice Masterclass Workshop', 75, this)">+</button>
                 </div>
             </div>
 
@@ -248,7 +248,7 @@
                         <span class="event-type">Religious Festival</span>
                         <span class="event-price">$40 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Navratri Festival Celebration', 40)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Navratri Festival Celebration', 40, this)">+</button>
                 </div>
             </div>
 
@@ -270,7 +270,7 @@
                         <span class="event-type">Wine Tasting</span>
                         <span class="event-price">$95 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Wine & Spice Pairing Evening', 95)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Wine & Spice Pairing Evening', 95, this)">+</button>
                 </div>
             </div>
 
@@ -291,7 +291,7 @@
                         <span class="event-type">Harvest Festival</span>
                         <span class="event-price">$45 per person</span>
                     </div>
-                    <button class="event-add-btn" onclick="addEventToCart('Baisakhi Harvest Festival', 45)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Baisakhi Harvest Festival', 45, this)">+</button>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
                         <li>Special decorations</li>
                         <li>Birthday song performance</li>
                     </ul>
-                    <button class="event-add-btn" onclick="addEventToCart('Birthday Celebrations', 0)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Birthday Celebrations', 0, this)">+</button>
                 </div>
                 
                 <div class="private-event-card">
@@ -323,7 +323,7 @@
                         <li>Wine pairing</li>
                         <li>Photography service</li>
                     </ul>
-                    <button class="event-add-btn" onclick="addEventToCart('Anniversary Dinners', 0)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Anniversary Dinners', 0, this)">+</button>
                 </div>
                 
                 <div class="private-event-card">
@@ -335,7 +335,7 @@
                         <li>Custom catering menu</li>
                         <li>Professional service</li>
                     </ul>
-                    <button class="event-add-btn" onclick="addEventToCart('Corporate Events', 0)">+</button>
+                    <button class="event-add-btn" onclick="addEventToCart('Corporate Events', 0, this)">+</button>
                 </div>
             </div>
         </div>
@@ -459,16 +459,69 @@
         });
         
         // Add event to cart
-        function addEventToCart(eventName, price) {
+        function addEventToCart(eventName, price, buttonElement) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({
-                name: eventName,
-                price: price,
-                image: 'images/party hall.webp' // Use party hall image for all events
-            });
+            
+            // Check if event already exists in cart
+            const existingIndex = cart.findIndex(item => item.name === eventName);
+            
+            if (existingIndex !== -1) {
+                // Increment quantity if exists
+                cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+            } else {
+                // Add new item with quantity 1
+                cart.push({
+                    name: eventName,
+                    price: price,
+                    image: 'images/party hall.webp',
+                    quantity: 1
+                });
+            }
+            
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
-            alert(`${eventName} added to cart!`);
+            updateEventButtonCount(eventName, buttonElement);
+        }
+
+        // Update event button count display
+        function updateEventButtonCount(eventName, buttonElement) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const eventItem = cart.find(item => item.name === eventName);
+            const quantity = eventItem ? (eventItem.quantity || 1) : 0;
+            
+            if (buttonElement) {
+                // Remove existing count badge if any
+                const existingBadge = buttonElement.querySelector('.event-count-badge');
+                if (existingBadge) {
+                    existingBadge.remove();
+                }
+                
+                // Add count badge if quantity > 0
+                if (quantity > 0) {
+                    const badge = document.createElement('span');
+                    badge.className = 'event-count-badge';
+                    badge.textContent = quantity;
+                    buttonElement.appendChild(badge);
+                }
+            }
+        }
+
+        // Update all event button counts on page load
+        function updateAllEventButtonCounts() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const eventButtons = document.querySelectorAll('.event-add-btn');
+            
+            eventButtons.forEach(button => {
+                const onclickAttr = button.getAttribute('onclick');
+                if (onclickAttr) {
+                    // Extract event name from onclick attribute
+                    const match = onclickAttr.match(/addEventToCart\('([^']+)'/);
+                    if (match) {
+                        const eventName = match[1];
+                        updateEventButtonCount(eventName, button);
+                    }
+                }
+            });
         }
 
         // Update cart count on page load
@@ -476,11 +529,14 @@
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const cartCountNav = document.getElementById('cartCountNav');
             if (cartCountNav) {
-                cartCountNav.textContent = cart.length;
-                cartCountNav.style.display = cart.length > 0 ? 'flex' : 'none';
+                // Count total items including quantities
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartCountNav.textContent = totalItems;
+                cartCountNav.style.display = totalItems > 0 ? 'flex' : 'none';
             }
         }
         updateCartCount();
+        updateAllEventButtonCounts();
     </script>
 </body>
 </html>
