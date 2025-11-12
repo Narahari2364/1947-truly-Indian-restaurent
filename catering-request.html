@@ -47,7 +47,60 @@
                     <div class="package-details" id="packageDetails">
                         <!-- Package info will be loaded here -->
                     </div>
-                    <button type="button" class="package-change-btn" onclick="changePackage()">Change Package</button>
+                    <button type="button" class="package-change-btn" onclick="showPackageSelector()">Change Package</button>
+                </div>
+            </div>
+
+            <!-- Package Selector (hidden by default) -->
+            <div class="package-selector-overlay" id="packageSelectorOverlay" onclick="hidePackageSelector()">
+                <div class="package-selector-modal" onclick="event.stopPropagation()">
+                    <div class="package-selector-header">
+                        <h2>Select a Catering Package</h2>
+                        <button type="button" class="close-selector-btn" onclick="hidePackageSelector()">×</button>
+                    </div>
+                    <div class="packages-grid-selector">
+                        <div class="package-card-selector" onclick="selectPackageOnPage('Basic Package', 15)">
+                            <h3>Basic Package</h3>
+                            <p class="package-price">$15 per person</p>
+                            <ul>
+                                <li>2 Appetizers</li>
+                                <li>2 Main Courses</li>
+                                <li>Rice & Naan</li>
+                                <li>1 Dessert</li>
+                                <li>Basic Setup</li>
+                            </ul>
+                            <button class="package-select-btn" onclick="event.stopPropagation(); selectPackageOnPage('Basic Package', 15)">Select This Package</button>
+                        </div>
+                        
+                        <div class="package-card-selector featured" onclick="selectPackageOnPage('Premium Package', 25)">
+                            <h3>Premium Package</h3>
+                            <p class="package-price">$25 per person</p>
+                            <ul>
+                                <li>3 Appetizers</li>
+                                <li>3 Main Courses</li>
+                                <li>Rice, Naan & Roti</li>
+                                <li>2 Desserts</li>
+                                <li>Full Setup & Service</li>
+                                <li>Chafing Dishes</li>
+                            </ul>
+                            <button class="package-select-btn" onclick="event.stopPropagation(); selectPackageOnPage('Premium Package', 25)">Select This Package</button>
+                        </div>
+                        
+                        <div class="package-card-selector" onclick="selectPackageOnPage('Luxury Package', 35)">
+                            <h3>Luxury Package</h3>
+                            <p class="package-price">$35 per person</p>
+                            <ul>
+                                <li>4 Appetizers</li>
+                                <li>4 Main Courses</li>
+                                <li>Premium Rice & Breads</li>
+                                <li>3 Desserts</li>
+                                <li>Full Service Staff</li>
+                                <li>Premium Setup</li>
+                                <li>Custom Menu Options</li>
+                            </ul>
+                            <button class="package-select-btn" onclick="event.stopPropagation(); selectPackageOnPage('Luxury Package', 35)">Select This Package</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -186,9 +239,31 @@
             }
         }
 
-        function changePackage() {
-            localStorage.removeItem('selectedCateringPackage');
-            window.location.href = 'catering.html';
+        function showPackageSelector() {
+            document.getElementById('packageSelectorOverlay').style.display = 'flex';
+        }
+
+        function hidePackageSelector() {
+            document.getElementById('packageSelectorOverlay').style.display = 'none';
+        }
+
+        function selectPackageOnPage(packageName, pricePerPerson) {
+            // Store selected package info
+            localStorage.setItem('selectedCateringPackage', JSON.stringify({
+                name: packageName,
+                price: pricePerPerson
+            }));
+
+            // Update the displayed package
+            loadSelectedPackage();
+            
+            // Hide the selector
+            hidePackageSelector();
+            
+            // Show confirmation
+            setTimeout(() => {
+                alert(`Package changed to ${packageName} at $${pricePerPerson} per person.`);
+            }, 300);
         }
 
         // Show/hide delivery address based on service type selection
