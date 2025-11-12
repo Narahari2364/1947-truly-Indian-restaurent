@@ -2388,10 +2388,18 @@ form button:hover {
     font-size: 1.1rem;
 }
 
-.event-add-btn {
+.event-buttons {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    z-index: 10;
+}
+
+.event-add-btn,
+.event-remove-btn {
     width: 40px;
     height: 40px;
     background-color: #ff6b35;
@@ -2406,7 +2414,17 @@ form button:hover {
     justify-content: center;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    position: relative;
+}
+
+.event-remove-btn {
+    background-color: #999;
+}
+
+.event-remove-btn:hover {
+    background-color: #777;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .event-add-btn:hover {
@@ -2415,7 +2433,8 @@ form button:hover {
     box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
 }
 
-.event-add-btn:active {
+.event-add-btn:active,
+.event-remove-btn:active {
     transform: scale(0.95);
 }
 
