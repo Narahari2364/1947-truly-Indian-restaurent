@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Request - 1947 Truly Indian</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="logo-link">
+            <img src="images/logo-circular.svg" alt="1947 Truly Indian Restaurant" class="main-logo">
+        </a></h1>
+        <nav>
+            <ul>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact Us</a>
+                        <a href="giftcards.html">Gift Cards</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="menu.html" class="online-order-btn">
+                <span class="order-icon">🍽️</span>
+                <span class="order-text">Online Order</span>
+                <span class="order-badge">NEW</span>
+            </a>
+            <a href="cart.html" class="cart-btn">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cartCountNav">0</span>
+            </a>
+            <a href="signin.html" class="signin-btn">Sign in</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="catering-request-page">
+            <!-- Selected Package Display -->
+            <div class="selected-package-summary" id="selectedPackageSummary">
+                <div class="package-summary-content">
+                    <h2>Your Selected Package</h2>
+                    <div class="package-details" id="packageDetails">
+                        <!-- Package info will be loaded here -->
+                    </div>
+                    <button type="button" class="package-change-btn" onclick="changePackage()">Change Package</button>
+                </div>
+            </div>
+
+            <!-- Catering Form -->
+            <div class="catering-form-container-full">
+                <div class="catering-form-intro">
+                    <h2>Complete Your Catering Request</h2>
+                    <p>Please fill out the form below with your catering requirements. We'll get back to you within 24 hours with a detailed quote and availability.</p>
+                </div>
+                
+                <form class="catering-form" id="catering-form">
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h3>Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="full-name">Full Name *</label>
+                                <input type="text" id="full-name" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company/Organization (Optional)</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Details Section -->
+                    <div class="form-section">
+                        <h3>Event Details</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-date">Event Date *</label>
+                                <input type="date" id="event-date" name="eventDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-time">Event Time *</label>
+                                <select id="event-time" name="eventTime" required>
+                                    <option value="">Select Time</option>
+                                    <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+                                    <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
+                                    <option value="evening">Evening (4:00 PM - 8:00 PM)</option>
+                                    <option value="night">Night (8:00 PM - 12:00 AM)</option>
+                                    <option value="custom">Custom Time</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guest-count">Number of Guests *</label>
+                                <input type="number" id="guest-count" name="guestCount" min="10" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-type">Service Type *</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="serviceType" value="pickup" required>
+                                        <span>Pickup</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="serviceType" value="delivery" required>
+                                        <span>Delivery</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="serviceType" value="on-site" required>
+                                        <span>On-Site Service</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="delivery-address" style="display: none;">
+                            <label for="delivery-address-field">Delivery Address *</label>
+                            <textarea id="delivery-address-field" name="deliveryAddress" rows="3" placeholder="Please provide complete delivery address including street, city, state, and zip code"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Special Instructions Section -->
+                    <div class="form-section">
+                        <h3>Special Instructions</h3>
+                        <div class="form-group">
+                            <label for="dietary-restrictions">Dietary Restrictions & Allergies</label>
+                            <textarea id="dietary-restrictions" name="dietaryRestrictions" rows="3" placeholder="Please list any dietary restrictions, allergies, or special dietary requirements for your guests"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="special-instructions">Additional Special Instructions</label>
+                            <textarea id="special-instructions" name="specialInstructions" rows="4" placeholder="Any specific requirements, setup instructions, or special requests for your catering event"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary btn-large">Send Catering Request</button>
+                        <p class="form-note">* Required fields. We'll contact you within 24 hours to confirm your request and provide a detailed quote.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Truly Indian. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:boston@1947indianrestaurant.com">boston@1947indianrestaurant.com</a></p>
+        <p>Phone: (857) 351-4567 | Address: 997 S Huntington Ave., JP, MA 02130</p>
+    </footer>
+
+    <script>
+        // Load selected package from localStorage
+        function loadSelectedPackage() {
+            const selectedPackage = localStorage.getItem('selectedCateringPackage');
+            const packageDetails = document.getElementById('packageDetails');
+            const packageSummary = document.getElementById('selectedPackageSummary');
+            
+            if (selectedPackage) {
+                const packageInfo = JSON.parse(selectedPackage);
+                packageDetails.innerHTML = `
+                    <h3>${packageInfo.name}</h3>
+                    <p class="package-price-display">$${packageInfo.price} per person</p>
+                `;
+                packageSummary.style.display = 'block';
+            } else {
+                // If no package selected, redirect back to catering page
+                window.location.href = 'catering.html';
+            }
+        }
+
+        function changePackage() {
+            localStorage.removeItem('selectedCateringPackage');
+            window.location.href = 'catering.html';
+        }
+
+        // Show/hide delivery address based on service type selection
+        document.querySelectorAll('input[name="serviceType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const deliveryAddress = document.getElementById('delivery-address');
+                const deliveryAddressField = document.getElementById('delivery-address-field');
+                
+                if (this.value === 'delivery') {
+                    deliveryAddress.style.display = 'block';
+                    deliveryAddressField.required = true;
+                } else {
+                    deliveryAddress.style.display = 'none';
+                    deliveryAddressField.required = false;
+                }
+            });
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{3})(\d{0,3})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        // Form submission
+        document.getElementById('catering-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff6b35';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e0e0e0';
+                }
+            });
+            
+            if (isValid) {
+                // Clear selected package after submission
+                localStorage.removeItem('selectedCateringPackage');
+                alert('Thank you for your catering request! We will contact you within 24 hours with a detailed quote and availability confirmation.');
+                window.location.href = 'catering.html';
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Custom radio button styling
+        document.querySelectorAll('.radio-label input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.querySelectorAll('.radio-label').forEach(label => {
+                    label.classList.remove('active');
+                });
+                this.closest('.radio-label').classList.add('active');
+            });
+        });
+        
+        // Update cart count on page load
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountNav = document.getElementById('cartCountNav');
+            if (cartCountNav) {
+                cartCountNav.textContent = cart.length;
+                cartCountNav.style.display = cart.length > 0 ? 'flex' : 'none';
+            }
+        }
+        
+        // Load package and update cart on page load
+        loadSelectedPackage();
+        updateCartCount();
+    </script>
+</body>
+</html>
+
