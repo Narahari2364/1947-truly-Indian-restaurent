@@ -569,8 +569,8 @@
                     existingBadge.remove();
                 }
                 
-                // Add count badge if quantity > 0
-                if (quantity > 0) {
+                // Add count badge if quantity >= 1 (show when one or more items added)
+                if (quantity >= 1) {
                     const badge = document.createElement('span');
                     badge.className = 'event-count-badge';
                     badge.textContent = quantity;
