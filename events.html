@@ -588,9 +588,11 @@
                         removeButton.style.display = 'flex';
                         countDisplay.style.display = 'flex';
                         countDisplay.textContent = quantity;
+                        countDisplay.style.visibility = 'visible';
                     } else {
                         removeButton.style.display = 'none';
                         countDisplay.style.display = 'none';
+                        countDisplay.style.visibility = 'hidden';
                     }
                 }
             }
