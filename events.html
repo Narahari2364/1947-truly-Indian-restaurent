@@ -343,41 +343,67 @@
         <!-- Private Events Section -->
         <div class="private-events-section">
             <h2>Host Your Private Event</h2>
-            <p>Looking to host your own special event? We offer private dining rooms and can customize events for your special occasions.</p>
+            <p>Looking to host your own special event? We offer private dining rooms and can customize events for your special occasions. Fill out the form below to tell us about your event requirements.</p>
             
-            <div class="private-events-grid">
-                <div class="private-event-card">
-                    <h3>Birthday Celebrations</h3>
-                    <p>Make your birthday memorable with our special birthday packages including custom cakes and decorations.</p>
-                    <ul>
-                        <li>Private dining room</li>
-                        <li>Custom birthday cake</li>
-                        <li>Special decorations</li>
-                        <li>Birthday song performance</li>
-                    </ul>
-                </div>
-                
-                <div class="private-event-card">
-                    <h3>Anniversary Dinners</h3>
-                    <p>Celebrate your special moments with our romantic anniversary packages and intimate dining experiences.</p>
-                    <ul>
-                        <li>Romantic table setup</li>
-                        <li>Special anniversary menu</li>
-                        <li>Wine pairing</li>
-                        <li>Photography service</li>
-                    </ul>
-                </div>
-                
-                <div class="private-event-card">
-                    <h3>Corporate Events</h3>
-                    <p>Host your business meetings, team building events, or corporate celebrations in our professional setting.</p>
-                    <ul>
-                        <li>Conference room setup</li>
-                        <li>AV equipment available</li>
-                        <li>Custom catering menu</li>
-                        <li>Professional service</li>
-                    </ul>
-                </div>
+            <div class="private-event-form-container">
+                <form class="private-event-form" id="private-event-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-type">Event Type *</label>
+                            <input type="text" id="event-type" name="eventType" placeholder="e.g., Birthday, Anniversary, Corporate Meeting" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Preferred Date *</label>
+                            <input type="date" id="event-date" name="eventDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guest-count">Number of Guests *</label>
+                            <input type="number" id="guest-count" name="guestCount" min="1" placeholder="Enter number of guests" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-time">Preferred Time *</label>
+                            <input type="time" id="event-time" name="eventTime" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-name">Your Name *</label>
+                        <input type="text" id="contact-name" name="contactName" placeholder="Full name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" name="contactEmail" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number *</label>
+                            <input type="tel" id="contact-phone" name="contactPhone" placeholder="(555) 123-4567" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-requirements">Event Requirements & Special Requests *</label>
+                        <textarea id="event-requirements" name="eventRequirements" rows="5" placeholder="Tell us about your event, special requirements, dietary restrictions, decorations, or any other details you'd like us to know..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget-range">Budget Range (Optional)</label>
+                        <select id="budget-range" name="budgetRange">
+                            <option value="">Select Budget Range</option>
+                            <option value="under-500">Under $500</option>
+                            <option value="500-1000">$500 - $1,000</option>
+                            <option value="1000-2500">$1,000 - $2,500</option>
+                            <option value="2500-5000">$2,500 - $5,000</option>
+                            <option value="5000+">$5,000+</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Event Request</button>
+                </form>
             </div>
         </div>
 
@@ -483,6 +509,31 @@
             
             if (isValid) {
                 alert('Thank you for your event inquiry! We will contact you within 24 hours to discuss your event requirements and availability.');
+                this.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Private event form submission
+        document.getElementById('private-event-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff6b35';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e0e0e0';
+                }
+            });
+            
+            if (isValid) {
+                alert('Thank you for your private event request! We will contact you within 24 hours to discuss your event details and provide a customized quote.');
                 this.reset();
             } else {
                 alert('Please fill in all required fields.');
