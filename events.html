@@ -80,6 +80,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Makar Sankranti Celebration', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Makar Sankranti Celebration', 45, this)">+</button>
                     </div>
                 </div>
@@ -104,6 +105,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Bollywood Night with Live Music', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Bollywood Night with Live Music', 35, this)">+</button>
                     </div>
                 </div>
@@ -128,6 +130,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Chef\'s Table Experience', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Chef\'s Table Experience', 85, this)">+</button>
                     </div>
                 </div>
@@ -153,6 +156,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Valentine\'s Day Special Dinner', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Valentine\'s Day Special Dinner', 65, this)">+</button>
                     </div>
                 </div>
@@ -177,6 +181,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Holi Festival Celebration', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Holi Festival Celebration', 40, this)">+</button>
                     </div>
                 </div>
@@ -201,6 +206,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Classical Indian Music Night', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Classical Indian Music Night', 50, this)">+</button>
                     </div>
                 </div>
@@ -226,6 +232,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('International Women\'s Day Special', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('International Women\'s Day Special', 45, this)">+</button>
                     </div>
                 </div>
@@ -250,6 +257,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Spice Masterclass Workshop', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Spice Masterclass Workshop', 75, this)">+</button>
                     </div>
                 </div>
@@ -274,6 +282,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Navratri Festival Celebration', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Navratri Festival Celebration', 40, this)">+</button>
                     </div>
                 </div>
@@ -299,6 +308,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Wine & Spice Pairing Evening', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Wine & Spice Pairing Evening', 95, this)">+</button>
                     </div>
                 </div>
@@ -323,6 +333,7 @@
                     </div>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Baisakhi Harvest Festival', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Baisakhi Harvest Festival', 45, this)">+</button>
                     </div>
                 </div>
@@ -346,6 +357,7 @@
                     </ul>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Birthday Celebrations', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Birthday Celebrations', 0, this)">+</button>
                     </div>
                 </div>
@@ -361,6 +373,7 @@
                     </ul>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Anniversary Dinners', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Anniversary Dinners', 0, this)">+</button>
                     </div>
                 </div>
@@ -376,6 +389,7 @@
                     </ul>
                     <div class="event-buttons">
                         <button class="event-remove-btn" onclick="removeEventFromCart('Corporate Events', this)" style="display: none;">-</button>
+                        <span class="event-count-display" style="display: none;">0</span>
                         <button class="event-add-btn" onclick="addEventToCart('Corporate Events', 0, this)">+</button>
                     </div>
                 </div>
@@ -563,31 +577,21 @@
             const quantity = eventItem ? (eventItem.quantity || 1) : 0;
             
             if (buttonElement) {
-                // Find the buttons container and remove button
+                // Find the buttons container, remove button, and count display
                 const buttonsContainer = buttonElement.closest('.event-buttons');
                 const removeButton = buttonsContainer ? buttonsContainer.querySelector('.event-remove-btn') : null;
+                const countDisplay = buttonsContainer ? buttonsContainer.querySelector('.event-count-display') : null;
                 
-                // Show/hide remove button based on quantity
-                if (removeButton) {
+                // Show/hide remove button and count display based on quantity
+                if (removeButton && countDisplay) {
                     if (quantity >= 1) {
                         removeButton.style.display = 'flex';
+                        countDisplay.style.display = 'flex';
+                        countDisplay.textContent = quantity;
                     } else {
                         removeButton.style.display = 'none';
+                        countDisplay.style.display = 'none';
                     }
-                }
-                
-                // Remove existing count badge if any
-                const existingBadge = buttonElement.querySelector('.event-count-badge');
-                if (existingBadge) {
-                    existingBadge.remove();
-                }
-                
-                // Add count badge if quantity >= 1 (show when one or more items added)
-                if (quantity >= 1) {
-                    const badge = document.createElement('span');
-                    badge.className = 'event-count-badge';
-                    badge.textContent = quantity;
-                    buttonElement.appendChild(badge);
                 }
             }
         }
