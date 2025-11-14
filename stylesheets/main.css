@@ -2334,6 +2334,7 @@ form button:hover {
 .event-content {
     padding: 1.5rem;
     flex: 1;
+    position: relative;
 }
 
 .event-content h3 {
@@ -2385,6 +2386,41 @@ form button:hover {
     color: #ff6b35;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+.event-add-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.event-add-btn:hover {
+    background-color: #e55a2b;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.event-add-btn:active {
+    transform: scale(0.95);
+}
+
+.private-event-card {
+    position: relative;
 }
 
 .btn-secondary {
