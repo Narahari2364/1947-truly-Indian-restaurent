@@ -2815,7 +2815,8 @@ form button:hover {
 }
 
 .categories-grid .category-card {
-    min-width: 200px;
+    min-width: calc(25% - 1.125rem); /* 4 cards visible, accounting for gaps */
+    max-width: calc(25% - 1.125rem);
     flex-shrink: 0;
 }
 
@@ -2852,7 +2853,7 @@ form button:hover {
     background-color: white;
     border: 2px solid #e0e0e0;
     border-radius: 15px;
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -2872,25 +2873,25 @@ form button:hover {
 }
 
 .category-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
 }
 
 .category-card h5 {
     color: #333;
     margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .category-card p {
     color: #666;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin: 0;
 }
 
 /* Gift Card Image Styles */
 .gift-card-image {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -3320,7 +3321,8 @@ form button:hover {
     }
     
     .categories-grid .category-card {
-        min-width: 150px;
+        min-width: calc(50% - 0.5rem); /* 2 cards on mobile */
+        max-width: calc(50% - 0.5rem);
     }
     
     .carousel-arrow {
