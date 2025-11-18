@@ -76,6 +76,8 @@ header h1 {
     box-shadow: none;
     transition: all 0.3s ease;
     object-fit: contain;
+    mix-blend-mode: screen;
+    filter: brightness(1.1);
 }
 
 .main-logo:hover {
