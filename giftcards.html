@@ -277,26 +277,6 @@
                     </form>
                 </div>
                 
-                <!-- Sample Card Numbers for Testing -->
-                <div class="sample-cards">
-                    <h4>Sample Gift Cards for Testing</h4>
-                    <p>Click on any sample card number to test the balance check feature:</p>
-                    <div class="sample-card-list">
-                        <div class="sample-card-item" onclick="fillSampleCard('1234-5678-9012-3456')">
-                            <span class="sample-card-number">1234-5678-9012-3456</span>
-                            <span class="sample-card-balance">Balance: $75.00</span>
-                        </div>
-                        <div class="sample-card-item" onclick="fillSampleCard('9876-5432-1098-7654')">
-                            <span class="sample-card-number">9876-5432-1098-7654</span>
-                            <span class="sample-card-balance">Balance: $150.00</span>
-                        </div>
-                        <div class="sample-card-item" onclick="fillSampleCard('5555-4444-3333-2222')">
-                            <span class="sample-card-number">5555-4444-3333-2222</span>
-                            <span class="sample-card-balance">Balance: $25.00</span>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="balance-result" id="balance-result" style="display: none;">
                     <h4>Gift Card Information</h4>
                     <div class="balance-info">
@@ -502,12 +482,6 @@
             }
         });
 
-        // Function to fill sample card number
-        function fillSampleCard(cardNumber) {
-            document.getElementById('gift-card-number').value = cardNumber;
-            // Trigger balance check automatically
-            checkBalance();
-        }
 
         // Function to handle balance check form submission
         function handleBalanceCheck(event) {
