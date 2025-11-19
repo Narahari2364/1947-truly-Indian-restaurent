@@ -1024,7 +1024,7 @@ body:not(.home) main {
 .contact-form-heading {
     color: #ff6b35;
     margin-bottom: 1.5rem;
-    text-align: left;
+    text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
 }
