@@ -304,8 +304,15 @@
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartCountNav = document.getElementById('cartCountNav');
         if (cartCountNav) {
-            cartCountNav.textContent = cart.length;
-            cartCountNav.style.display = cart.length > 0 ? 'flex' : 'none';
+            const totalItems = cart.length;
+            cartCountNav.textContent = totalItems;
+            if (totalItems > 0) {
+                cartCountNav.style.display = 'flex';
+                cartCountNav.style.visibility = 'visible';
+            } else {
+                cartCountNav.style.display = 'none';
+                cartCountNav.style.visibility = 'hidden';
+            }
         }
     }
     
