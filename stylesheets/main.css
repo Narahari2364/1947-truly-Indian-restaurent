@@ -18,12 +18,12 @@ body {
 header {
     background-color: #ff6b35;
     color: white;
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1rem;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    min-height: 65px;
+    min-height: 85px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,6 +46,9 @@ header h1 {
     transform: translateY(-50%);
     margin: 0;
     z-index: 101;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .logo-link {
@@ -587,7 +590,8 @@ footer a:hover {
 /* Large Screen Media Query */
 @media (min-width: 768px) {
     header {
-        min-height: 70px;
+        min-height: 90px;
+        padding: 0.5rem 0.75rem;
     }
     
     header h1 {
