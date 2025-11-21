@@ -28,6 +28,7 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 1.5rem;
+    background-image: none;
 }
 
 /* Navigation spacing */
@@ -74,13 +75,15 @@ header h1 {
     width: auto;
     max-width: 200px;
     display: block;
-    background: transparent;
+    background: transparent !important;
     box-shadow: none;
     transition: all 0.3s ease;
     object-fit: contain;
     mix-blend-mode: multiply;
-    filter: contrast(1.4) brightness(1.15);
-    background-blend-mode: multiply;
+    filter: contrast(3) brightness(1.4) saturate(1.8);
+    image-rendering: crisp-edges;
+    -webkit-filter: contrast(3) brightness(1.4) saturate(1.8);
+    opacity: 1;
 }
 
 .main-logo:hover {
