@@ -262,7 +262,7 @@
             <!-- Check Balance Section -->
             <div id="check-balance" class="action-content">
                 <h3>Check Gift Card Balance</h3>
-                <p>Enter your gift card number to check the current balance and transaction history.</p>
+                <p>Enter your gift card number and name on card to check the current balance and transaction history.</p>
                 
                 <div class="balance-check-form">
                     <form class="balance-form" id="balance-form">
@@ -273,9 +273,9 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="pin-code">PIN Code (if applicable)</label>
-                            <input type="text" id="pin-code" name="pinCode" placeholder="1234" maxlength="4">
-                            <small class="form-help">Some gift cards may require a PIN</small>
+                            <label for="cardholder-name">Name on Card *</label>
+                            <input type="text" id="cardholder-name" name="cardholderName" placeholder="Enter name as it appears on the card" required>
+                            <small class="form-help">Enter the name exactly as it appears on your gift card</small>
                         </div>
                         
                         <button type="submit" class="btn btn-secondary">Check Balance</button>
