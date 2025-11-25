@@ -3012,11 +3012,20 @@ form button:hover {
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.balance-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .balance-form .form-group {
-    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
 }
 
 .balance-form label {
@@ -3024,6 +3033,7 @@ form button:hover {
     margin-bottom: 0.5rem;
     font-weight: bold;
     color: #333;
+    font-size: 1rem;
 }
 
 .balance-form input {
@@ -3033,12 +3043,20 @@ form button:hover {
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 .balance-form input:focus {
     outline: none;
     border-color: #ff6b35;
     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.balance-form .btn-secondary {
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
 }
 
 .balance-result {
