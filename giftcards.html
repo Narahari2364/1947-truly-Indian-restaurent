@@ -55,7 +55,9 @@
                 <!-- Gift Card Categories -->
                 <div class="gift-card-categories">
                     <h4>Gift Card Categories</h4>
-                    <div class="categories-grid">
+                    <div class="categories-carousel-container">
+                        <button class="carousel-arrow carousel-arrow-left" onclick="scrollCategories('left')">‹</button>
+                        <div class="categories-grid" id="categoriesGrid">
                         <div class="category-card" data-category="birthday">
                             <div class="gift-card-image">
                                 <img src="images/gift-card-birthday.svg" alt="Birthday Gift Card" />
@@ -109,6 +111,8 @@
                             <h5>General</h5>
                             <p>Classic gift cards for any occasion</p>
                         </div>
+                        </div>
+                        <button class="carousel-arrow carousel-arrow-right" onclick="scrollCategories('right')">›</button>
                     </div>
                 </div>
 
@@ -355,6 +359,18 @@
             // Add active class to selected tab and content
             event.target.classList.add('active');
             document.getElementById(tab + '-gift-card').classList.add('active');
+        }
+
+        // Categories carousel scrolling
+        function scrollCategories(direction) {
+            const grid = document.getElementById('categoriesGrid');
+            const scrollAmount = 300; // Scroll by 300px
+            
+            if (direction === 'left') {
+                grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
         }
 
         // Show/hide custom amount field
