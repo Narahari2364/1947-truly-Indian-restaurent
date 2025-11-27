@@ -56,8 +56,8 @@
                 <div class="gift-card-categories">
                     <h4>Gift Card Categories</h4>
                     <div class="categories-carousel-container">
-                        <button class="carousel-arrow carousel-arrow-left" onclick="scrollCategories('left')">‹</button>
-                        <div class="categories-grid" id="categoriesGrid">
+                        <button class="carousel-arrow carousel-arrow-left" id="leftArrow" onclick="scrollCategories('left')" style="display: none;">‹</button>
+                        <div class="categories-grid" id="categoriesGrid" onscroll="updateArrowVisibility()">
                         <div class="category-card" data-category="birthday">
                             <div class="gift-card-image">
                                 <img src="images/gift-card-birthday.svg" alt="Birthday Gift Card" />
@@ -112,7 +112,7 @@
                             <p>Classic gift cards for any occasion</p>
                         </div>
                         </div>
-                        <button class="carousel-arrow carousel-arrow-right" onclick="scrollCategories('right')">›</button>
+                        <button class="carousel-arrow carousel-arrow-right" id="rightArrow" onclick="scrollCategories('right')">›</button>
                     </div>
                 </div>
 
@@ -371,7 +371,37 @@
             } else {
                 grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
+            
+            // Update arrow visibility after scrolling
+            setTimeout(updateArrowVisibility, 100);
         }
+
+        // Update arrow visibility based on scroll position
+        function updateArrowVisibility() {
+            const grid = document.getElementById('categoriesGrid');
+            const leftArrow = document.getElementById('leftArrow');
+            const rightArrow = document.getElementById('rightArrow');
+            
+            // Check if at the start (scrollLeft is 0 or very close to 0)
+            if (grid.scrollLeft <= 5) {
+                leftArrow.style.display = 'none';
+            } else {
+                leftArrow.style.display = 'flex';
+            }
+            
+            // Check if at the end (scrollLeft + clientWidth is close to scrollWidth)
+            const isAtEnd = grid.scrollWidth - grid.scrollLeft - grid.clientWidth <= 5;
+            if (isAtEnd) {
+                rightArrow.style.display = 'none';
+            } else {
+                rightArrow.style.display = 'flex';
+            }
+        }
+
+        // Initialize arrow visibility on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateArrowVisibility();
+        });
 
         // Show/hide custom amount field
         document.getElementById('card-amount').addEventListener('change', function() {
