@@ -2821,8 +2821,8 @@ form button:hover {
 }
 
 .carousel-arrow {
-    background-color: #ff6b35;
-    color: white;
+    background-color: transparent;
+    color: #333;
     border: none;
     border-radius: 50%;
     width: 45px;
@@ -2836,13 +2836,12 @@ form button:hover {
     transition: all 0.3s ease;
     flex-shrink: 0;
     z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
 }
 
 .carousel-arrow:hover {
-    background-color: #e55a2b;
+    color: #ff6b35;
     transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
 }
 
 .carousel-arrow:active {
