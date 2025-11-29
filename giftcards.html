@@ -260,20 +260,20 @@
             </div>
 
             <!-- Check Balance Section -->
-            <div id="check-balance" class="action-content">
+            <div id="check-gift-card" class="action-content">
                 <h3>Check Gift Card Balance</h3>
                 <p>Enter your gift card number and name on card to check the current balance.</p>
                 
                 <div class="balance-check-form">
-                    <form class="balance-form" id="balance-form">
+                    <form class="balance-form" id="balance-form" onsubmit="handleBalanceCheck(event)">
                         <div class="form-group">
                             <label for="gift-card-number">Card Number *</label>
                             <input type="text" id="gift-card-number" name="giftCardNumber" placeholder="1234-5678-9012-3456" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="cardholder-name">Name on Card *</label>
-                            <input type="text" id="cardholder-name" name="cardholderName" placeholder="Enter name as it appears on the card" required>
+                            <label for="balance-cardholder-name">Name on Card *</label>
+                            <input type="text" id="balance-cardholder-name" name="cardholderName" placeholder="Enter name as it appears on the card" required>
                         </div>
                         
                         <button type="submit" class="btn btn-secondary">Check Balance</button>
@@ -512,6 +512,29 @@
             checkBalance();
         }
 
+        // Function to handle balance check form submission
+        function handleBalanceCheck(event) {
+            event.preventDefault();
+            
+            const cardNumber = document.getElementById('gift-card-number').value;
+            const cardholderName = document.getElementById('balance-cardholder-name').value;
+            
+            // Validate card number
+            if (!cardNumber || cardNumber.replace(/-/g, '').length < 16) {
+                alert('Please enter a valid 16-digit gift card number.');
+                return;
+            }
+            
+            // Validate cardholder name
+            if (!cardholderName || cardholderName.trim().length < 2) {
+                alert('Please enter the name as it appears on the card.');
+                return;
+            }
+            
+            // Call the check balance function
+            checkBalance();
+        }
+
         // Function to check balance
         function checkBalance() {
             const cardNumber = document.getElementById('gift-card-number').value;
@@ -547,10 +570,7 @@
         }
 
         // Balance check form submission
-        document.getElementById('balance-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            checkBalance();
-        });
+        // Form submission is now handled by handleBalanceCheck function via onsubmit attribute
 
         // Gift card number formatting
         document.getElementById('gift-card-number').addEventListener('input', function(e) {
