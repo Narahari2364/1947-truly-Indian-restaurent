@@ -424,19 +424,20 @@ nav a:hover {
     background-color: #ff6b35;
     color: white;
     border-radius: 50%;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 4px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 5px;
     display: none; /* Hidden by default, shown when cart has items */
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: bold;
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: -10px;
+    right: -10px;
     z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    line-height: 1;
 }
 
 /* Main Content */

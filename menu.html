@@ -32,7 +32,7 @@
             </a>
             <a href="cart.html" class="cart-btn">
                 <span class="cart-icon">🛒</span>
-                <span class="cart-count" id="cartCountNav">0</span>
+                <span class="cart-count" id="cartCountNav" style="display: none;">0</span>
             </a>
             <a href="signin.html" class="signin-btn">Sign in</a>
         </nav>
@@ -292,11 +292,13 @@
         // Save cart back to localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
         
-        // Update cart count
-        updateCartCount();
-        
         // Show confirmation message
         alert(`${dishName} added to cart!`);
+        
+        // Update cart count after a brief delay to ensure localStorage is updated
+        setTimeout(function() {
+            updateCartCount();
+        }, 100);
     }
     
     // Update cart count in navigation
@@ -309,9 +311,11 @@
             if (totalItems > 0) {
                 cartCountNav.style.display = 'flex';
                 cartCountNav.style.visibility = 'visible';
+                cartCountNav.style.opacity = '1';
             } else {
                 cartCountNav.style.display = 'none';
                 cartCountNav.style.visibility = 'hidden';
+                cartCountNav.style.opacity = '0';
             }
         }
     }
