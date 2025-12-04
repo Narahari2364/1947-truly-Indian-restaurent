@@ -402,6 +402,7 @@ nav a:hover {
     transition: all 0.3s ease;
     margin-left: 0.5rem;
     font-size: 0.85rem;
+    position: relative;
     white-space: nowrap;
     position: relative;
     display: flex;
@@ -423,8 +424,9 @@ nav a:hover {
     background-color: #ff6b35;
     color: white;
     border-radius: 50%;
-    width: 20px;
+    min-width: 20px;
     height: 20px;
+    padding: 0 4px;
     display: none; /* Hidden by default, shown when cart has items */
     align-items: center;
     justify-content: center;
@@ -433,6 +435,8 @@ nav a:hover {
     position: absolute;
     top: -8px;
     right: -8px;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Main Content */
