@@ -62,9 +62,6 @@ header h1 {
     transform: scale(1.05);
 }
 
-.logo-link:hover .main-logo {
-    animation: logoShake 0.5s ease-in-out;
-}
 
 .main-logo {
     height: auto;
@@ -81,7 +78,6 @@ header h1 {
 }
 
 .main-logo:hover {
-    animation: logoShake 0.5s ease-in-out;
     filter: brightness(1.1) saturate(1.2);
     transform: scale(1.05);
 }
