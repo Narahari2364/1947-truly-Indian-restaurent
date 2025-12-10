@@ -62,6 +62,8 @@ header h1 {
     flex-shrink: 0;
     background: transparent;
     padding: 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .logo-link:hover {
@@ -78,12 +80,16 @@ header h1 {
     background: transparent !important;
     box-shadow: none;
     transition: all 0.3s ease;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center center;
     mix-blend-mode: multiply;
     filter: contrast(3) brightness(1.4) saturate(1.8);
     image-rendering: crisp-edges;
     -webkit-filter: contrast(3) brightness(1.4) saturate(1.8);
     opacity: 1;
+    clip-path: inset(2px 2px 2px 2px);
+    -webkit-clip-path: inset(2px 2px 2px 2px);
+    transform: scale(1.05);
 }
 
 .main-logo:hover {
