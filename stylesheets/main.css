@@ -23,7 +23,7 @@ header {
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    min-height: 65px;
+    min-height: 75px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,9 +73,9 @@ header h1 {
 
 .main-logo {
     height: auto;
-    max-height: 55px;
+    max-height: 70px;
     width: auto;
-    max-width: 160px;
+    max-width: 200px;
     display: block;
     background: transparent !important;
     box-shadow: none;
@@ -3409,8 +3409,8 @@ form button:hover {
     
     /* Mobile adjustments for logo */
     .main-logo {
-        max-height: 45px;
-        max-width: 120px;
+        max-height: 55px;
+        max-width: 150px;
     }
     
     .balance-item {
