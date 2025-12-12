@@ -83,9 +83,9 @@ header h1 {
     object-fit: cover;
     object-position: center center;
     mix-blend-mode: multiply;
-    filter: contrast(3) brightness(1.4) saturate(1.8);
+    filter: contrast(1.2) brightness(1.1) saturate(1.1);
     image-rendering: crisp-edges;
-    -webkit-filter: contrast(3) brightness(1.4) saturate(1.8);
+    -webkit-filter: contrast(1.2) brightness(1.1) saturate(1.1);
     opacity: 1;
     clip-path: inset(2px 2px 2px 2px);
     -webkit-clip-path: inset(2px 2px 2px 2px);
