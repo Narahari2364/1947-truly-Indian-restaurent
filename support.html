@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Services - 1947 Truly Indian</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <style>
+        .support-services {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .support-services h1 {
+            text-align: center;
+            color: #ff6b35;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .support-services h2 {
+            color: #333;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #ff6b35;
+            padding-bottom: 0.5rem;
+        }
+        
+        .support-services ol {
+            list-style: none;
+            counter-reset: category-counter;
+            padding: 0;
+        }
+        
+        .support-services ol > li {
+            counter-increment: category-counter;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .support-services ol > li::before {
+            content: counter(category-counter) ".";
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #ff6b35;
+            margin-right: 1rem;
+            display: inline-block;
+            min-width: 2rem;
+        }
+        
+        .support-services ol > li h3 {
+            display: inline-block;
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+            vertical-align: top;
+        }
+        
+        .support-services ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+        
+        .support-services ul li {
+            padding: 0.75rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .support-services ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .support-services ul li::before {
+            content: "•";
+            position: absolute;
+            left: 1rem;
+            color: #ff6b35;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .support-services ul li strong {
+            color: #ff6b35;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .support-services a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .support-services a:hover {
+            text-decoration: underline;
+        }
+        
+        .service-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            vertical-align: middle;
+            background: #ff6b35;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .local-links {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #ff6b35;
+        }
+        
+        .local-links h4 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .support-services {
+                padding: 0 1rem;
+            }
+            
+            .support-services h1 {
+                font-size: 2rem;
+            }
+            
+            .support-services h2 {
+                font-size: 1.5rem;
+            }
+            
+            .support-services ol > li {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="logo-link">
+            <img src="images/Orange and Yellow Modern Restaurant Logo.png" alt="1947 Truly Indian Restaurant" class="main-logo">
+        </a></h1>
+        <nav>
+            <ul>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li class="dropdown">
+                    <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact Us</a>
+                        <a href="support.html">Support Services</a>
+                        <a href="giftcards.html">Gift Cards</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="menu.html" class="online-order-btn">
+                <span class="order-icon">🍽️</span>
+                <span class="order-text">Online Order</span>
+                <span class="order-badge">NEW</span>
+            </a>
+            <a href="cart.html" class="cart-btn">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cartCountNav">0</span>
+            </a>
+            <a href="signin.html" class="signin-btn">Sign in</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="support-services">
+            <h1 class="page-title">Support Services</h1>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem; color: #666;">
+                We're here to help! Below you'll find information about our services and support options, 
+                as well as links to local services in the Jamaica Plain area.
+            </p>
+            
+            <ol>
+                <li>
+                    <span class="service-icon">🚗</span>
+                    <h3>Transportation Services</h3>
+                    <ul>
+                        <li>
+                            <strong>Valet Parking</strong>
+                            <span>Monday - Sunday: 5:00 PM - 10:00 PM</span>
+                        </li>
+                        <li>
+                            <strong>Public Transportation Information</strong>
+                            <span>Orange Line - Stony Brook Station (0.3 miles walk)</span>
+                        </li>
+                        <li>
+                            <strong>Rideshare Pickup Zone</strong>
+                            <span>Available 24/7 at main entrance</span>
+                        </li>
+                        <li>
+                            <strong>Local Taxi Services</strong>
+                            <span>Boston Cab: (617) 536-5010 | Available 24/7</span>
+                        </li>
+                    </ul>
+                    <div class="local-links">
+                        <h4>Nearby Transportation Services:</h4>
+                        <ul style="list-style: disc; padding-left: 2rem;">
+                            <li><a href="https://www.mbta.com" target="_blank">MBTA - Massachusetts Bay Transportation Authority</a></li>
+                            <li><a href="https://www.uber.com" target="_blank">Uber - Available in Jamaica Plain</a></li>
+                            <li><a href="https://www.lyft.com" target="_blank">Lyft - Available in Jamaica Plain</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <span class="service-icon">🔧</span>
+                    <h3>Maintenance & Facilities</h3>
+                    <ul>
+                        <li>
+                            <strong>Restaurant Maintenance</strong>
+                            <span>Monday - Friday: 9:00 AM - 5:00 PM</span>
+                        </li>
+                        <li>
+                            <strong>Equipment Service</strong>
+                            <span>By appointment only - Contact: (857) 351-4567</span>
+                        </li>
+                        <li>
+                            <strong>Facility Cleaning</strong>
+                            <span>Daily: 10:00 AM - 11:00 AM, 2:30 PM - 5:30 PM</span>
+                        </li>
+                        <li>
+                            <strong>Deep Cleaning Service</strong>
+                            <span>Every Sunday: 10:00 AM - 2:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="local-links">
+                        <h4>Local Maintenance Services:</h4>
+                        <ul style="list-style: disc; padding-left: 2rem;">
+                            <li><a href="tel:6175550100">JP Maintenance Services - (617) 555-0100</a></li>
+                            <li><a href="tel:6175550101">Boston Commercial Cleaning - (617) 555-0101</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <span class="service-icon">🧹</span>
+                    <h3>Cleaning Services</h3>
+                    <ul>
+                        <li>
+                            <strong>Daily Restaurant Cleaning</strong>
+                            <span>Monday - Sunday: 10:00 AM - 11:00 AM</span>
+                        </li>
+                        <li>
+                            <strong>Kitchen Deep Clean</strong>
+                            <span>Every Monday & Thursday: 2:30 PM - 5:30 PM</span>
+                        </li>
+                        <li>
+                            <strong>Dining Area Sanitization</strong>
+                            <span>After each service: Lunch (2:30 PM), Dinner (10:00 PM)</span>
+                        </li>
+                        <li>
+                            <strong>Restroom Maintenance</strong>
+                            <span>Hourly checks during operating hours</span>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <span class="service-icon">🍽️</span>
+                    <h3>Dining Services</h3>
+                    <ul>
+                        <li>
+                            <strong>Dine-In Service</strong>
+                            <span>Monday - Thursday: 11:00 AM - 2:30 PM, 5:30 PM - 10:00 PM</span>
+                            <span>Friday - Saturday: 11:00 AM - 3:30 PM, 5:30 PM - 10:30 PM</span>
+                            <span>Sunday: 11:00 AM - 3:30 PM, 5:30 PM - 9:30 PM</span>
+                        </li>
+                        <li>
+                            <strong>Takeout Service</strong>
+                            <span>Available during all operating hours</span>
+                        </li>
+                        <li>
+                            <strong>Delivery Service</strong>
+                            <span>Monday - Sunday: 11:00 AM - 9:00 PM</span>
+                        </li>
+                        <li>
+                            <strong>Private Dining Reservations</strong>
+                            <span>By appointment - Contact: (857) 351-4567</span>
+                        </li>
+                    </ul>
+                    <div class="local-links">
+                        <h4>Nearby Dining Options in Jamaica Plain:</h4>
+                        <ul style="list-style: disc; padding-left: 2rem;">
+                            <li><a href="https://www.yelp.com/biz/jp-restaurants" target="_blank">Jamaica Plain Restaurant Guide - Yelp</a></li>
+                            <li><a href="https://www.boston.com/food" target="_blank">Boston.com - Jamaica Plain Dining</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <span class="service-icon">🎉</span>
+                    <h3>Event & Catering Services</h3>
+                    <ul>
+                        <li>
+                            <strong>Catering Consultation</strong>
+                            <span>Monday - Friday: 10:00 AM - 4:00 PM</span>
+                        </li>
+                        <li>
+                            <strong>Private Event Booking</strong>
+                            <span>Available 7 days a week - Advance booking required</span>
+                        </li>
+                        <li>
+                            <strong>Wedding Catering</strong>
+                            <span>By appointment - Contact: (857) 351-4567</span>
+                        </li>
+                        <li>
+                            <strong>Corporate Events</strong>
+                            <span>Monday - Friday: 9:00 AM - 5:00 PM</span>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <span class="service-icon">💳</span>
+                    <h3>Payment & Gift Services</h3>
+                    <ul>
+                        <li>
+                            <strong>Gift Card Sales</strong>
+                            <span>Available during all operating hours</span>
+                        </li>
+                        <li>
+                            <strong>Online Gift Card Purchase</strong>
+                            <span>Available 24/7 at <a href="giftcards.html">giftcards.html</a></span>
+                        </li>
+                        <li>
+                            <strong>Payment Methods Accepted</strong>
+                            <span>Cash, Credit Cards, Debit Cards, Gift Cards, Mobile Payments</span>
+                        </li>
+                        <li>
+                            <strong>Gift Card Balance Inquiry</strong>
+                            <span>Call: (857) 351-4567 or visit in person</span>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <span class="service-icon">📞</span>
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li>
+                            <strong>Phone Support</strong>
+                            <span>Monday - Sunday: 10:00 AM - 10:00 PM</span>
+                            <span>Phone: (857) 351-4567</span>
+                        </li>
+                        <li>
+                            <strong>Email Support</strong>
+                            <span>Available 24/7 - Response within 24 hours</span>
+                            <span>Email: <a href="mailto:boston@1947indianrestaurant.com">boston@1947indianrestaurant.com</a></span>
+                        </li>
+                        <li>
+                            <strong>In-Person Inquiries</strong>
+                            <span>During all operating hours</span>
+                        </li>
+                        <li>
+                            <strong>Feedback & Complaints</strong>
+                            <span>Use our <a href="contact.html">Contact Form</a> or speak with manager on duty</span>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 1947 Truly Indian. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:boston@1947indianrestaurant.com">boston@1947indianrestaurant.com</a></p>
+        <p>Phone: (857) 351-4567 | Address: 997 S Huntington Ave., JP, MA 02130</p>
+    </footer>
+
+    <script>
+        // Update cart count on page load
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountNav = document.getElementById('cartCountNav');
+            if (cartCountNav) {
+                cartCountNav.textContent = cart.length;
+                cartCountNav.style.display = cart.length > 0 ? 'flex' : 'none';
+            }
+        }
+        updateCartCount();
+    </script>
+</body>
+</html>
+
