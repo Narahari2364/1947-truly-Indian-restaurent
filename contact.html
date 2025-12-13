@@ -157,11 +157,11 @@
             phone: /^[0-9\-\+\(\)\s]{7,20}$/
         };
 
-        const toTitleCase = (value = '') =>
-            value
-                .trim()
-                .toLowerCase()
-                .replace(/\b\w/g, char => char.toUpperCase());
+        const toTitleCase = (value = '') => {
+            const trimmed = value.trim();
+            if (!trimmed) return '';
+            return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+        };
 
         const clearErrors = () => {
             document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
@@ -209,49 +209,74 @@
 
             let hasErrors = false;
 
-            if (!patterns.name.test(values.firstName)) {
+            // Check for empty required fields first
+            if (!values.firstName || values.firstName.trim() === '') {
+                hasErrors = true;
+                showError('firstName', 'First name is required. Please fill in this field.');
+            } else if (!patterns.name.test(values.firstName)) {
                 hasErrors = true;
                 showError('firstName', 'Please enter a valid first name (letters, spaces, apostrophes).');
             }
 
-            if (!patterns.name.test(values.lastName)) {
+            if (!values.lastName || values.lastName.trim() === '') {
+                hasErrors = true;
+                showError('lastName', 'Last name is required. Please fill in this field.');
+            } else if (!patterns.name.test(values.lastName)) {
                 hasErrors = true;
                 showError('lastName', 'Please enter a valid last name (letters, spaces, apostrophes).');
             }
 
-            if (!patterns.city.test(values.city)) {
+            if (!values.city || values.city.trim() === '') {
+                hasErrors = true;
+                showError('city', 'City is required. Please fill in this field.');
+            } else if (!patterns.city.test(values.city)) {
                 hasErrors = true;
                 showError('city', 'Please enter a valid city name.');
             }
 
-            if (!patterns.zip.test(values.zip)) {
+            if (!values.zip || values.zip.trim() === '') {
+                hasErrors = true;
+                showError('zip', 'ZIP code is required. Please fill in this field.');
+            } else if (!patterns.zip.test(values.zip)) {
                 hasErrors = true;
                 showError('zip', 'Please enter a 5-digit ZIP or ZIP+4 (e.g., 02130 or 02130-1234).');
             }
 
-            if (!patterns.email.test(values.email)) {
+            if (!values.email || values.email.trim() === '') {
+                hasErrors = true;
+                showError('email', 'Email is required. Please fill in this field.');
+            } else if (!patterns.email.test(values.email)) {
                 hasErrors = true;
                 showError('email', 'Please enter a valid email address.');
             }
 
-            if (values.phone && !patterns.phone.test(values.phone)) {
+            if (values.phone && values.phone.trim() !== '' && !patterns.phone.test(values.phone)) {
                 hasErrors = true;
                 showError('phone', 'Please enter a valid phone number.');
             }
 
             if (!values.subject) {
                 hasErrors = true;
-                showError('subject', 'Please select a subject.');
+                showError('subject', 'Subject is required. Please select an option.');
             }
 
-            if (values.message.length < 10) {
+            if (!values.message || values.message.trim() === '') {
+                hasErrors = true;
+                showError('message', 'Message is required. Please fill in this field.');
+            } else if (values.message.length < 10) {
                 hasErrors = true;
                 showError('message', 'Message must be at least 10 characters.');
             }
 
             if (hasErrors) {
-                formStatus.textContent = 'Please correct the highlighted fields and try again.';
+                formStatus.textContent = 'Please fill in all required fields (marked with *) and correct any errors before submitting.';
                 formStatus.classList.add('error');
+                // Scroll to first error field
+                const firstErrorField = document.querySelector('.input-error');
+                if (firstErrorField) {
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstErrorField.focus();
+                }
                 return;
             }
 
