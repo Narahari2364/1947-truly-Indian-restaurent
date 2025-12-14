@@ -4298,3 +4298,631 @@ body.home .slideshow-container img {
         align-items: flex-start;
     }
 }
+
+/* ============================================
+   COMPREHENSIVE MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Mobile First: Base styles for phones (320px - 480px) */
+@media (max-width: 480px) {
+    /* Base Typography */
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+        line-height: 1.3;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
+    /* Header & Navigation Mobile Optimization */
+    header {
+        padding: 0.5rem 0.75rem;
+        min-height: 60px;
+        flex-wrap: wrap;
+    }
+    
+    .main-logo {
+        max-height: 50px;
+        max-width: 140px;
+        transform: scale(1);
+    }
+    
+    header h1 {
+        left: 0.5rem;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        justify-content: flex-end;
+    }
+    
+    nav ul {
+        gap: 0.15rem;
+        flex-wrap: wrap;
+    }
+    
+    nav a {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.4rem;
+        min-height: 44px; /* Touch-friendly */
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Hide some nav items on very small screens */
+    nav ul li:nth-child(n+3):not(.dropdown) {
+        display: none;
+    }
+    
+    .dropdown {
+        position: static;
+    }
+    
+    .dropdown-content {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        min-width: 100%;
+        border-radius: 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+        display: block;
+    }
+    
+    /* Buttons Mobile Optimization */
+    .online-order-btn {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        margin-right: 0.25rem;
+        min-height: 44px;
+    }
+    
+    .order-text {
+        display: none;
+    }
+    
+    .cart-btn {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .cart-icon {
+        font-size: 1.1rem;
+    }
+    
+    .signin-btn {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        min-height: 44px;
+    }
+    
+    /* Main Content */
+    main {
+        padding: 1rem 0.75rem;
+        max-width: 100%;
+    }
+    
+    /* Contact Form Mobile Optimization */
+    .contact-form-container {
+        padding: 1.5rem 1rem;
+        max-width: 100%;
+        margin: 1rem auto;
+    }
+    
+    .contact-form-heading {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-field {
+        width: 100%;
+    }
+    
+    .contact-form-container input,
+    .contact-form-container select,
+    .contact-form-container textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px;
+        min-height: 44px; /* Touch-friendly */
+        width: 100%;
+    }
+    
+    .contact-form-container textarea {
+        min-height: 120px;
+    }
+    
+    .contact-form-container button {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+        min-height: 48px; /* Large touch target */
+        margin-top: 0.5rem;
+    }
+    
+    .form-intro {
+        font-size: 0.9rem;
+    }
+    
+    .error-message {
+        font-size: 0.85rem;
+    }
+    
+    /* Page Hero Mobile */
+    .page-hero {
+        padding: 2rem 1rem;
+        margin: 0 auto 1.5rem;
+        border-radius: 8px;
+    }
+    
+    .page-hero .page-title {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .page-hero .eyebrow {
+        font-size: 0.75rem;
+    }
+    
+    .page-hero .subtitle {
+        font-size: 0.95rem;
+    }
+    
+    /* Support Services Mobile */
+    .support-services {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+    
+    .support-services h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .support-services ol > li {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .support-services ol > li::before {
+        font-size: 1.25rem;
+        min-width: 1.5rem;
+    }
+    
+    .support-services ol > li h3 {
+        font-size: 1.25rem;
+        display: block;
+        margin-top: 0.5rem;
+    }
+    
+    .service-icon {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1rem;
+        margin-right: 0.75rem;
+    }
+    
+    .support-services ul li {
+        padding: 0.6rem 0;
+        padding-left: 2rem;
+        font-size: 0.9rem;
+    }
+    
+    .support-services ul li strong {
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .local-links {
+        margin-top: 0.75rem;
+        padding: 0.75rem;
+    }
+    
+    .local-links h4 {
+        font-size: 1rem;
+    }
+    
+    .local-links ul {
+        padding-left: 1.5rem;
+    }
+    
+    .local-links a {
+        font-size: 0.9rem;
+        word-break: break-word;
+    }
+    
+    /* Buttons General */
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Featured Grid */
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+    }
+    
+    .featured-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .featured-card h3 {
+        font-size: 1.25rem;
+    }
+    
+    .featured-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Visit Section */
+    .visit-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .visit-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hours-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .hours-item {
+        padding: 1rem;
+    }
+    
+    /* Testimonials */
+    .testimonials-section {
+        padding: 2rem 1rem;
+    }
+    
+    .testimonials-section h2 {
+        font-size: 1.75rem;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .testimonial-card {
+        padding: 1.25rem;
+    }
+    
+    .load-more-btn {
+        width: 100%;
+        padding: 12px;
+        min-height: 44px;
+        margin-top: 1.5rem;
+    }
+    
+    /* Contact Info */
+    .contact-info {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.25rem;
+    }
+    
+    /* Social Media Links */
+    .social-media-links {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .social-link {
+        padding: 12px;
+        min-height: 44px;
+        justify-content: center;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+    
+    footer p {
+        margin: 0.5rem 0;
+        line-height: 1.5;
+    }
+    
+    /* Images */
+    img {
+        max-width: 100%;
+        height: auto;
+        margin: 0.75rem 0;
+    }
+    
+    /* Dine-in Section */
+    .dinein-section {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+    
+    .dinein-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .dinein-text p {
+        font-size: 0.95rem;
+    }
+    
+    /* Menu Page Mobile */
+    .menu-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .menu-sidebar {
+        position: static;
+        padding: 1rem;
+    }
+    
+    .menu-search {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        min-height: 44px;
+    }
+    
+    .menu-cats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .menu-cats a {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        min-height: 44px;
+    }
+    
+    /* Cart Page Mobile */
+    .cart-container {
+        padding: 1rem;
+    }
+    
+    .cart-item {
+        padding: 1rem 0;
+        border-bottom: 2px solid #eee;
+    }
+    
+    /* Forms General */
+    form {
+        width: 100%;
+    }
+    
+    form label {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form input[type="number"],
+    form select,
+    form textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px;
+        min-height: 44px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    form textarea {
+        min-height: 120px;
+    }
+    
+    form button[type="submit"],
+    form input[type="submit"] {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+        min-height: 48px;
+        margin-top: 1rem;
+    }
+}
+
+/* Tablet and Small Mobile (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Header */
+    header {
+        padding: 0.5rem 1rem;
+    }
+    
+    .main-logo {
+        max-height: 60px;
+        max-width: 160px;
+    }
+    
+    nav a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.5rem;
+    }
+    
+    /* Main Content */
+    main {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* Contact Form */
+    .contact-form-container {
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    /* Buttons */
+    .btn {
+        width: auto;
+        max-width: 300px;
+    }
+    
+    /* Featured Grid */
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+    
+    /* Testimonials */
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Very Small Phones (320px - 360px) */
+@media (max-width: 360px) {
+    header {
+        padding: 0.4rem 0.5rem;
+        min-height: 55px;
+    }
+    
+    .main-logo {
+        max-height: 45px;
+        max-width: 120px;
+    }
+    
+    nav ul {
+        gap: 0.1rem;
+    }
+    
+    nav a {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.35rem;
+    }
+    
+    .online-order-btn,
+    .cart-btn,
+    .signin-btn {
+        padding: 6px 8px;
+        font-size: 0.65rem;
+        min-height: 40px;
+    }
+    
+    main {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .contact-form-container {
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .page-hero {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .page-hero .page-title {
+        font-size: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Landscape Mobile (max-width: 768px and landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+    header {
+        min-height: 55px;
+    }
+    
+    .main-logo {
+        max-height: 50px;
+    }
+    
+    .page-hero {
+        padding: 1.5rem;
+    }
+    
+    body.home .slideshow-container {
+        height: 100vh;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets for all interactive elements */
+    a, button, input[type="submit"], input[type="button"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    nav a:hover {
+        background-color: transparent;
+    }
+    
+    .btn:hover {
+        background-color: #ff6b35;
+    }
+    
+    /* Better focus states for touch */
+    a:focus,
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 3px solid #ff6b35;
+        outline-offset: 2px;
+    }
+}
+
+/* Prevent text size adjustment on iOS */
+@media screen and (max-width: 480px) {
+    html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+    
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents zoom on focus in iOS */
+    }
+}
