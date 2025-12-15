@@ -1060,6 +1060,50 @@ body:not(.home) main {
     margin: 2rem 0;
 }
 
+.page-hero {
+    position: relative;
+    background: linear-gradient(120deg, rgba(255,107,53,0.9), rgba(255,139,92,0.85)), url('../images/slideshow-2.jpg') center/cover no-repeat;
+    color: #fff;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.page-hero .hero-text {
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+}
+
+.page-hero .subtitle {
+    font-size: 1.05rem;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.page-hero .page-title {
+    color: #fff;
+}
+
+.contact-hero {
+    background-image: linear-gradient(120deg, rgba(255,107,53,0.92), rgba(255,139,92,0.88)), url('../images/chef.webp');
+}
+
+.support-hero {
+    background-image: linear-gradient(120deg, rgba(255,107,53,0.9), rgba(255,139,92,0.85)), url('../images/party hall.webp');
+}
+
 .contact-form-container {
     max-width: 90%;
     width: 100%;
@@ -1085,6 +1129,23 @@ body:not(.home) main {
     gap: 1rem;
 }
 
+.form-intro {
+    margin: 0 0 1rem;
+    color: #555;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
 .contact-form-container label {
     font-weight: bold;
     color: #333;
@@ -1099,6 +1160,30 @@ body:not(.home) main {
     border-radius: 5px;
     font-size: 1rem;
     font-family: inherit;
+}
+
+.input-error {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
+}
+
+.error-message {
+    color: #c0392b;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+}
+
+.form-status {
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.form-status.error {
+    color: #c0392b;
+}
+
+.form-status.success {
+    color: #1b7f4a;
 }
 
 .contact-form-container button {

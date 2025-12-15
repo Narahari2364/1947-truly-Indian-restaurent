@@ -40,20 +40,52 @@
     </header>
 
     <main>
-        <h1 class="page-title">Contact Us</h1>
+        <section class="page-hero contact-hero">
+            <div class="hero-text">
+                <p class="eyebrow">We'd love to hear from you</p>
+                <h1 class="page-title">Contact 1947 Truly Indian</h1>
+                <p class="subtitle">Questions about reservations, catering, or special requests? Send us a message and we'll respond within one business day.</p>
+            </div>
+        </section>
+
         <div class="contact-form-container">
             <h2 class="contact-form-heading">Get in Touch</h2>
+            <p class="form-intro">All fields marked with * are required. We’ll use your details only to respond to your inquiry.</p>
             <form id="contactForm" novalidate>
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required minlength="2" maxlength="100" pattern="[A-Za-z\s]+" title="Please enter a valid name (letters and spaces only)">
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required placeholder="example@email.com">
-                
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9\-\(\)\s]+" placeholder="(555) 123-4567" title="Please enter a valid phone number">
-                
-                <label for="subject">Subject:</label>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+                        <span class="error-message" data-error-for="firstName"></span>
+                    </div>
+                    <div class="form-field">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+                        <span class="error-message" data-error-for="lastName"></span>
+                    </div>
+                    <div class="form-field">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" autocomplete="address-level2" required>
+                        <span class="error-message" data-error-for="city"></span>
+                    </div>
+                    <div class="form-field">
+                        <label for="zip">ZIP Code *</label>
+                        <input type="text" id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" required>
+                        <span class="error-message" data-error-for="zip"></span>
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com">
+                        <span class="error-message" data-error-for="email"></span>
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(857) 351-4567">
+                        <span class="error-message" data-error-for="phone"></span>
+                    </div>
+                </div>
+
+                <label for="subject">Subject *</label>
                 <select id="subject" name="subject" required>
                     <option value="">Select Subject</option>
                     <option value="reservation">Reservation Inquiry</option>
@@ -63,10 +95,13 @@
                     <option value="complaint">Complaint</option>
                     <option value="other">Other</option>
                 </select>
+                <span class="error-message" data-error-for="subject"></span>
                 
-                <label for="message">Message:</label>
+                <label for="message">Message *</label>
                 <textarea id="message" name="message" rows="6" required minlength="10" maxlength="1000" placeholder="Please provide details about your inquiry (minimum 10 characters)..."></textarea>
+                <span class="error-message" data-error-for="message"></span>
                 
+                <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
                 <button type="submit">Send Message</button>
             </form>
         </div>
@@ -110,6 +145,121 @@
     </footer>
 
     <script>
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+        const nameFields = ['firstName', 'lastName', 'city'];
+
+        const patterns = {
+            name: /^[A-Za-z\s'-]{2,50}$/,
+            city: /^[A-Za-z\s'-]{2,60}$/,
+            zip: /^\d{5}(?:-\d{4})?$/,
+            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            phone: /^[0-9\-\+\(\)\s]{7,20}$/
+        };
+
+        const toTitleCase = (value = '') =>
+            value
+                .trim()
+                .toLowerCase()
+                .replace(/\b\w/g, char => char.toUpperCase());
+
+        const clearErrors = () => {
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+            formStatus.textContent = '';
+            formStatus.className = 'form-status';
+        };
+
+        const showError = (fieldId, message) => {
+            const field = document.getElementById(fieldId);
+            const errorEl = document.querySelector(`[data-error-for="${fieldId}"]`);
+            if (field) {
+                field.classList.add('input-error');
+                field.setAttribute('aria-invalid', 'true');
+            }
+            if (errorEl) errorEl.textContent = message;
+        };
+
+        nameFields.forEach(id => {
+            const field = document.getElementById(id);
+            if (!field) return;
+            field.addEventListener('blur', () => {
+                field.value = toTitleCase(field.value);
+            });
+        });
+
+        contactForm.addEventListener('submit', event => {
+            event.preventDefault();
+            clearErrors();
+
+            const values = {
+                firstName: toTitleCase(document.getElementById('firstName').value),
+                lastName: toTitleCase(document.getElementById('lastName').value),
+                city: toTitleCase(document.getElementById('city').value),
+                zip: document.getElementById('zip').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value.trim()
+            };
+
+            document.getElementById('firstName').value = values.firstName;
+            document.getElementById('lastName').value = values.lastName;
+            document.getElementById('city').value = values.city;
+
+            let hasErrors = false;
+
+            if (!patterns.name.test(values.firstName)) {
+                hasErrors = true;
+                showError('firstName', 'Please enter a valid first name (letters, spaces, apostrophes).');
+            }
+
+            if (!patterns.name.test(values.lastName)) {
+                hasErrors = true;
+                showError('lastName', 'Please enter a valid last name (letters, spaces, apostrophes).');
+            }
+
+            if (!patterns.city.test(values.city)) {
+                hasErrors = true;
+                showError('city', 'Please enter a valid city name.');
+            }
+
+            if (!patterns.zip.test(values.zip)) {
+                hasErrors = true;
+                showError('zip', 'Please enter a 5-digit ZIP or ZIP+4 (e.g., 02130 or 02130-1234).');
+            }
+
+            if (!patterns.email.test(values.email)) {
+                hasErrors = true;
+                showError('email', 'Please enter a valid email address.');
+            }
+
+            if (values.phone && !patterns.phone.test(values.phone)) {
+                hasErrors = true;
+                showError('phone', 'Please enter a valid phone number.');
+            }
+
+            if (!values.subject) {
+                hasErrors = true;
+                showError('subject', 'Please select a subject.');
+            }
+
+            if (values.message.length < 10) {
+                hasErrors = true;
+                showError('message', 'Message must be at least 10 characters.');
+            }
+
+            if (hasErrors) {
+                formStatus.textContent = 'Please correct the highlighted fields and try again.';
+                formStatus.classList.add('error');
+                return;
+            }
+
+            formStatus.textContent = 'Message sent! We will reply within one business day.';
+            formStatus.classList.add('success');
+            contactForm.reset();
+        });
+
         // Update cart count on page load
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
