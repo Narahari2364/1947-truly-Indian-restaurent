@@ -14,6 +14,11 @@ body {
     background-color: #fff;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* Header Styles */
 header {
     background-color: #ff6b35;
@@ -4329,7 +4334,9 @@ body.home .slideshow-container img {
     header {
         padding: 0.5rem 0.75rem;
         min-height: 60px;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
     
     .main-logo {
@@ -4339,18 +4346,26 @@ body.home .slideshow-container img {
     }
     
     header h1 {
-        left: 0.5rem;
+        position: static;
+        left: auto;
+        top: auto;
+        transform: none;
+        height: auto;
+        margin: 0;
     }
     
     nav {
+        width: 100%;
         flex-wrap: wrap;
         gap: 0.25rem;
-        justify-content: flex-end;
+        justify-content: center;
     }
     
     nav ul {
+        width: 100%;
         gap: 0.15rem;
         flex-wrap: wrap;
+        justify-content: center;
     }
     
     nav a {
@@ -4359,11 +4374,6 @@ body.home .slideshow-container img {
         min-height: 44px; /* Touch-friendly */
         display: flex;
         align-items: center;
-    }
-    
-    /* Hide some nav items on very small screens */
-    nav ul li:nth-child(n+3):not(.dropdown) {
-        display: none;
     }
     
     .dropdown {
