@@ -265,11 +265,23 @@
                         </div>
                     </div>
 
-                    <div class="customization-group customization-inline">
-                        <label class="custom-checkbox">
-                            <input type="checkbox" id="payWithPoints" name="payWithPoints">
-                            <span>Pay with points (if available on your account)</span>
-                        </label>
+                    <div class="customization-group" id="pointsSection">
+                        <div id="pointsLocked" class="points-locked">
+                            <span class="points-icon">🔒</span>
+                            <div class="points-text">
+                                <p class="points-title">Sign in to use your reward points</p>
+                                <button type="button" class="btn-secondary btn-small" onclick="openSignInFromModal()">Sign In</button>
+                            </div>
+                        </div>
+                        <div id="pointsUnlocked" class="points-unlocked">
+                            <div class="points-text">
+                                <p id="pointsBalanceText" class="points-balance">🪙 You have 0 points = $0.00 off</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="payWithPoints" name="payWithPoints">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="customization-group">
@@ -425,7 +437,15 @@
         const payWithPoints = document.getElementById('payWithPoints')?.checked || false;
         const goesWellWith = document.getElementById('goesWellWith')?.value || '';
 
-        const options = { spiceLevel, specialRequest, payWithPoints, goesWellWith, quantity: currentCustomization.quantity };
+        const options = {
+            spiceLevel,
+            specialRequest,
+            payWithPoints,
+            goesWellWith,
+            quantity: currentCustomization.quantity,
+            appliedPoints: currentCustomization.appliedPoints,
+            appliedDiscount: currentCustomization.appliedDiscount
+        };
 
         addToCart(
             currentCustomization.dishName,
@@ -439,8 +459,7 @@
 
     function changeCustomizationQuantity(delta) {
         const qtyDisplay = document.getElementById('customizationQuantityDisplay');
-        const addBtn = document.getElementById('customizationAddButton');
-        if (!qtyDisplay || !addBtn || !currentCustomization.price) return;
+        if (!qtyDisplay || !currentCustomization.price) return;
 
         let newQty = (currentCustomization.quantity || 1) + delta;
         if (newQty < 1) newQty = 1;
@@ -448,8 +467,7 @@
         currentCustomization.quantity = newQty;
         qtyDisplay.textContent = String(newQty);
 
-        const total = currentCustomization.price * newQty;
-        addBtn.textContent = 'Add to Cart • $' + total.toFixed(2);
+        recalcCustomizationTotal();
     }
 
     function addToCart(dishName, price, buttonElement, options = {}) {
@@ -476,7 +494,9 @@
                 spiceLevel: options.spiceLevel || 'Medium',
                 specialRequest: options.specialRequest || '',
                 payWithPoints: !!options.payWithPoints,
-                goesWellWith: options.goesWellWith || ''
+                goesWellWith: options.goesWellWith || '',
+                appliedPoints: options.appliedPoints || 0,
+                appliedDiscount: options.appliedDiscount || 0
             });
         }
         
