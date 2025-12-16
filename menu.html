@@ -307,6 +307,8 @@
         </div>
     </main>
 
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
     <script>
     // Smooth scrolling behavior is handled by CSS (scroll-behavior). Add simple search filter:
     (function() {
@@ -485,8 +487,12 @@
             const addQty = options.quantity && options.quantity > 0 ? options.quantity : 1;
             cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + addQty;
         } else {
+            // Generate a simple unique id for this cart entry
+            const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+
             // Add new item with quantity and customization options
             cart.push({
+                id,
                 name: dishName,
                 price: price,
                 image: imagePath,
@@ -496,7 +502,8 @@
                 payWithPoints: !!options.payWithPoints,
                 goesWellWith: options.goesWellWith || '',
                 appliedPoints: options.appliedPoints || 0,
-                appliedDiscount: options.appliedDiscount || 0
+                appliedDiscount: options.appliedDiscount || 0,
+                pointsApplied: options.appliedPoints || 0
             });
         }
         
@@ -508,6 +515,9 @@
         
         // Update cart count in navigation
         updateCartCount();
+
+        // Show success toast
+        showToast('✅ ' + dishName + ' added to cart!');
     }
     
     function removeFromCart(dishName, buttonElement) {
@@ -607,9 +617,27 @@
         }
     }
     
+    // Toast / Snackbar
+    let toastTimeoutId;
+
+    function showToast(message) {
+        const toastEl = document.getElementById('toast');
+        if (!toastEl) return;
+        toastEl.textContent = message;
+        toastEl.classList.add('show');
+
+        if (toastTimeoutId) {
+            clearTimeout(toastTimeoutId);
+        }
+
+        toastTimeoutId = setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 2000);
+    }
+
     // Update cart count on page load
     updateCartCount();
-
+    
     // Update all dish button counts on page load
     updateAllDishButtonCounts();
     </script>

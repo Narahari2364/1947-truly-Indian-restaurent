@@ -127,24 +127,9 @@
                 return;
             }
             
-            // Group items by name and count quantities
-            const cartItems = {};
-            cart.forEach(item => {
-                if (cartItems[item.name]) {
-                    cartItems[item.name].quantity++;
-                } else {
-                    cartItems[item.name] = {
-                        name: item.name,
-                        price: item.price,
-                        image: item.image || getDishImage(item.name), // Use stored image or lookup
-                        quantity: 1
-                    };
-                }
-            });
-            
             // Calculate totals
             let subtotal = 0;
-            const itemsArray = Object.values(cartItems);
+            const itemsArray = cart;
             
             let cartHTML = `
                 <div class="cart-items">
@@ -158,24 +143,31 @@
             `;
             
             itemsArray.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
+                const quantity = item.quantity || 1;
+                const itemTotal = item.price * quantity;
                 subtotal += itemTotal;
                 
                 cartHTML += `
                     <div class="cart-item" data-item-name="${item.name}">
                         <div class="cart-col-item">
                             <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                            <strong>${item.name}</strong>
+                            <div>
+                                <strong>${item.name}</strong>
+                                <div class="cart-item-meta">
+                                    ${item.spiceLevel ? `<span>Spice: ${item.spiceLevel}</span>` : ''}
+                                    ${item.specialRequest ? `<span>Note: ${item.specialRequest}</span>` : ''}
+                                </div>
+                            </div>
                         </div>
                         <div class="cart-col-price">$${item.price.toFixed(2)}</div>
                         <div class="cart-col-quantity">
-                            <button class="qty-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
-                            <span class="qty-value">${item.quantity}</span>
-                            <button class="qty-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                            <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span class="qty-value">${quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
                         </div>
                         <div class="cart-col-total">$${itemTotal.toFixed(2)}</div>
                         <div class="cart-col-action">
-                            <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
+                            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
                         </div>
                     </div>
                 `;
@@ -210,21 +202,20 @@
         }
         
         // Update quantity
-        function updateQuantity(itemName, change) {
+        function updateQuantity(index, change) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             
-            if (change > 0) {
-                // Add item
-                const item = cart.find(i => i.name === itemName);
-                if (item) {
-                    cart.push({ name: itemName, price: item.price, image: item.image || getDishImage(itemName) });
-                }
+            if (!cart[index]) return;
+
+            const item = cart[index];
+            const currentQty = item.quantity || 1;
+            const newQty = currentQty + change;
+
+            if (newQty < 1) {
+                // Remove item if quantity goes below 1
+                cart.splice(index, 1);
             } else {
-                // Remove one instance
-                const index = cart.findIndex(i => i.name === itemName);
-                if (index > -1) {
-                    cart.splice(index, 1);
-                }
+                item.quantity = newQty;
             }
             
             localStorage.setItem('cart', JSON.stringify(cart));
@@ -232,9 +223,11 @@
         }
         
         // Remove item completely
-        function removeItem(itemName) {
+        function removeItem(index) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(item => item.name !== itemName);
+            if (index > -1 && index < cart.length) {
+                cart.splice(index, 1);
+            }
             localStorage.setItem('cart', JSON.stringify(cart));
             loadCart();
         }
