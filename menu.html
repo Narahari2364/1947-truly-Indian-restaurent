@@ -380,16 +380,51 @@
         return dishImageMap[dishName] || 'images/Orange and Yellow Modern Restaurant Logo.png'; // fallback to logo if not found
     }
 
+    // --- Auth / points helpers ---
+    function getUserSession() {
+        try {
+            const raw =
+                localStorage.getItem('userSession') ||
+                localStorage.getItem('user') ||
+                localStorage.getItem('authUser');
+            return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function getUserPoints(user) {
+        if (!user) return 0;
+        if (typeof user.points === 'number') return user.points;
+        if (typeof user.loyaltyPoints === 'number') return user.loyaltyPoints;
+        // Demo fallback so UI still shows something even if backend isn't wired
+        return 240;
+    }
+
+    function openSignInFromModal() {
+        // Open sign-in page without closing this modal
+        window.open('signin.html', '_blank');
+    }
+
     // State for customization flow
     let currentCustomization = {
         dishName: null,
         price: null,
         buttonElement: null,
-        quantity: 1
+        quantity: 1,
+        appliedPoints: 0,
+        appliedDiscount: 0
     };
 
     function openCustomizationModal(dishName, price, buttonElement) {
-        currentCustomization = { dishName, price, buttonElement, quantity: 1 };
+        currentCustomization = {
+            dishName,
+            price,
+            buttonElement,
+            quantity: 1,
+            appliedPoints: 0,
+            appliedDiscount: 0
+        };
 
         const backdrop = document.getElementById('customizationModalBackdrop');
         const itemNameEl = document.getElementById('customizationItemName');
@@ -398,6 +433,10 @@
         const priceEl = document.getElementById('customizationItemPrice');
         const qtyDisplay = document.getElementById('customizationQuantityDisplay');
         const addBtn = document.getElementById('customizationAddButton');
+        const pointsLocked = document.getElementById('pointsLocked');
+        const pointsUnlocked = document.getElementById('pointsUnlocked');
+        const pointsBalanceText = document.getElementById('pointsBalanceText');
+        const payWithPointsInput = document.getElementById('payWithPoints');
 
         if (!backdrop || !itemNameEl || !form || !imgEl || !priceEl || !qtyDisplay || !addBtn) return;
 
@@ -413,9 +452,36 @@
         const defaultSpice = form.querySelector('input[name=\"spiceLevel\"][value=\"Medium\"]');
         if (defaultSpice) defaultSpice.checked = true;
 
-        // Reset quantity and button label
+        // Reset quantity
         qtyDisplay.textContent = '1';
-        addBtn.textContent = 'Add to Cart • $' + price.toFixed(2);
+
+        // Configure points UI based on auth state
+        const user = getUserSession();
+        currentCustomization.appliedPoints = 0;
+        currentCustomization.appliedDiscount = 0;
+
+        if (pointsLocked && pointsUnlocked && pointsBalanceText && payWithPointsInput) {
+            if (!user) {
+                pointsLocked.style.display = 'flex';
+                pointsUnlocked.style.display = 'none';
+                payWithPointsInput.checked = false;
+            } else {
+                pointsLocked.style.display = 'none';
+                pointsUnlocked.style.display = 'flex';
+                const pts = getUserPoints(user);
+                const value = pts * 0.01; // 100 points = $1.00
+                pointsBalanceText.textContent =
+                    '🪙 You have ' + pts + ' points = $' + value.toFixed(2) + ' off';
+                payWithPointsInput.checked = false;
+
+                payWithPointsInput.onchange = function () {
+                    recalcCustomizationTotal();
+                };
+            }
+        }
+
+        // Initial total label
+        recalcCustomizationTotal();
 
         backdrop.classList.add('is-visible');
         backdrop.setAttribute('aria-hidden', 'false');
@@ -470,6 +536,36 @@
         qtyDisplay.textContent = String(newQty);
 
         recalcCustomizationTotal();
+    }
+
+    function recalcCustomizationTotal() {
+        const addBtn = document.getElementById('customizationAddButton');
+        const payWithPointsInput = document.getElementById('payWithPoints');
+        if (!addBtn || !currentCustomization.price) return;
+
+        const baseTotal = currentCustomization.price * (currentCustomization.quantity || 1);
+
+        const user = getUserSession();
+        const canUsePoints = !!user && !!payWithPointsInput;
+        const wantsPoints = canUsePoints && payWithPointsInput.checked;
+
+        let discount = 0;
+        let appliedPoints = 0;
+
+        if (wantsPoints) {
+            const pts = getUserPoints(user);
+            const valuePerPoint = 0.01; // 100 points = $1
+            const maxDiscountFromPoints = pts * valuePerPoint;
+            discount = Math.min(baseTotal, maxDiscountFromPoints);
+            appliedPoints = Math.round(discount / valuePerPoint);
+        }
+
+        const finalTotal = Math.max(0, baseTotal - discount);
+
+        currentCustomization.appliedPoints = appliedPoints;
+        currentCustomization.appliedDiscount = discount;
+
+        addBtn.textContent = 'Add to Cart • $' + finalTotal.toFixed(2);
     }
 
     function addToCart(dishName, price, buttonElement, options = {}) {
