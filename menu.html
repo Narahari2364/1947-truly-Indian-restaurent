@@ -155,8 +155,6 @@
             <a href="signin.html" class="signin-btn">Sign in</a>
             <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">☰</button>
         </nav>
-
-        <!-- Mobile dropdown menu -->
         <div class="mobile-menu" id="mobileMenu">
             <a href="menu.html">🍽️ Menu</a>
             <a href="catering.html">🍱 Catering</a>
@@ -445,23 +443,6 @@
         });
     })();
 
-    // ── Hamburger menu ─────────────────────────────────────────────
-    (function () {
-        var btn  = document.getElementById('hamburgerBtn');
-        var menu = document.getElementById('mobileMenu');
-        if (!btn || !menu) return;
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            menu.classList.toggle('open');
-            btn.textContent = menu.classList.contains('open') ? '✕' : '☰';
-        });
-        document.addEventListener('click', function () {
-            menu.classList.remove('open');
-            btn.textContent = '☰';
-        });
-        menu.addEventListener('click', function (e) { e.stopPropagation(); });
-    })();
-
     // ── Dish image map ─────────────────────────────────────────────
     function getDishImage(name) {
         var m = {
@@ -712,6 +693,23 @@
     updateCartCount();
     updateAllDishButtonCounts();
     </script>
+<script>
+(function(){
+    var btn=document.getElementById('hamburgerBtn');
+    var menu=document.getElementById('mobileMenu');
+    if(!btn||!menu)return;
+    btn.addEventListener('click',function(e){
+        e.stopPropagation();
+        menu.classList.toggle('open');
+        btn.textContent=menu.classList.contains('open')?'✕':'☰';
+    });
+    document.addEventListener('click',function(){
+        menu.classList.remove('open');
+        btn.textContent='☰';
+    });
+    menu.addEventListener('click',function(e){e.stopPropagation();});
+})();
+</script>
 
     <footer>
         <p>&copy; 2024 1947 Truly Indian. All rights reserved.</p>
