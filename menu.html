@@ -203,6 +203,70 @@
                 <li><strong>Private Events:</strong> Book our private dining room</li>
             </ul>
         </div>
+
+        <!-- Item customization modal (shown before adding to cart) -->
+        <div id="customizationModalBackdrop" class="customization-backdrop" aria-hidden="true">
+            <div class="customization-modal" role="dialog" aria-modal="true" aria-labelledby="customizationTitle">
+                <button type="button" class="customization-close" onclick="closeCustomizationModal()" aria-label="Close customization">
+                    ✕
+                </button>
+                <h2 id="customizationTitle" class="customization-title">Customize your item</h2>
+                <p id="customizationItemName" class="customization-item-name"></p>
+
+                <form id="customizationForm" onsubmit="event.preventDefault(); confirmCustomization();">
+                    <fieldset class="customization-group">
+                        <legend>Choose your spice level</legend>
+                        <div class="customization-options">
+                            <label class="custom-radio">
+                                <input type="radio" name="spiceLevel" value="Mild" checked>
+                                <span>Mild</span>
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" name="spiceLevel" value="Medium">
+                                <span>Medium</span>
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" name="spiceLevel" value="Spicy">
+                                <span>Spicy</span>
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" name="spiceLevel" value="Extra Spicy">
+                                <span>Extra Spicy</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="customization-group">
+                        <label for="specialRequest">Special requests or comments</label>
+                        <textarea id="specialRequest" name="specialRequest" rows="3" placeholder="Example: No onions, extra cilantro, sauce on the side"></textarea>
+                    </div>
+
+                    <div class="customization-group customization-inline">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="payWithPoints" name="payWithPoints">
+                            <span>Pay with points (if available on your account)</span>
+                        </label>
+                    </div>
+
+                    <div class="customization-group">
+                        <label for="goesWellWith">Goes well with</label>
+                        <select id="goesWellWith" name="goesWellWith">
+                            <option value="">No drink selected</option>
+                            <option value="Mango Lassi">Mango Lassi</option>
+                            <option value="Masala Chai">Masala Chai</option>
+                            <option value="Fresh Lime Soda">Fresh Lime Soda</option>
+                            <option value="Sweet Lassi">Sweet Lassi</option>
+                        </select>
+                        <p class="customization-helper">We’ll add this suggestion as a note in your cart so you can easily add it.</p>
+                    </div>
+
+                    <div class="customization-actions">
+                        <button type="button" class="btn-secondary" onclick="closeCustomizationModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Add item to cart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -276,26 +340,87 @@
         return dishImageMap[dishName] || 'images/Orange and Yellow Modern Restaurant Logo.png'; // fallback to logo if not found
     }
 
-    function addToCart(dishName, price, buttonElement) {
+    // State for customization flow
+    let currentCustomization = {
+        dishName: null,
+        price: null,
+        buttonElement: null
+    };
+
+    function openCustomizationModal(dishName, price, buttonElement) {
+        currentCustomization = { dishName, price, buttonElement };
+
+        const backdrop = document.getElementById('customizationModalBackdrop');
+        const itemNameEl = document.getElementById('customizationItemName');
+        const form = document.getElementById('customizationForm');
+
+        if (!backdrop || !itemNameEl || !form) return;
+
+        itemNameEl.textContent = dishName + ' - $' + price.toFixed(2);
+
+        // Reset form to defaults
+        form.reset();
+        const defaultSpice = form.querySelector('input[name=\"spiceLevel\"][value=\"Mild\"]');
+        if (defaultSpice) defaultSpice.checked = true;
+
+        backdrop.classList.add('is-visible');
+        backdrop.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCustomizationModal() {
+        const backdrop = document.getElementById('customizationModalBackdrop');
+        if (!backdrop) return;
+        backdrop.classList.remove('is-visible');
+        backdrop.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function confirmCustomization() {
+        const form = document.getElementById('customizationForm');
+        if (!form || !currentCustomization.dishName) return;
+
+        const spiceLevel = form.querySelector('input[name=\"spiceLevel\"]:checked')?.value || 'Mild';
+        const specialRequest = document.getElementById('specialRequest')?.value.trim() || '';
+        const payWithPoints = document.getElementById('payWithPoints')?.checked || false;
+        const goesWellWith = document.getElementById('goesWellWith')?.value || '';
+
+        const options = { spiceLevel, specialRequest, payWithPoints, goesWellWith };
+
+        addToCart(
+            currentCustomization.dishName,
+            currentCustomization.price,
+            currentCustomization.buttonElement,
+            options
+        );
+
+        closeCustomizationModal();
+    }
+
+    function addToCart(dishName, price, buttonElement, options = {}) {
         // Get existing cart from localStorage or initialize empty array
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
         // Get image path for the dish
         const imagePath = getDishImage(dishName);
         
-        // Check if item already exists in cart
+        // Check if item already exists in cart (by name only)
         const existingIndex = cart.findIndex(item => item.name === dishName);
         
         if (existingIndex !== -1) {
             // Increment quantity if exists
             cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
         } else {
-            // Add new item with quantity 1
+            // Add new item with quantity 1 and customization options
             cart.push({
                 name: dishName,
                 price: price,
                 image: imagePath,
-                quantity: 1
+                quantity: 1,
+                spiceLevel: options.spiceLevel || 'Mild',
+                specialRequest: options.specialRequest || '',
+                payWithPoints: !!options.payWithPoints,
+                goesWellWith: options.goesWellWith || ''
             });
         }
         
@@ -412,9 +537,10 @@
         addButtons.forEach(addButton => {
             const onclickAttr = addButton.getAttribute('onclick');
             if (onclickAttr) {
-                const match = onclickAttr.match(/addToCart\('([^']+)'/);
+                const match = onclickAttr.match(/addToCart\('([^']+)'\\s*,\\s*([0-9.]+)/);
                 if (match) {
                     const dishName = match[1];
+                    const price = parseFloat(match[2]);
                     const buttonsContainer = addButton.closest('.dish-buttons');
                     if (buttonsContainer) {
                         // Fix remove button onclick
@@ -423,10 +549,8 @@
                             removeButton.setAttribute('onclick', `removeFromCart('${dishName}', this)`);
                         }
                         
-                        // Update add button to pass this if not already
-                        if (!onclickAttr.includes(', this)')) {
-                            addButton.setAttribute('onclick', onclickAttr.replace(')', ', this)'));
-                        }
+                        // Update add button to open customization modal instead of adding directly
+                        addButton.setAttribute('onclick', `openCustomizationModal('${dishName}', ${price}, this)`);
                     }
                 }
             }
