@@ -153,10 +153,8 @@
                             <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                             <div>
                                 <strong>${item.name}</strong>
-                                <div class="cart-item-meta">
-                                    ${item.spiceLevel ? `<span>Spice: ${item.spiceLevel}</span>` : ''}
-                                    ${item.specialRequest ? `<span>Note: ${item.specialRequest}</span>` : ''}
-                                </div>
+                                ${item.spiceLevel ? `<div style="margin-top: 4px;"><span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#ffe4d6;color:#e44d26;font-size:0.8rem;">${item.spiceLevel === 'Mild' ? '🌿' : item.spiceLevel === 'Medium' ? '🌶' : item.spiceLevel === 'Spicy' ? '🌶🌶' : '🔥'} ${item.spiceLevel}</span></div>` : ''}
+                                ${item.specialRequest ? `<div style="margin-top: 2px;font-size:0.8rem;color:#777;font-style:italic;">${item.specialRequest}</div>` : ''}
                             </div>
                         </div>
                         <div class="cart-col-price">$${item.price.toFixed(2)}</div>
