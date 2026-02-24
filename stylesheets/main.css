@@ -1380,6 +1380,29 @@ body:not(.home) main {
     transform: translateX(20px);
 }
 
+/* Simple toast/snackbar */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%) translateY(100%);
+    background: #323232;
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    z-index: 1200;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
 .page-hero {
     position: relative;
     background: linear-gradient(120deg, rgba(255,107,53,0.9), rgba(255,139,92,0.85)), url('../images/slideshow-2.jpg') center/cover no-repeat;
