@@ -204,25 +204,34 @@
             </ul>
         </div>
 
-        <!-- Item customization modal (shown before adding to cart) -->
+        <!-- Item customization modal (bottom sheet shown before adding to cart) -->
         <div id="customizationModalBackdrop" class="customization-backdrop" aria-hidden="true">
             <div class="customization-modal" role="dialog" aria-modal="true" aria-labelledby="customizationTitle">
                 <button type="button" class="customization-close" onclick="closeCustomizationModal()" aria-label="Close customization">
                     ✕
                 </button>
-                <h2 id="customizationTitle" class="customization-title">Customize your item</h2>
-                <p id="customizationItemName" class="customization-item-name"></p>
+
+                <div class="customization-header">
+                    <div class="customization-media">
+                        <img id="customizationItemImage" src="" alt="" />
+                    </div>
+                    <div class="customization-header-text">
+                        <h2 id="customizationTitle" class="customization-title">Customize your item</h2>
+                        <p id="customizationItemName" class="customization-item-name"></p>
+                        <p id="customizationItemPrice" class="customization-item-price"></p>
+                    </div>
+                </div>
 
                 <form id="customizationForm" onsubmit="event.preventDefault(); confirmCustomization();">
                     <fieldset class="customization-group">
-                        <legend>Choose your spice level</legend>
+                        <legend>Spice Level</legend>
                         <div class="customization-options">
                             <label class="custom-radio">
-                                <input type="radio" name="spiceLevel" value="Mild" checked>
+                                <input type="radio" name="spiceLevel" value="Mild">
                                 <span>Mild</span>
                             </label>
                             <label class="custom-radio">
-                                <input type="radio" name="spiceLevel" value="Medium">
+                                <input type="radio" name="spiceLevel" value="Medium" checked>
                                 <span>Medium</span>
                             </label>
                             <label class="custom-radio">
@@ -237,8 +246,23 @@
                     </fieldset>
 
                     <div class="customization-group">
-                        <label for="specialRequest">Special requests or comments</label>
-                        <textarea id="specialRequest" name="specialRequest" rows="3" placeholder="Example: No onions, extra cilantro, sauce on the side"></textarea>
+                        <label for="specialRequest">Special Requests</label>
+                        <textarea
+                            id="specialRequest"
+                            name="specialRequest"
+                            rows="3"
+                            maxlength="200"
+                            placeholder="E.g. no onions, extra sauce…"
+                        ></textarea>
+                    </div>
+
+                    <div class="customization-group">
+                        <label>Quantity</label>
+                        <div class="customization-quantity">
+                            <button type="button" class="qty-btn" onclick="changeCustomizationQuantity(-1)">−</button>
+                            <span id="customizationQuantityDisplay" class="qty-value">1</span>
+                            <button type="button" class="qty-btn" onclick="changeCustomizationQuantity(1)">+</button>
+                        </div>
                     </div>
 
                     <div class="customization-group customization-inline">
@@ -262,7 +286,9 @@
 
                     <div class="customization-actions">
                         <button type="button" class="btn-secondary" onclick="closeCustomizationModal()">Cancel</button>
-                        <button type="submit" class="btn-primary">Add item to cart</button>
+                        <button type="submit" id="customizationAddButton" class="btn-primary">
+                            Add to Cart
+                        </button>
                     </div>
                 </form>
             </div>
@@ -344,24 +370,38 @@
     let currentCustomization = {
         dishName: null,
         price: null,
-        buttonElement: null
+        buttonElement: null,
+        quantity: 1
     };
 
     function openCustomizationModal(dishName, price, buttonElement) {
-        currentCustomization = { dishName, price, buttonElement };
+        currentCustomization = { dishName, price, buttonElement, quantity: 1 };
 
         const backdrop = document.getElementById('customizationModalBackdrop');
         const itemNameEl = document.getElementById('customizationItemName');
         const form = document.getElementById('customizationForm');
+        const imgEl = document.getElementById('customizationItemImage');
+        const priceEl = document.getElementById('customizationItemPrice');
+        const qtyDisplay = document.getElementById('customizationQuantityDisplay');
+        const addBtn = document.getElementById('customizationAddButton');
 
-        if (!backdrop || !itemNameEl || !form) return;
+        if (!backdrop || !itemNameEl || !form || !imgEl || !priceEl || !qtyDisplay || !addBtn) return;
 
         itemNameEl.textContent = dishName + ' - $' + price.toFixed(2);
+        priceEl.textContent = '$' + price.toFixed(2);
+
+        // Set image
+        imgEl.src = getDishImage(dishName);
+        imgEl.alt = dishName;
 
         // Reset form to defaults
         form.reset();
-        const defaultSpice = form.querySelector('input[name=\"spiceLevel\"][value=\"Mild\"]');
+        const defaultSpice = form.querySelector('input[name=\"spiceLevel\"][value=\"Medium\"]');
         if (defaultSpice) defaultSpice.checked = true;
+
+        // Reset quantity and button label
+        qtyDisplay.textContent = '1';
+        addBtn.textContent = 'Add to Cart • $' + price.toFixed(2);
 
         backdrop.classList.add('is-visible');
         backdrop.setAttribute('aria-hidden', 'false');
@@ -385,7 +425,7 @@
         const payWithPoints = document.getElementById('payWithPoints')?.checked || false;
         const goesWellWith = document.getElementById('goesWellWith')?.value || '';
 
-        const options = { spiceLevel, specialRequest, payWithPoints, goesWellWith };
+        const options = { spiceLevel, specialRequest, payWithPoints, goesWellWith, quantity: currentCustomization.quantity };
 
         addToCart(
             currentCustomization.dishName,
@@ -395,6 +435,21 @@
         );
 
         closeCustomizationModal();
+    }
+
+    function changeCustomizationQuantity(delta) {
+        const qtyDisplay = document.getElementById('customizationQuantityDisplay');
+        const addBtn = document.getElementById('customizationAddButton');
+        if (!qtyDisplay || !addBtn || !currentCustomization.price) return;
+
+        let newQty = (currentCustomization.quantity || 1) + delta;
+        if (newQty < 1) newQty = 1;
+        if (newQty > 10) newQty = 10;
+        currentCustomization.quantity = newQty;
+        qtyDisplay.textContent = String(newQty);
+
+        const total = currentCustomization.price * newQty;
+        addBtn.textContent = 'Add to Cart • $' + total.toFixed(2);
     }
 
     function addToCart(dishName, price, buttonElement, options = {}) {
@@ -409,15 +464,16 @@
         
         if (existingIndex !== -1) {
             // Increment quantity if exists
-            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+            const addQty = options.quantity && options.quantity > 0 ? options.quantity : 1;
+            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + addQty;
         } else {
-            // Add new item with quantity 1 and customization options
+            // Add new item with quantity and customization options
             cart.push({
                 name: dishName,
                 price: price,
                 image: imagePath,
-                quantity: 1,
-                spiceLevel: options.spiceLevel || 'Mild',
+                quantity: options.quantity && options.quantity > 0 ? options.quantity : 1,
+                spiceLevel: options.spiceLevel || 'Medium',
                 specialRequest: options.specialRequest || '',
                 payWithPoints: !!options.payWithPoints,
                 goesWellWith: options.goesWellWith || ''
@@ -533,7 +589,7 @@
     
     // Update cart count on page load
     updateCartCount();
-    
+
     // Update all dish button counts on page load
     updateAllDishButtonCounts();
     </script>
