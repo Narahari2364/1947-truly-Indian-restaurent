@@ -5,6 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - 1947 Truly Indian</title>
     <link rel="stylesheet" href="stylesheets/main.css">
+    <style>
+        /* ── Hamburger Button ─────────────────────── */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: 2px solid white;
+            color: white;
+            font-size: 1.5rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            min-height: 44px;
+            min-width: 44px;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            flex-shrink: 0;
+        }
+
+        /* ── Mobile Slide-down Menu ───────────────── */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: #ff6b35;
+            z-index: 999;
+            flex-direction: column;
+            padding: 0.5rem 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            border-top: 2px solid rgba(255,255,255,0.2);
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 14px 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            transition: background 0.2s;
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover { background: rgba(255,255,255,0.15); }
+
+        @media (max-width: 768px) {
+            .hamburger-btn { display: flex; }
+            header {
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                padding: 0.4rem 1rem !important;
+                min-height: 60px !important;
+            }
+            header h1 {
+                position: static !important;
+                transform: none !important;
+                left: auto !important;
+                top: auto !important;
+            }
+            header nav {
+                flex: 0 !important;
+                justify-content: flex-end !important;
+                gap: 0.5rem !important;
+                flex-wrap: nowrap !important;
+            }
+            header nav > ul { display: none !important; }
+            header nav > .signin-btn { display: none !important; }
+            header nav > .cart-btn { display: none !important; }
+            header nav > .online-order-btn { display: flex !important; }
+        }
+
+        /* ── Customization Modal Overrides ────────── */
+        .customization-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .customization-backdrop.is-visible { display: flex; }
+        .customization-modal {
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            margin: 0 auto;
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            border-radius: 20px 20px 0 0;
+            padding: 24px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.2);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+        .customization-backdrop.is-visible .customization-modal {
+            transform: translateY(0);
+        }
+        @media (min-width: 769px) {
+            .customization-backdrop { align-items: center; }
+            .customization-modal {
+                position: relative;
+                border-radius: 16px;
+                max-height: 90vh;
+                transform: none;
+            }
+            .customization-backdrop.is-visible .customization-modal {
+                transform: none;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -33,17 +150,31 @@
             </a>
             <a href="cart.html" class="cart-btn">
                 <span class="cart-icon">🛒</span>
-                <span class="cart-count" id="cartCountNav" style="display: none;">0</span>
+                <span class="cart-count" id="cartCountNav" style="display:none;">0</span>
             </a>
             <a href="signin.html" class="signin-btn">Sign in</a>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">☰</button>
         </nav>
+
+        <!-- Mobile dropdown menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="menu.html">🍽️ Menu</a>
+            <a href="catering.html">🍱 Catering</a>
+            <a href="events.html">🎉 Events</a>
+            <a href="about.html">📖 Our Story</a>
+            <a href="contact.html">📞 Contact Us</a>
+            <a href="support.html">🛠 Support Services</a>
+            <a href="giftcards.html">🎁 Gift Cards</a>
+            <a href="cart.html">🛒 Cart</a>
+            <a href="signin.html">👤 Sign In</a>
+        </div>
     </header>
 
     <main>
         <h1 class="page-title">Our Menu</h1>
-        
+
         <div class="menu-layout">
-            <!-- Left: Sidebar -->
+            <!-- Sidebar -->
             <aside class="menu-sidebar">
                 <input type="search" id="menuSearch" class="menu-search" placeholder="Search menu..." aria-label="Search menu">
                 <nav class="menu-cats">
@@ -59,144 +190,145 @@
                     <a href="#north-indian">North Indian Specialties</a>
                     <a href="#chefs-reco">Chef's Recommendations</a>
                     <a href="#rice-bread">Rice & Bread</a>
-                    <a href="#desserts">Desserts & Drinks</a>
                 </nav>
             </aside>
 
-            <!-- Right: Full Menu -->
+            <!-- Menu Content -->
             <div class="menu-content">
+
                 <section id="popular" class="menu-section">
                     <h2>Popular</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/butterchicken.webp" alt="Butter Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Butter Chicken', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Butter Chicken', 14.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Butter Chicken</h4><span class="dish-price">$14.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/chickenbiryani.webp" alt="Chicken Biryani" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken Biryani', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken Biryani', 16.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken Biryani</h4><span class="dish-price">$16.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/paneertikka.webp" alt="Paneer Tikka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Tikka', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Tikka', 6.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Tikka</h4><span class="dish-price">$6.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/dosa.webp" alt="Masala Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Masala Dosa', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Masala Dosa', 10.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Masala Dosa</h4><span class="dish-price">$10.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/chanamasala.webp" alt="Chana Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chana Masala', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Chana Masala', 11.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chana Masala</h4><span class="dish-price">$11.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/butterchicken.webp" alt="Butter Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Butter Chicken',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Butter Chicken',14.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Butter Chicken</h4><span class="dish-price">$14.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/chickenbiryani.webp" alt="Chicken Biryani" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken Biryani',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken Biryani',16.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken Biryani</h4><span class="dish-price">$16.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/paneertikka.webp" alt="Paneer Tikka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Tikka',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Tikka',6.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Tikka</h4><span class="dish-price">$6.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/dosa.webp" alt="Masala Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Masala Dosa',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Masala Dosa',10.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Masala Dosa</h4><span class="dish-price">$10.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/chanamasala.webp" alt="Chana Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chana Masala',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Chana Masala',11.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chana Masala</h4><span class="dish-price">$11.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="veg-appetizers" class="menu-section">
                     <h2>Veg Appetizers</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/VegetableSamosa.webp" alt="Vegetable Samosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Vegetable Samosa', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Vegetable Samosa', 4.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Vegetable Samosa</h4><span class="dish-price">$4.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Mixed Veg Pakora.webp" alt="Mixed Veg Pakora" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Mixed Veg Pakora', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Mixed Veg Pakora', 5.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Mixed Veg Pakora</h4><span class="dish-price">$5.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Aloo Tikki.webp" alt="Aloo Tikki" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Aloo Tikki', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Aloo Tikki', 4.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Aloo Tikki</h4><span class="dish-price">$4.49</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Paneer Tikka.webp" alt="Paneer Tikka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Tikka', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Tikka', 6.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Tikka</h4><span class="dish-price">$6.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Papadum with Chutneys.webp" alt="Papadum with Chutneys" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Papadum with Chutneys', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Papadum with Chutneys', 2.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Papadum with Chutneys</h4><span class="dish-price">$2.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/VegetableSamosa.webp" alt="Vegetable Samosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Vegetable Samosa',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Vegetable Samosa',4.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Vegetable Samosa</h4><span class="dish-price">$4.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Mixed Veg Pakora.webp" alt="Mixed Veg Pakora" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Mixed Veg Pakora',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Mixed Veg Pakora',5.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Mixed Veg Pakora</h4><span class="dish-price">$5.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Aloo Tikki.webp" alt="Aloo Tikki" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Aloo Tikki',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Aloo Tikki',4.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Aloo Tikki</h4><span class="dish-price">$4.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Paneer Tikka.webp" alt="Paneer Tikka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Tikka',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Tikka',6.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Tikka</h4><span class="dish-price">$6.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Papadum with Chutneys.webp" alt="Papadum with Chutneys" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Papadum with Chutneys',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Papadum with Chutneys',2.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Papadum with Chutneys</h4><span class="dish-price">$2.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="nonveg-appetizers" class="menu-section">
                     <h2>Non‑Veg Appetizers</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Chicken Tikka.webp" alt="Chicken Tikka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken Tikka', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken Tikka', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken Tikka</h4><span class="dish-price">$7.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Chicken 65.webp" alt="Chicken 65" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken 65', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken 65', 8.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken 65</h4><span class="dish-price">$8.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Fish Pakora.webp" alt="Fish Pakora" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Fish Pakora', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Fish Pakora', 8.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Fish Pakora</h4><span class="dish-price">$8.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Chicken Tikka.webp" alt="Chicken Tikka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken Tikka',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken Tikka',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken Tikka</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Chicken 65.webp" alt="Chicken 65" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken 65',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken 65',8.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken 65</h4><span class="dish-price">$8.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Fish Pakora.webp" alt="Fish Pakora" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Fish Pakora',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Fish Pakora',8.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Fish Pakora</h4><span class="dish-price">$8.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="tiffins" class="menu-section">
                     <h2>Indian Tiffins</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Idli Sambar.webp" alt="Idli Sambar" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Idli Sambar', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Idli Sambar', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Idli Sambar</h4><span class="dish-price">$7.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Medu Vada Sambar.webp" alt="Medu Vada Sambar" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Medu Vada Sambar', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Medu Vada Sambar', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Medu Vada Sambar</h4><span class="dish-price">$7.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Poori Bhaji.webp" alt="Poori Bhaji" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Poori Bhaji', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Poori Bhaji', 8.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Poori Bhaji</h4><span class="dish-price">$8.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Idli Sambar.webp" alt="Idli Sambar" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Idli Sambar',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Idli Sambar',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Idli Sambar</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Medu Vada Sambar.webp" alt="Medu Vada Sambar" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Medu Vada Sambar',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Medu Vada Sambar',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Medu Vada Sambar</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Poori Bhaji.webp" alt="Poori Bhaji" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Poori Bhaji',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Poori Bhaji',8.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Poori Bhaji</h4><span class="dish-price">$8.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="dosa" class="menu-section">
                     <h2>Dosa Varieties</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Masala Dosa.webp" alt="Masala Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Masala Dosa', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Masala Dosa', 10.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Masala Dosa</h4><span class="dish-price">$10.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/plain Dosa.webp" alt="Plain Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Plain Dosa', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Plain Dosa', 9.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Plain Dosa</h4><span class="dish-price">$9.49</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Mysore Masala Dosa.webp" alt="Mysore Masala Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Mysore Masala Dosa', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Mysore Masala Dosa', 11.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Mysore Masala Dosa</h4><span class="dish-price">$11.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Masala Dosa.webp" alt="Masala Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Masala Dosa',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Masala Dosa',10.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Masala Dosa</h4><span class="dish-price">$10.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/plain Dosa.webp" alt="Plain Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Plain Dosa',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Plain Dosa',9.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Plain Dosa</h4><span class="dish-price">$9.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Mysore Masala Dosa.webp" alt="Mysore Masala Dosa" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Mysore Masala Dosa',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Mysore Masala Dosa',11.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Mysore Masala Dosa</h4><span class="dish-price">$11.49</span></div></article>
                     </div>
                 </section>
 
                 <section id="nonveg-entrees" class="menu-section">
                     <h2>Non‑Veg Entrees</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Butter chicken.webp" alt="Butter Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Butter Chicken', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Butter Chicken', 14.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Butter Chicken</h4><span class="dish-price">$14.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Lamb rogan josh.webp" alt="Lamb Rogan Josh" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Lamb Rogan Josh', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Lamb Rogan Josh', 17.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Lamb Rogan Josh</h4><span class="dish-price">$17.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/fish curry.webp" alt="Fish Curry" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Fish Curry', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Fish Curry', 16.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Fish Curry</h4><span class="dish-price">$16.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Tandoori Chicken.webp" alt="Tandoori Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Tandoori Chicken', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Tandoori Chicken', 15.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Tandoori Chicken</h4><span class="dish-price">$15.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Butter chicken.webp" alt="Butter Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Butter Chicken',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Butter Chicken',14.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Butter Chicken</h4><span class="dish-price">$14.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Lamb rogan josh.webp" alt="Lamb Rogan Josh" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Lamb Rogan Josh',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Lamb Rogan Josh',17.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Lamb Rogan Josh</h4><span class="dish-price">$17.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/fish curry.webp" alt="Fish Curry" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Fish Curry',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Fish Curry',16.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Fish Curry</h4><span class="dish-price">$16.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Tandoori Chicken.webp" alt="Tandoori Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Tandoori Chicken',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Tandoori Chicken',15.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Tandoori Chicken</h4><span class="dish-price">$15.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="veg-entrees" class="menu-section">
                     <h2>Veg Entrees</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Palak Paneer.webp" alt="Palak Paneer" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Palak Paneer', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Palak Paneer', 12.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Palak Paneer</h4><span class="dish-price">$12.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Chana Masala.webp" alt="Chana Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chana Masala', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Chana Masala', 11.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chana Masala</h4><span class="dish-price">$11.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Dal Makhani.webp" alt="Dal Makhani" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Dal Makhani', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Dal Makhani', 10.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Dal Makhani</h4><span class="dish-price">$10.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Paneer Butter Masala.webp" alt="Paneer Butter Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Butter Masala', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Butter Masala', 13.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Butter Masala</h4><span class="dish-price">$13.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Palak Paneer.webp" alt="Palak Paneer" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Palak Paneer',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Palak Paneer',12.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Palak Paneer</h4><span class="dish-price">$12.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Chana Masala.webp" alt="Chana Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chana Masala',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Chana Masala',11.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chana Masala</h4><span class="dish-price">$11.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Dal Makhani.webp" alt="Dal Makhani" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Dal Makhani',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Dal Makhani',10.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Dal Makhani</h4><span class="dish-price">$10.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Paneer Butter Masala.webp" alt="Paneer Butter Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Butter Masala',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Butter Masala',13.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Butter Masala</h4><span class="dish-price">$13.49</span></div></article>
                     </div>
                 </section>
 
                 <section id="street-food" class="menu-section">
                     <h2>Street Food</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Pav Bhaji.webp" alt="Pav Bhaji" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Pav Bhaji', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Pav Bhaji', 9.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Pav Bhaji</h4><span class="dish-price">$9.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Pani Puri.webp" alt="Pani Puri" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Pani Puri', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Pani Puri', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Pani Puri</h4><span class="dish-price">$7.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Bhel Puri.webp" alt="Bhel Puri" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Bhel Puri', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Bhel Puri', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Bhel Puri</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Pav Bhaji.webp" alt="Pav Bhaji" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Pav Bhaji',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Pav Bhaji',9.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Pav Bhaji</h4><span class="dish-price">$9.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Pani Puri.webp" alt="Pani Puri" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Pani Puri',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Pani Puri',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Pani Puri</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Bhel Puri.webp" alt="Bhel Puri" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Bhel Puri',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Bhel Puri',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Bhel Puri</h4><span class="dish-price">$7.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="south-indian" class="menu-section">
                     <h2>South Indian Classics</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Idli Sambar.webp" alt="Idli Sambar" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Idli Sambar', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Idli Sambar', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Idli Sambar</h4><span class="dish-price">$7.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Uttapam.webp" alt="Uttapam (Onion/Tomato)" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Uttapam (Onion/Tomato)', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Uttapam (Onion/Tomato)', 9.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Uttapam (Onion/Tomato)</h4><span class="dish-price">$9.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Curd Rice.webp" alt="Curd Rice" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Curd Rice', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Curd Rice', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Curd Rice</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Idli Sambar.webp" alt="Idli Sambar" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Idli Sambar',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Idli Sambar',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Idli Sambar</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Uttapam.webp" alt="Uttapam" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Uttapam (Onion/Tomato)',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Uttapam (Onion/Tomato)',9.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Uttapam (Onion/Tomato)</h4><span class="dish-price">$9.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Curd Rice.webp" alt="Curd Rice" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Curd Rice',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Curd Rice',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Curd Rice</h4><span class="dish-price">$7.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="north-indian" class="menu-section">
                     <h2>North Indian Specialties</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Paneer Butter Masala.webp" alt="Paneer Tikka Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Tikka Masala', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Tikka Masala', 13.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Tikka Masala</h4><span class="dish-price">$13.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Dal Makhani.webp" alt="Dal Tadka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Dal Tadka', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Dal Tadka', 10.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Dal Tadka</h4><span class="dish-price">$10.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Chicken Kadai.webp" alt="Chicken Kadai" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken Kadai', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken Kadai', 15.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken Kadai</h4><span class="dish-price">$15.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Paneer Butter Masala.webp" alt="Paneer Tikka Masala" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Paneer Tikka Masala',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Paneer Tikka Masala',13.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Paneer Tikka Masala</h4><span class="dish-price">$13.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Dal Makhani.webp" alt="Dal Tadka" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Dal Tadka',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Dal Tadka',10.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Dal Tadka</h4><span class="dish-price">$10.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Chicken Kadai.webp" alt="Chicken Kadai" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chicken Kadai',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Chicken Kadai',15.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chicken Kadai</h4><span class="dish-price">$15.49</span></div></article>
                     </div>
                 </section>
 
                 <section id="chefs-reco" class="menu-section">
                     <h2>Chef's Recommendations</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/tali.webp" alt="Chef's Special Thali" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chef\'s Special Thali', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Chef\'s Special Thali', 19.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chef's Special Thali</h4><span class="dish-price">$19.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Gongura Chicken.webp" alt="Gongura Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Gongura Chicken', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Gongura Chicken', 16.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Gongura Chicken</h4><span class="dish-price">$16.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/chickenbiryani.webp" alt="Hyderabadi Veg Dum Biryani" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Hyderabadi Veg Dum Biryani', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Hyderabadi Veg Dum Biryani', 13.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Hyderabadi Veg Dum Biryani</h4><span class="dish-price">$13.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/tali.webp" alt="Chef's Special Thali" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Chef\'s Special Thali',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Chef\'s Special Thali',19.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Chef's Special Thali</h4><span class="dish-price">$19.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Gongura Chicken.webp" alt="Gongura Chicken" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Gongura Chicken',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Gongura Chicken',16.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Gongura Chicken</h4><span class="dish-price">$16.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/chickenbiryani.webp" alt="Hyderabadi Veg Dum Biryani" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Hyderabadi Veg Dum Biryani',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Hyderabadi Veg Dum Biryani',13.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Hyderabadi Veg Dum Biryani</h4><span class="dish-price">$13.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="rice-bread" class="menu-section">
                     <h2>Rice & Bread</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Basmati Rice.webp" alt="Basmati Rice" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Basmati Rice', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Basmati Rice', 8.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Basmati Rice</h4><span class="dish-price">$8.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Naan Bread.webp" alt="Naan Bread" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Naan Bread (6 pieces)', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Naan Bread (6 pieces)', 9.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Naan Bread (6 pieces)</h4><span class="dish-price">$9.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Roti.webp" alt="Roti" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Roti (12 pieces)', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Roti (12 pieces)', 7.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Roti (12 pieces)</h4><span class="dish-price">$7.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Basmati Rice.webp" alt="Basmati Rice" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Basmati Rice',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Basmati Rice',8.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Basmati Rice</h4><span class="dish-price">$8.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Naan Bread.webp" alt="Naan Bread" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Naan Bread (6 pieces)',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Naan Bread (6 pieces)',9.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Naan Bread (6 pieces)</h4><span class="dish-price">$9.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Roti.webp" alt="Roti" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Roti (12 pieces)',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Roti (12 pieces)',7.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Roti (12 pieces)</h4><span class="dish-price">$7.99</span></div></article>
                     </div>
                 </section>
 
                 <section id="desserts" class="menu-section">
                     <h2>Desserts & Drinks</h2>
                     <div class="dish-grid">
-                        <article class="dish-card"><div class="dish-media"><img src="images/Gulab Jamun.webp" alt="Gulab Jamun" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Gulab Jamun', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Gulab Jamun', 4.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Gulab Jamun</h4><span class="dish-price">$4.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Ras Malai.webp" alt="Ras Malai" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Ras Malai', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Ras Malai', 5.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Ras Malai</h4><span class="dish-price">$5.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Kheer.webp" alt="Kheer" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Kheer', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Kheer', 4.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Kheer</h4><span class="dish-price">$4.49</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Kulfi.webp" alt="Kulfi" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Kulfi', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Kulfi', 3.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Kulfi</h4><span class="dish-price">$3.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Masala Chai.webp" alt="Masala Chai" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Masala Chai', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Masala Chai', 2.99, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Masala Chai</h4><span class="dish-price">$2.99</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Mango Lassi.webp" alt="Mango Lassi" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Mango Lassi', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Mango Lassi', 4.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Mango Lassi</h4><span class="dish-price">$4.49</span></div></article>
-                        <article class="dish-card"><div class="dish-media"><img src="images/Fresh Lime Soda.webp" alt="Fresh Lime Soda" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Fresh Lime Soda', this)" style="display: none;">-</button><span class="dish-count-display" style="display: none;">0</span><button class="dish-add-btn" onclick="addToCart('Fresh Lime Soda', 3.49, this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Fresh Lime Soda</h4><span class="dish-price">$3.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Gulab Jamun.webp" alt="Gulab Jamun" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Gulab Jamun',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Gulab Jamun',4.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Gulab Jamun</h4><span class="dish-price">$4.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Ras Malai.webp" alt="Ras Malai" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Ras Malai',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Ras Malai',5.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Ras Malai</h4><span class="dish-price">$5.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Kheer.webp" alt="Kheer" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Kheer',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Kheer',4.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Kheer</h4><span class="dish-price">$4.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Kulfi.webp" alt="Kulfi" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Kulfi',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Kulfi',3.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Kulfi</h4><span class="dish-price">$3.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Masala Chai.webp" alt="Masala Chai" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Masala Chai',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Masala Chai',2.99,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Masala Chai</h4><span class="dish-price">$2.99</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Mango Lassi.webp" alt="Mango Lassi" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Mango Lassi',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Mango Lassi',4.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Mango Lassi</h4><span class="dish-price">$4.49</span></div></article>
+                        <article class="dish-card"><div class="dish-media"><img src="images/Fresh Lime Soda.webp" alt="Fresh Lime Soda" loading="lazy"><div class="dish-buttons"><button class="dish-remove-btn" onclick="removeFromCart('Fresh Lime Soda',this)" style="display:none;">-</button><span class="dish-count-display" style="display:none;">0</span><button class="dish-add-btn" onclick="addToCart('Fresh Lime Soda',3.49,this)">+</button></div></div><div class="dish-info"><h4 class="dish-name">Fresh Lime Soda</h4><span class="dish-price">$3.49</span></div></article>
                     </div>
                 </section>
+
             </div>
         </div>
 
         <div class="contact-info">
             <h3>Special Offers</h3>
-            <ul style="list-style: none;">
+            <ul style="list-style:none;">
                 <li><strong>Weekend Buffet:</strong> Saturday & Sunday 11:30 AM - 3:00 PM - $18.99</li>
                 <li><strong>Lunch Special:</strong> Monday-Friday 11:30 AM - 2:30 PM - 15% off</li>
                 <li><strong>Catering Services:</strong> Available for events and parties</li>
@@ -204,10 +336,11 @@
             </ul>
         </div>
 
-        <!-- CUSTOMIZATION MODAL -->
+        <!-- ── CUSTOMIZATION MODAL ─────────────────────────────── -->
         <div id="customizationModalBackdrop" class="customization-backdrop" aria-hidden="true">
             <div class="customization-modal" role="dialog" aria-modal="true" aria-labelledby="customizationTitle">
-                <button type="button" class="customization-close" onclick="closeCustomizationModal()" aria-label="Close customization">✕</button>
+
+                <button type="button" class="customization-close" onclick="closeCustomizationModal()" aria-label="Close">✕</button>
 
                 <div class="customization-header">
                     <div class="customization-media">
@@ -221,6 +354,7 @@
                 </div>
 
                 <form id="customizationForm" onsubmit="event.preventDefault(); confirmCustomization();">
+
                     <fieldset class="customization-group">
                         <legend>Spice Level</legend>
                         <div class="customization-options">
@@ -250,7 +384,7 @@
                             <span class="points-icon">🔒</span>
                             <div class="points-text">
                                 <p class="points-title">Sign in to use your reward points</p>
-                                <button type="button" class="btn-secondary btn-small" onclick="openSignInFromModal()">Sign In</button>
+                                <button type="button" class="btn-secondary btn-small" onclick="window.open('signin.html','_blank')">Sign In</button>
                             </div>
                         </div>
                         <div id="pointsUnlocked" class="points-unlocked" style="display:none;">
@@ -280,332 +414,297 @@
                         <button type="button" class="btn-secondary" onclick="closeCustomizationModal()">Cancel</button>
                         <button type="submit" id="customizationAddButton" class="btn-primary">Add to Cart</button>
                     </div>
+
                 </form>
             </div>
         </div>
+
     </main>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script>
-    // ── Search filter ──────────────────────────────────────────────
+    // ── Search ─────────────────────────────────────────────────────
     (function () {
-        const input = document.getElementById('menuSearch');
+        var input = document.getElementById('menuSearch');
         if (!input) return;
-        const sections = Array.from(document.querySelectorAll('.menu-section'));
+        var sections = Array.from(document.querySelectorAll('.menu-section'));
         input.addEventListener('input', function () {
-            const q = this.value.trim().toLowerCase();
-            sections.forEach(function (section) {
-                const cards = Array.from(section.querySelectorAll('.dish-card'));
-                let anyVisible = false;
-                cards.forEach(function (card) {
-                    const show = card.textContent.toLowerCase().includes(q);
-                    card.style.display = show ? '' : 'none';
-                    if (show) anyVisible = true;
+            var q = this.value.trim().toLowerCase();
+            sections.forEach(function (sec) {
+                var cards = Array.from(sec.querySelectorAll('.dish-card'));
+                var any = false;
+                cards.forEach(function (c) {
+                    var show = c.textContent.toLowerCase().includes(q);
+                    c.style.display = show ? '' : 'none';
+                    if (show) any = true;
                 });
-                section.style.display = (q && !anyVisible) ? 'none' : '';
+                sec.style.display = (q && !any) ? 'none' : '';
             });
         });
     })();
 
+    // ── Hamburger menu ─────────────────────────────────────────────
+    (function () {
+        var btn  = document.getElementById('hamburgerBtn');
+        var menu = document.getElementById('mobileMenu');
+        if (!btn || !menu) return;
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            menu.classList.toggle('open');
+            btn.textContent = menu.classList.contains('open') ? '✕' : '☰';
+        });
+        document.addEventListener('click', function () {
+            menu.classList.remove('open');
+            btn.textContent = '☰';
+        });
+        menu.addEventListener('click', function (e) { e.stopPropagation(); });
+    })();
+
     // ── Dish image map ─────────────────────────────────────────────
-    function getDishImage(dishName) {
-        var map = {
-            'Butter Chicken': 'images/butterchicken.webp',
-            'Chicken Biryani': 'images/chickenbiryani.webp',
-            'Paneer Tikka': 'images/paneertikka.webp',
-            'Masala Dosa': 'images/dosa.webp',
-            'Chana Masala': 'images/chanamasala.webp',
-            'Vegetable Samosa': 'images/VegetableSamosa.webp',
-            'Mixed Veg Pakora': 'images/Mixed Veg Pakora.webp',
-            'Aloo Tikki': 'images/Aloo Tikki.webp',
-            'Chicken 65': 'images/Chicken 65.webp',
-            'Chicken Tikka': 'images/Chicken Tikka.webp',
-            'Fish Pakora': 'images/Fish Pakora.webp',
-            'Idli Sambar': 'images/Idli Sambar.webp',
-            'Medu Vada Sambar': 'images/Medu Vada Sambar.webp',
-            'Uttapam (Onion/Tomato)': 'images/Uttapam.webp',
-            'Plain Dosa': 'images/plain Dosa.webp',
-            'Mysore Masala Dosa': 'images/Mysore Masala Dosa.webp',
-            'Poori Bhaji': 'images/Poori Bhaji.webp',
-            'Curd Rice': 'images/Curd Rice.webp',
-            'Chicken Kadai': 'images/Chicken Kadai.webp',
-            'Tandoori Chicken': 'images/Tandoori Chicken.webp',
-            'Gongura Chicken': 'images/Gongura Chicken.webp',
-            'Lamb Rogan Josh': 'images/Lamb rogan josh.webp',
-            'Fish Curry': 'images/fish curry.webp',
-            'Palak Paneer': 'images/Palak Paneer.webp',
-            'Dal Makhani': 'images/Dal Makhani.webp',
-            'Dal Tadka': 'images/Dal Makhani.webp',
-            'Paneer Butter Masala': 'images/Paneer Butter Masala.webp',
-            'Paneer Tikka Masala': 'images/Paneer Butter Masala.webp',
-            'Pav Bhaji': 'images/Pav Bhaji.webp',
-            'Pani Puri': 'images/Pani Puri.webp',
-            'Bhel Puri': 'images/Bhel Puri.webp',
-            'Papadum with Chutneys': 'images/Papadum with Chutneys.webp',
-            'Gulab Jamun': 'images/Gulab Jamun.webp',
-            'Ras Malai': 'images/Ras Malai.webp',
-            'Kheer': 'images/Kheer.webp',
-            'Kulfi': 'images/Kulfi.webp',
-            'Masala Chai': 'images/Masala Chai.webp',
-            'Mango Lassi': 'images/Mango Lassi.webp',
-            'Fresh Lime Soda': 'images/Fresh Lime Soda.webp',
-            'Basmati Rice': 'images/Basmati Rice.webp',
-            'Naan Bread (6 pieces)': 'images/Naan Bread.webp',
-            'Roti (12 pieces)': 'images/Roti.webp',
-            'Hyderabadi Veg Dum Biryani': 'images/chickenbiryani.webp',
-            "Chef's Special Thali": 'images/tali.webp'
+    function getDishImage(name) {
+        var m = {
+            'Butter Chicken':'images/butterchicken.webp',
+            'Chicken Biryani':'images/chickenbiryani.webp',
+            'Paneer Tikka':'images/paneertikka.webp',
+            'Masala Dosa':'images/dosa.webp',
+            'Chana Masala':'images/chanamasala.webp',
+            'Vegetable Samosa':'images/VegetableSamosa.webp',
+            'Mixed Veg Pakora':'images/Mixed Veg Pakora.webp',
+            'Aloo Tikki':'images/Aloo Tikki.webp',
+            'Chicken 65':'images/Chicken 65.webp',
+            'Chicken Tikka':'images/Chicken Tikka.webp',
+            'Fish Pakora':'images/Fish Pakora.webp',
+            'Idli Sambar':'images/Idli Sambar.webp',
+            'Medu Vada Sambar':'images/Medu Vada Sambar.webp',
+            'Uttapam (Onion/Tomato)':'images/Uttapam.webp',
+            'Plain Dosa':'images/plain Dosa.webp',
+            'Mysore Masala Dosa':'images/Mysore Masala Dosa.webp',
+            'Poori Bhaji':'images/Poori Bhaji.webp',
+            'Curd Rice':'images/Curd Rice.webp',
+            'Chicken Kadai':'images/Chicken Kadai.webp',
+            'Tandoori Chicken':'images/Tandoori Chicken.webp',
+            'Gongura Chicken':'images/Gongura Chicken.webp',
+            'Lamb Rogan Josh':'images/Lamb rogan josh.webp',
+            'Fish Curry':'images/fish curry.webp',
+            'Palak Paneer':'images/Palak Paneer.webp',
+            'Dal Makhani':'images/Dal Makhani.webp',
+            'Dal Tadka':'images/Dal Makhani.webp',
+            'Paneer Butter Masala':'images/Paneer Butter Masala.webp',
+            'Paneer Tikka Masala':'images/Paneer Butter Masala.webp',
+            'Pav Bhaji':'images/Pav Bhaji.webp',
+            'Pani Puri':'images/Pani Puri.webp',
+            'Bhel Puri':'images/Bhel Puri.webp',
+            'Papadum with Chutneys':'images/Papadum with Chutneys.webp',
+            'Gulab Jamun':'images/Gulab Jamun.webp',
+            'Ras Malai':'images/Ras Malai.webp',
+            'Kheer':'images/Kheer.webp',
+            'Kulfi':'images/Kulfi.webp',
+            'Masala Chai':'images/Masala Chai.webp',
+            'Mango Lassi':'images/Mango Lassi.webp',
+            'Fresh Lime Soda':'images/Fresh Lime Soda.webp',
+            'Basmati Rice':'images/Basmati Rice.webp',
+            'Naan Bread (6 pieces)':'images/Naan Bread.webp',
+            'Roti (12 pieces)':'images/Roti.webp',
+            'Hyderabadi Veg Dum Biryani':'images/chickenbiryani.webp',
+            "Chef's Special Thali":'images/tali.webp'
         };
-        return map[dishName] || 'images/Orange and Yellow Modern Restaurant Logo.png';
+        return m[name] || 'images/Orange and Yellow Modern Restaurant Logo.png';
     }
 
     // ── Auth helpers ───────────────────────────────────────────────
     function getUserSession() {
         try {
             if (localStorage.getItem('userLoggedIn') !== 'true') return null;
-            var pts = parseInt(localStorage.getItem('userPoints') || '0', 10) || 0;
-            return { points: pts };
-        } catch (e) { return null; }
-    }
-
-    function openSignInFromModal() {
-        window.open('signin.html', '_blank');
+            return { points: parseInt(localStorage.getItem('userPoints') || '0', 10) || 0 };
+        } catch(e) { return null; }
     }
 
     // ── Customization state ────────────────────────────────────────
-    var currentCustomization = {
-        dishName: null, price: null, buttonElement: null,
-        quantity: 1, appliedPoints: 0, appliedDiscount: 0
-    };
+    var _cur = { name:'', price:0, qty:1, btnEl:null, appliedPoints:0, appliedDiscount:0 };
 
     // ── Open modal ─────────────────────────────────────────────────
-    function openCustomizationModal(dishName, price, buttonElement) {
-        console.log('modal opened for: ' + dishName);
+    function openCustomizationModal(name, price, btnEl) {
+        console.log('modal opened for: ' + name);
+        _cur = { name:name, price:price, qty:1, btnEl:btnEl, appliedPoints:0, appliedDiscount:0 };
 
-        currentCustomization = {
-            dishName: dishName, price: price, buttonElement: buttonElement,
-            quantity: 1, appliedPoints: 0, appliedDiscount: 0
-        };
-
-        // Populate header
-        document.getElementById('customizationItemName').textContent = dishName;
+        document.getElementById('customizationItemName').textContent  = name;
         document.getElementById('customizationItemPrice').textContent = '$' + price.toFixed(2);
-        document.getElementById('customizationItemImage').src = getDishImage(dishName);
-        document.getElementById('customizationItemImage').alt = dishName;
-
-        // Reset form
-        var form = document.getElementById('customizationForm');
-        form.reset();
-        var mediumRadio = form.querySelector('input[name="spiceLevel"][value="Medium"]');
-        if (mediumRadio) mediumRadio.checked = true;
-
-        // Reset quantity
+        document.getElementById('customizationItemImage').src         = getDishImage(name);
+        document.getElementById('customizationItemImage').alt         = name;
         document.getElementById('customizationQuantityDisplay').textContent = '1';
 
-        // Points UI
-        var user = getUserSession();
-        var lockedEl = document.getElementById('pointsLocked');
-        var unlockedEl = document.getElementById('pointsUnlocked');
-        var balanceEl = document.getElementById('pointsBalanceText');
-        var payWithPointsInput = document.getElementById('payWithPoints');
+        var form = document.getElementById('customizationForm');
+        form.reset();
+        var med = form.querySelector('input[name="spiceLevel"][value="Medium"]');
+        if (med) med.checked = true;
+
+        var user     = getUserSession();
+        var locked   = document.getElementById('pointsLocked');
+        var unlocked = document.getElementById('pointsUnlocked');
+        var balText  = document.getElementById('pointsBalanceText');
+        var pwp      = document.getElementById('payWithPoints');
 
         if (user) {
-            lockedEl.style.display = 'none';
-            unlockedEl.style.display = 'flex';
-            var val = (user.points * 0.01).toFixed(2);
-            balanceEl.textContent = '🪙 You have ' + user.points + ' points = $' + val + ' off';
-            payWithPointsInput.checked = false;
-            payWithPointsInput.onchange = recalcCustomizationTotal;
+            locked.style.display   = 'none';
+            unlocked.style.display = 'flex';
+            balText.textContent    = '🪙 You have ' + user.points + ' points = $' + (user.points * 0.01).toFixed(2) + ' off';
+            pwp.checked            = false;
+            pwp.onchange           = recalcTotal;
         } else {
-            lockedEl.style.display = 'flex';
-            unlockedEl.style.display = 'none';
+            locked.style.display   = 'flex';
+            unlocked.style.display = 'none';
         }
 
-        recalcCustomizationTotal();
+        recalcTotal();
 
-        // Show modal
-        var backdrop = document.getElementById('customizationModalBackdrop');
-        backdrop.classList.add('is-visible');
-        backdrop.setAttribute('aria-hidden', 'false');
+        var bd = document.getElementById('customizationModalBackdrop');
+        bd.classList.add('is-visible');
+        bd.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
     }
 
     // ── Close modal ────────────────────────────────────────────────
     function closeCustomizationModal() {
-        var backdrop = document.getElementById('customizationModalBackdrop');
-        backdrop.classList.remove('is-visible');
-        backdrop.setAttribute('aria-hidden', 'true');
+        var bd = document.getElementById('customizationModalBackdrop');
+        bd.classList.remove('is-visible');
+        bd.setAttribute('aria-hidden','true');
         document.body.style.overflow = '';
     }
 
-    // Close on backdrop click
-    document.getElementById('customizationModalBackdrop').addEventListener('click', function (e) {
+    document.getElementById('customizationModalBackdrop').addEventListener('click', function(e) {
         if (e.target === this) closeCustomizationModal();
     });
-
-    // Close on Escape key
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeCustomizationModal();
-    });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCustomizationModal(); });
 
     // ── Quantity ───────────────────────────────────────────────────
-    function changeCustomizationQuantity(delta) {
-        var qty = (currentCustomization.quantity || 1) + delta;
-        if (qty < 1) qty = 1;
-        if (qty > 10) qty = 10;
-        currentCustomization.quantity = qty;
-        document.getElementById('customizationQuantityDisplay').textContent = qty;
-        recalcCustomizationTotal();
+    function changeCustomizationQuantity(d) {
+        var q = _cur.qty + d;
+        if (q < 1) q = 1;
+        if (q > 10) q = 10;
+        _cur.qty = q;
+        document.getElementById('customizationQuantityDisplay').textContent = q;
+        recalcTotal();
     }
 
-    // ── Recalc total on button ─────────────────────────────────────
-    function recalcCustomizationTotal() {
-        var btn = document.getElementById('customizationAddButton');
-        if (!btn || !currentCustomization.price) return;
-
-        var base = currentCustomization.price * (currentCustomization.quantity || 1);
+    // ── Recalc button label ────────────────────────────────────────
+    function recalcTotal() {
+        var btn  = document.getElementById('customizationAddButton');
+        if (!btn || !_cur.price) return;
+        var base = _cur.price * _cur.qty;
         var user = getUserSession();
-        var payInput = document.getElementById('payWithPoints');
-        var discount = 0, appliedPoints = 0;
-
-        if (user && payInput && payInput.checked) {
-            var maxDiscount = user.points * 0.01;
-            discount = Math.min(base, maxDiscount);
-            appliedPoints = Math.round(discount / 0.01);
+        var pwp  = document.getElementById('payWithPoints');
+        var disc = 0, pts = 0;
+        if (user && pwp && pwp.checked) {
+            disc = Math.min(base, user.points * 0.01);
+            pts  = Math.round(disc / 0.01);
         }
-
-        currentCustomization.appliedPoints = appliedPoints;
-        currentCustomization.appliedDiscount = discount;
-
-        var final = Math.max(0, base - discount);
-        btn.textContent = 'Add to Cart • $' + final.toFixed(2);
+        _cur.appliedPoints   = pts;
+        _cur.appliedDiscount = disc;
+        btn.textContent = 'Add to Cart • $' + Math.max(0, base - disc).toFixed(2);
     }
 
-    // ── Confirm & add to cart ──────────────────────────────────────
+    // ── Confirm ────────────────────────────────────────────────────
     function confirmCustomization() {
         var form = document.getElementById('customizationForm');
-        if (!form || !currentCustomization.dishName) return;
+        if (!form || !_cur.name) return;
 
-        var spiceRadio = form.querySelector('input[name="spiceLevel"]:checked');
-        var spiceLevel = spiceRadio ? spiceRadio.value : 'Medium';
-        var specialRequest = (document.getElementById('specialRequest').value || '').trim();
-        var payWithPoints = document.getElementById('payWithPoints') ? document.getElementById('payWithPoints').checked : false;
-        var goesWellWith = document.getElementById('goesWellWith').value || '';
+        var spice   = (form.querySelector('input[name="spiceLevel"]:checked') || {}).value || 'Medium';
+        var note    = (document.getElementById('specialRequest').value || '').trim();
+        var pwp     = document.getElementById('payWithPoints');
+        var drink   = document.getElementById('goesWellWith').value || '';
 
-        // Save to cart
         var cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        var existing = cart.findIndex(function (i) { return i.name === currentCustomization.dishName; });
+        var idx  = cart.findIndex(function(i){ return i.name === _cur.name; });
 
-        if (existing !== -1) {
-            cart[existing].quantity = (cart[existing].quantity || 1) + (currentCustomization.quantity || 1);
+        if (idx !== -1) {
+            cart[idx].quantity = (cart[idx].quantity || 1) + _cur.qty;
         } else {
             cart.push({
-                id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
-                name: currentCustomization.dishName,
-                price: currentCustomization.price,
-                image: getDishImage(currentCustomization.dishName),
-                quantity: currentCustomization.quantity || 1,
-                spiceLevel: spiceLevel,
-                specialRequest: specialRequest,
-                payWithPoints: payWithPoints,
-                goesWellWith: goesWellWith,
-                appliedPoints: currentCustomization.appliedPoints || 0,
-                appliedDiscount: currentCustomization.appliedDiscount || 0
+                id: Date.now().toString(36) + Math.random().toString(36).slice(2,8),
+                name: _cur.name,
+                price: _cur.price,
+                image: getDishImage(_cur.name),
+                quantity: _cur.qty,
+                spiceLevel: spice,
+                specialRequest: note,
+                payWithPoints: pwp ? pwp.checked : false,
+                goesWellWith: drink,
+                appliedPoints: _cur.appliedPoints,
+                appliedDiscount: _cur.appliedDiscount
             });
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Update button count on card
-        updateDishButtonCount(currentCustomization.dishName, currentCustomization.buttonElement);
-
-        // Update nav badge
+        updateDishButtonCount(_cur.name, _cur.btnEl);
         updateCartCount();
-
-        // Toast
-        showToast('✅ ' + currentCustomization.dishName + ' added to cart!');
-
+        showToast('✅ ' + _cur.name + ' added to cart!');
         closeCustomizationModal();
     }
 
-    // ── addToCart — intercepts + button, opens modal ───────────────
+    // ── addToCart intercept ────────────────────────────────────────
     function addToCart(name, price, btnEl) {
         openCustomizationModal(name, price, btnEl);
     }
 
     // ── removeFromCart ─────────────────────────────────────────────
-    function removeFromCart(dishName, buttonElement) {
+    function removeFromCart(name, btnEl) {
         var cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        var idx = cart.findIndex(function (i) { return i.name === dishName; });
+        var idx  = cart.findIndex(function(i){ return i.name === name; });
         if (idx === -1) return;
-
-        if ((cart[idx].quantity || 1) > 1) {
-            cart[idx].quantity--;
-        } else {
-            cart.splice(idx, 1);
-        }
-
+        if ((cart[idx].quantity || 1) > 1) { cart[idx].quantity--; }
+        else { cart.splice(idx, 1); }
         localStorage.setItem('cart', JSON.stringify(cart));
-
-        var container = buttonElement.closest('.dish-buttons');
-        if (container) updateDishButtonCount(dishName, container.querySelector('.dish-add-btn'));
-
+        var con = btnEl.closest('.dish-buttons');
+        if (con) updateDishButtonCount(name, con.querySelector('.dish-add-btn'));
         updateCartCount();
     }
 
-    // ── Update per-card +/- display ────────────────────────────────
-    function updateDishButtonCount(dishName, addButton) {
+    // ── Update card +/- display ────────────────────────────────────
+    function updateDishButtonCount(name, addBtn) {
         var cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        var item = cart.find(function (i) { return i.name === dishName; });
-        var qty = item ? (item.quantity || 1) : 0;
-
-        if (!addButton) return;
-        var container = addButton.closest('.dish-buttons');
-        if (!container) return;
-        var removeBtn = container.querySelector('.dish-remove-btn');
-        var countDisplay = container.querySelector('.dish-count-display');
-
-        if (removeBtn && countDisplay) {
-            if (qty >= 1) {
-                removeBtn.style.display = 'flex';
-                countDisplay.style.display = 'flex';
-                countDisplay.textContent = qty;
-            } else {
-                removeBtn.style.display = 'none';
-                countDisplay.style.display = 'none';
-            }
+        var item = cart.find(function(i){ return i.name === name; });
+        var qty  = item ? (item.quantity || 1) : 0;
+        if (!addBtn) return;
+        var con  = addBtn.closest('.dish-buttons');
+        if (!con) return;
+        var rem  = con.querySelector('.dish-remove-btn');
+        var cnt  = con.querySelector('.dish-count-display');
+        if (rem && cnt) {
+            rem.style.display = qty >= 1 ? 'flex' : 'none';
+            cnt.style.display = qty >= 1 ? 'flex' : 'none';
+            cnt.textContent   = qty;
         }
     }
 
     function updateAllDishButtonCounts() {
-        var cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        document.querySelectorAll('.dish-add-btn').forEach(function (btn) {
-            var attr = btn.getAttribute('onclick') || '';
-            var match = attr.match(/addToCart\('([^']+)'/);
-            if (match) updateDishButtonCount(match[1], btn);
+        document.querySelectorAll('.dish-add-btn').forEach(function(btn) {
+            var a = btn.getAttribute('onclick') || '';
+            var m = a.match(/addToCart\('([^']+)'/);
+            if (m) updateDishButtonCount(m[1], btn);
         });
     }
 
-    // ── Nav cart badge ─────────────────────────────────────────────
+    // ── Nav badge ──────────────────────────────────────────────────
     function updateCartCount() {
-        var cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        var total = cart.reduce(function (s, i) { return s + (i.quantity || 1); }, 0);
+        var cart  = JSON.parse(localStorage.getItem('cart') || '[]');
+        var total = cart.reduce(function(s,i){ return s + (i.quantity||1); }, 0);
         var badge = document.getElementById('cartCountNav');
         if (badge) {
-            badge.textContent = total;
-            badge.style.display = total > 0 ? 'flex' : 'none';
+            badge.textContent    = total;
+            badge.style.display  = total > 0 ? 'flex' : 'none';
         }
     }
 
     // ── Toast ──────────────────────────────────────────────────────
-    var toastTimer;
+    var _toastTimer;
     function showToast(msg) {
         var el = document.getElementById('toast');
         if (!el) return;
         el.textContent = msg;
         el.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () { el.classList.remove('show'); }, 2000);
+        clearTimeout(_toastTimer);
+        _toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 2000);
     }
 
     // ── Init ───────────────────────────────────────────────────────
