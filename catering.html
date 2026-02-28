@@ -36,7 +36,19 @@
                 <span class="cart-count" id="cartCountNav">0</span>
             </a>
             <a href="signin.html" class="signin-btn">Sign in</a>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">☰</button>
         </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="menu.html">🍽️ Menu</a>
+            <a href="catering.html">🍱 Catering</a>
+            <a href="events.html">🎉 Events</a>
+            <a href="about.html">📖 Our Story</a>
+            <a href="contact.html">📞 Contact Us</a>
+            <a href="support.html">🛠 Support Services</a>
+            <a href="giftcards.html">🎁 Gift Cards</a>
+            <a href="cart.html">🛒 Cart</a>
+            <a href="signin.html">👤 Sign In</a>
+        </div>
     </header>
 
     <main>
@@ -399,5 +411,22 @@
         }
         updateCartCount();
     </script>
+<script>
+(function(){
+    var btn=document.getElementById('hamburgerBtn');
+    var menu=document.getElementById('mobileMenu');
+    if(!btn||!menu)return;
+    btn.addEventListener('click',function(e){
+        e.stopPropagation();
+        menu.classList.toggle('open');
+        btn.textContent=menu.classList.contains('open')?'✕':'☰';
+    });
+    document.addEventListener('click',function(){
+        menu.classList.remove('open');
+        btn.textContent='☰';
+    });
+    menu.addEventListener('click',function(e){e.stopPropagation();});
+})();
+</script>
 </body>
 </html>
